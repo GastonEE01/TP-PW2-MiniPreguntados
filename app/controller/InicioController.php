@@ -12,7 +12,7 @@ class InicioController
     public function inicio()
     {
         // Renderizar la vista del inicio
-        echo $this->presenter->render('inicio');
+        echo $this->presenter->render('login');
     }
 
 }
