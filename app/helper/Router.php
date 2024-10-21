@@ -13,10 +13,10 @@ class Router
         $this->configuration = $configuration;
     }
 
-    public function route($controllerName, $methodName)
+    public function route($controllerName, $methodName, $data)
     {
         $controller = $this->getControllerFrom($controllerName);
-        $this->executeMethodFromController($controller, $methodName);
+        $this->executeMethodFromController($controller, $methodName, $data);
     }
 
 
@@ -28,10 +28,13 @@ class Router
         return call_user_func(array($this->configuration, $validController));
     }
 
-    private function executeMethodFromController($controller, $method)
+    private function executeMethodFromController($controller, $method, $data)
     {
         $validMethod = method_exists($controller, $method) ? $method : $this->defaultMethod;
-        call_user_func(array($controller, $validMethod));
+        if ($data) {
+            call_user_func([$controller, $validMethod], $data);
+        } else {
+            call_user_func([$controller, $validMethod]);
+        }
     }
-
 }

@@ -8,9 +8,7 @@ $router = $configuration->getRouter();
 $controllerName = isset($_GET['page']) ? $_GET['page'] : 'inicio';
 $methodName = isset($_GET['action']) ? $_GET['action'] : 'inicio';
 
-$router->route($controllerName, $methodName); // Aquí estaban mal definidas las variables
+$data = isset($_POST) ? $_POST : null;
 
 
-
-
-?>
+$router->route($controllerName, $methodName, $data); // Aquí estaban mal definidas las variables

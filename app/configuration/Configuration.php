@@ -7,6 +7,7 @@ include_once("helper/MustachePresenter.php");
 include_once('vendor/mustache/src/Mustache/Autoloader.php');
 
 include_once("model/PokedexModel.php");
+include_once("model/RegistroModel.php");
 include_once("controller/PokedexController.php");
 
 include_once("model/UsuarioModel.php");
@@ -21,9 +22,7 @@ include_once("controller/RegistroController.php");
 
 class Configuration
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public function getPresenter()
     {
@@ -38,7 +37,7 @@ class Configuration
 
     public function getRegistroController()
     {
-        return new RegistroController($this->getPresenter());
+        return new RegistroController($this->getPresenter(), new RegistroModel($this->getDatabase()));
     }
 
     public function getHomeController()
@@ -51,9 +50,14 @@ class Configuration
         return new PerfilController($this->getPresenter());
     }
 
+    public function getDatabase()
+    {
+        $config = parse_ini_file("configuration/config.ini");
+        return new MysqlDatabase($config["host"], $config["port"], $config["username"], $config["password"], $config["dbname"]);
+    }
+
     public function getRouter()
     {
         return new Router($this, "getInicioController", "inicio");
     }
-
 }
