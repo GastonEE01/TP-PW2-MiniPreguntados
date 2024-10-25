@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="/TP-MiniPreguntados-MVC/MVC-2-2024/app/view/estilo/homeEstilo.css">
+   <!-- <link rel="stylesheet" href="/TP-MiniPreguntados-MVC/MVC-2-2024/app/view/estilo/homeEstilo.css"> -->
+    <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/homeEstilo.css">
+
 </head>
 <body>
 <header>
@@ -28,7 +30,9 @@
 
 <main>
     <div class="game-controls">
+        <a href="index.php?page=crearPartida">
         <button class="create-game-button">Crear partida</button>
+        </a>
         <input type="search" placeholder="Buscar partida" class="search-bar">
     </div>
 
@@ -40,6 +44,10 @@
                 <p>Descripción de la partida. Esto puede incluir detalles sobre el juego o el desafío.</p>
             </div>
             <button class="join-button">Unirse</button>
+            <a href="index.php?page=partida">
+            <button class="join-button">Empezar</button>
+            </a>
+
         </div>
 
         <div class="game-entry">

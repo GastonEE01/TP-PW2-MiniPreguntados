@@ -6,9 +6,7 @@ include_once("helper/Router.php");
 include_once("helper/MustachePresenter.php");
 include_once('vendor/mustache/src/Mustache/Autoloader.php');
 
-include_once("model/PokedexModel.php");
 include_once("model/RegistroModel.php");
-include_once("controller/PokedexController.php");
 include_once("model/LoginModel.php");
 
 include_once("model/UsuarioModel.php");
@@ -20,7 +18,9 @@ include_once("controller/PerfilController.php");
 include_once("controller/InicioController.php");
 include_once("controller/RegistroController.php");
 include_once("controller/LoginController.php");
-
+include_once("controller/CrearPartidaController.php");
+include_once("controller/PartidaController.php");
+include_once("controller/PreguntasPartidaController.php");
 
 class Configuration
 {
@@ -40,6 +40,20 @@ class Configuration
     public function getRegistroController()
     {
         return new RegistroController($this->getPresenter(), new RegistroModel($this->getDatabase()));
+    }
+
+    public function getPreguntasPartidaController()
+    {
+        return new PreguntasPartidaController($this->getPresenter());
+    }
+    public function getCrearPartidaController()
+    {
+        return new CrearPartidaController($this->getPresenter());
+    }
+
+    public function getPartidaController()
+    {
+        return new PartidaController($this->getPresenter());
     }
 
     public function getLoginController()

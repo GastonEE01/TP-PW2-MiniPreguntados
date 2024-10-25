@@ -1,6 +1,7 @@
 <?php
 
-session_start();
+//session_start();
+include_once("helper/ManejoSesiones.php");
 include_once("configuration/Configuration.php");
 $configuration = new Configuration();
 $router = $configuration->getRouter();

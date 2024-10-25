@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta Circular</title>
+    <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/partidaEstilo.css">
+
+
+</head>
+<body>
+<div class="container">
+    <div class="ruleta">
+        <svg viewBox="0 0 100 100">
+            <path d="M50,50 L100,50 A50,50 0 0,1 75,93.3 Z" class="section bg-red-500"></path>
+            <path d="M50,50 L75,93.3 A50,50 0 0,1 25,93.3 Z" class="section bg-blue-500"></path>
+            <path d="M50,50 L25,93.3 A50,50 0 0,1 0,50 Z" class="section bg-green-500"></path>
+            <path d="M50,50 L0,50 A50,50 0 0,1 25,6.7 Z" class="section bg-yellow-500"></path>
+            <path d="M50,50 L25,6.7 A50,50 0 0,1 75,6.7 Z" class="section bg-purple-500"></path>
+            <path d="M50,50 L75,6.7 A50,50 0 0,1 100,50 Z" class="section bg-orange-500"></path>
+        </svg>
+        <div class="number" style="top: 15%; left: 50%;">1</div>
+        <div class="number" style="top: 37%; left: 93%;">2</div>
+        <div class="number" style="top: 63%; left: 95%;">3</div>
+        <div class="number" style="top: 85%; left: 50%;">4</div>
+        <div class="number" style="top: 70%; left: 7%;">5</div>
+        <div class="number" style="top: 30%; left: 7%;">6</div>
+        <a href="index.php?page=preguntasPartida">
+        <button class="tirar-button">Tirar</button>
+        </a>
+    </div>
+</div>
+
+<a href="index.php?page=home">
+    <button class="join-button">Volver</button>
+</a>
+</body>
+</html>
