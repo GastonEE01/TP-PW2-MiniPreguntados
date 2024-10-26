@@ -5,14 +5,24 @@ class HomeController
 
     private $presenter;
 
-    public function __construct($presenter)
+
+    public function __construct($presenter )
     {
         $this->presenter = $presenter;
+
     }
 
     public function inicio()
     {
-        // Renderizar la vista del inicio
-        echo $this->presenter->render('home');
+        $sesion = new ManejoSesiones();
+        $usuario = $sesion->obtenerUsuario();
+        $username = $usuario['nombre_usuario'] ?? 'Invitado';
+
+        echo $this->presenter->render('home', [
+            'nombre_usuario' => $username
+        ]);
     }
+
+
+
 }

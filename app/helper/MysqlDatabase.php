@@ -11,6 +11,11 @@ class MysqlDatabase
         }
     }
 
+    // Agrego esto para que funcione la bdd con sesiones
+    public function getConnection() {
+        return $this->conn;
+    }
+
     public function query($sql){
         $result = mysqli_query($this->conn, $sql);
         return  mysqli_fetch_all($result, MYSQLI_ASSOC);

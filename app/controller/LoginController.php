@@ -18,12 +18,20 @@ class LoginController
 
     public function login($data)
     {
-        $user = $this->loginModel->loginUser($data);
+        $nombre_usuario = $data['nombre_usuario'] ?? null;
+        $contrasenia = $data['contrasenia'] ?? null;
 
-        if (count($user) == 0) {
-            echo $this->presenter->render('login');
+        $user = $this->loginModel->loginUser($nombre_usuario, $contrasenia);
+
+        if ($user) {
+            $sesion = new ManejoSesiones();
+            $sesion->iniciarSesion($user);
+            header("Location: index.php?page=home");
         } else {
-            echo $this->presenter->render('home');
+            echo $this->presenter->render("login", [
+                'error' => 'Nombre de usuario o contraseña incorrectos'
+            ]);
         }
     }
+
 }

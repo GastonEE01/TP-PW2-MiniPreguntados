@@ -3,44 +3,31 @@
 class ManejoSesiones
 {
 
-    public function startSession()
+    public function __construct()
     {
-        if (session_status() == PHP_SESSION_NONE) {
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
     }
 
-    public function setUser($user)
+    public function iniciarSesion($usuario)
     {
-        $_SESSION['user'] = $user;
+        $_SESSION['usuario'] = $usuario;
     }
 
-    public function getUser()
+    public function obtenerUsuario()
     {
-        return isset($_SESSION['user']) ? $_SESSION['user'] : null;
+        return $_SESSION['usuario'] ?? null;
     }
 
-    public function logout()
+    public function cerrarSesion()
     {
         session_unset();
         session_destroy();
     }
 
-    public function iniciarSesion($usuario) {
-        session_start(); // Asegúrate de iniciar la sesión
-        $_SESSION['usuario'] = $usuario;
-    }
-
-    public function cerrarSesion() {
-        session_destroy();
-    }
-
-    public function obtenerUsuario() {
-        session_start(); // Asegúrate de iniciar la sesión
-        return isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
-    }
-
-    public function usuarioAutenticado() {
+    public function usuarioAutenticado()
+    {
         return isset($_SESSION['usuario']);
     }
 }
