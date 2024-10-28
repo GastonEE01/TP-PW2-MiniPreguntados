@@ -68,6 +68,9 @@
             <input class="form-control" type="file" id="profilePic"  name="fotoIMG" accept="image/*">
         </div>
             <button class="btn btn-primary col-12 mt-3" type="submit">Registrarse</button>
+        {{#success}}
+            <p>Gracias por registrarte. Revisa tu correo para activar tu cuenta.</p>
+        {{/success}}
         {{#errors}}
             <div class="alert alert-danger">
                 <ul>

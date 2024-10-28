@@ -1,9 +1,6 @@
 {
     "name": "mustache/mustache",
-    "description": "A Mustache implementation in PHP.",
-    "keywords": ["templating", "mustache"],
-    "homepage": "https://github.com/bobthecow/mustache.php",
-    "type": "library",
+    "description": "Mustache template engine for PHP.",
     "license": "MIT",
     "authors": [
         {
@@ -20,6 +17,8 @@
         "friendsofphp/php-cs-fixer": "~1.11"
     },
     "autoload": {
-        "psr-0": { "Mustache": "src/" }
+        "psr-0": {
+            "Mustache": "src/"
+        }
     }
 }

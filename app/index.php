@@ -3,6 +3,8 @@
 //session_start();
 include_once("helper/ManejoSesiones.php");
 include_once("configuration/Configuration.php");
+require __DIR__ . '/../app/vendor/vendor/autoload.php';
+
 $configuration = new Configuration();
 $router = $configuration->getRouter();
 

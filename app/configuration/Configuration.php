@@ -4,6 +4,7 @@ include_once("helper/MysqlObjectDatabase.php");
 include_once("helper/IncludeFilePresenter.php");
 include_once("helper/Router.php");
 include_once("helper/MustachePresenter.php");
+include_once("helper/SenderEmailPHPMailer.php");
 include_once('vendor/mustache/src/Mustache/Autoloader.php');
 
 include_once("model/RegistroModel.php");
@@ -36,7 +37,7 @@ class Configuration
 
     public function getRegistroController()
     {
-        return new RegistroController($this->getPresenter(), new RegistroModel($this->getDatabase()));
+        return new RegistroController($this->getPresenter(), new RegistroModel($this->getDatabase()), new SenderEmailPHPMailer());
     }
 
     public function getPreguntasPartidaController()
