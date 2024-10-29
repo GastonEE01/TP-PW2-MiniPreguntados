@@ -1,16 +1,19 @@
-body {
+/*body {
 font-family: Arial, sans-serif;
-background-color: #f4f4f4;
+    background: #da4343;
 margin: 0;
 padding: 0;
 display: flex;
 justify-content: center;
 align-items: center;
 height: 100vh;
-}
+}*/
 
+body a{
+    color: white;
+}
 .container {
-background-color: #fff;
+    background: #b32929;
 padding: 20px;
 border-radius: 5px;
 box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -29,7 +32,7 @@ height: auto;
 
 .login-form h2 {
 text-align: center;
-color: #333;
+color: #000000;
 }
 
 .form-group {
@@ -37,9 +40,10 @@ margin-bottom: 15px;
 }
 
 label {
+    font-family: "Arial Black";
 display: block;
 margin-bottom: 5px;
-color: #666;
+color: #1b0000;
 }
 
 input[type="text"],

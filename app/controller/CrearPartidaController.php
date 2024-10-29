@@ -4,17 +4,57 @@ class CrearPartidaController
 {
 
     private $presenter;
+    private $crearPartidaModel;
 
-    public function __construct($presenter)
+    public function __construct($presenter,$crearPartidaModel)
     {
         $this->presenter = $presenter;
+        $this->crearPartidaModel = $crearPartidaModel;
+
     }
 
-    public function inicio()
+  /*  public function inicio()
     {
         // Renderiza la vista correcta
         echo $this->presenter->render('crearPartida');
+    }*/
+
+    public function inicio()
+    {
+        $sesion = new ManejoSesiones();
+        $usuario = $sesion->obtenerUsuario();
+        $id_usuario = $sesion->obtenerUsuarioID();  // Obtener el ID de usuario
+        $username = $usuario['nombre_usuario'] ?? 'Invitado';
+        $id = $usuario['id'] ?? 'Invitado';
+
+        echo $this->presenter->render('crearPartida',[
+            'nombre_usuario' => $username,
+            'id' => $id,
+
+
+        ]);
     }
+
+    public function obtenerDatosDePartida() {
+        $sesion = new ManejoSesiones();
+        $id_usuario = $sesion->obtenerUsuarioID();  // Obtener el ID de usuario
+        $descripcion = $_POST['descripcion'];
+echo ($id_usuario);
+      //  $username = $usuario['nombre_usuario'] ?? 'Invitado';
+        if(!$id_usuario){
+            header("Location: index.php?page=login");
+            exit();
+        }
+        else{
+            $descripcion = $_POST['descripcion'];
+            $this->crearPartidaModel->crearPartida($descripcion, $id_usuario);
+            header("Location: index.php?page=home");
+            exit();
+
+        }
+
+    }
+
 
 
 }

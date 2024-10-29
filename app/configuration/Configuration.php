@@ -1,4 +1,5 @@
 <?php
+
 include_once("helper/MysqlDatabase.php");
 include_once("helper/MysqlObjectDatabase.php");
 include_once("helper/IncludeFilePresenter.php");
@@ -10,6 +11,7 @@ include_once('vendor/mustache/src/Mustache/Autoloader.php');
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
 include_once("model/UsuarioModel.php");
+include_once("model/CrearPartidaModel.php");
 
 include_once("controller/UsuarioController.php");
 include_once("controller/HomeController.php");
@@ -46,7 +48,7 @@ class Configuration
     }
     public function getCrearPartidaController()
     {
-        return new CrearPartidaController($this->getPresenter());
+        return new CrearPartidaController($this->getPresenter(),new CrearPartidaModel($this->getDatabase()));
     }
 
     public function getPartidaController()

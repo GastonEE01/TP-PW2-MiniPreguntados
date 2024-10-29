@@ -46,38 +46,9 @@ class SenderEmailPHPMailer
         }
     }
 
-    /*  public function sendEmail($to, $subject, $message)
-      {
-          $mail = new PHPMailer(true);
-          $email = $this->obtenerEmailUsuario();
-          $nombre = $this->obtenerNombreUsuario();
-          $token = rand(1000, 9999); // Generar un token aleatorio
-
-          try {
-              $mail->isSMTP();
-              $mail->Host = 'smtp.gmail.com';
-              $mail->SMTPAuth = true;
-              $mail->Username = $email;
-              $mail->Password = '43386484@g'; // Coloca la contraseña real aquí
-              $mail->SMTPSecure = 'tls';
-              $mail->Port = 587;
-
-              $mail->setFrom($email, $nombre);
-              $mail->addAddress($to);
-              $mail->isHTML(true);
-              $mail->Subject = $subject;
-              $mail->Body = $message;
-
-              $mail->send();
-              echo "Correo enviado correctamente.";
-          } catch (Exception $e) {
-              echo "Error al enviar el correo: {$mail->ErrorInfo}";
-          }
-      }
-*/
       public function sendActivationEmail($userId, $email, $token)
       {
-          $activationLink = "http://localhost/TP-pw2-MiniPreguntados/app/index.php?usuario/validar&id=$userId&token=$token";
+          $activationLink = "http://localhost/usuario/validar?id=$userId&token=$token";
           //$activationLink = "http://localhost/usuario/validar?id=$userId&token=$token";
           $message = "Hola, haz clic en el siguiente enlace para activar tu cuenta: <a href='$activationLink'>Activar cuenta</a>";
           $this->sendEmail($email, "Activación de cuenta", $message);
