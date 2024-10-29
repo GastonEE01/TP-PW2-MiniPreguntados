@@ -2,15 +2,13 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-//require 'vendor/autoload.php';
-
 class SenderEmailPHPMailer
 {
     private function obtenerEmailUsuario()
     {
         $sesion = new ManejoSesiones();
         $usuario = $sesion->obtenerUsuario();
-        return $usuario['email'] ?? 'invitado@gmail.com'; // Cambia a un email predeterminado si es necesario
+        return $usuario['email'] ?? 'invitado@gmail.com'; // email predeterminado si no lo encuentra el del usaurio
     }
 
     private function obtenerNombreUsuario()
@@ -38,7 +36,6 @@ class SenderEmailPHPMailer
             $mail->isHTML(true); // Habilitar HTML
             $mail->Subject = $subject; // Asunto
             $mail->Body = $message; // Cuerpo del mensaje
-
             $mail->send(); // Enviar correo
             echo "Correo enviado correctamente.";
         } catch (Exception $e) {
@@ -46,12 +43,11 @@ class SenderEmailPHPMailer
         }
     }
 
-      public function sendActivationEmail($userId, $email, $token)
-      {
-          $activationLink = "http://localhost/usuario/validar?id=$userId&token=$token";
-          //$activationLink = "http://localhost/usuario/validar?id=$userId&token=$token";
-          $message = "Hola, haz clic en el siguiente enlace para activar tu cuenta: <a href='$activationLink'>Activar cuenta</a>";
-          $this->sendEmail($email, "Activación de cuenta", $message);
-      }
 
+    public function sendActivationEmail($userId, $email, $token)
+    {
+        $activationLink = "http://localhost/TP-pw2-MiniPreguntados/app/index.php?usuario/validar&id=$userId&token=$token";
+        $message = "Hola, haz clic en el siguiente enlace para activar tu cuenta: <a href='$activationLink'>Activar cuenta</a>";
+        $this->sendEmail($email, "Activación de cuenta", $message);
+    }
 }

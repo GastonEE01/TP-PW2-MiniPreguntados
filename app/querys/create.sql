@@ -14,17 +14,3 @@ ALTER TABLE usuario
     ADD COLUMN activo BOOLEAN DEFAULT FALSE,
     ADD COLUMN token INT;
 
-
-
-CREATE TABLE partida (
-                         id INT AUTO_INCREMENT PRIMARY KEY,
-                         id_usuario INT,
-                         puntaje INT DEFAULT 0,
-                         fecha_inicio DATETIME,
-                         fecha_fin DATETIME,
-                         estado ENUM('en curso', 'finalizada'),
-                         FOREIGN KEY (id_usuario) REFERENCES usuario(id)
-);
-
-ALTER TABLE partida
-    ADD COLUMN descripcion varchar(50);
