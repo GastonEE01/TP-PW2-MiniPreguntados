@@ -10,22 +10,16 @@ class ManejoSesiones
         }
     }
 
-  /*  public function iniciarSesion($usuario)
-    {
-        $_SESSION['usuario'] = $usuario;
-    }*/
-    public function iniciarSesion($usuario)
-    {
-        $_SESSION['usuario'] = [
-            'id' => $usuario['id'],
-            'nombre_usuario' => $usuario['nombre_usuario'],
-            'pais' => $usuario['pais'],
-            'ciudad' => $usuario['ciudad'],
-            'fotoIMG' => $usuario['fotoIMG']
-        ];
-        // Agrega un código para depurar
-        error_log(print_r($_SESSION['usuario'], true)); // Esto registrará la información en el log
-    }
+public function iniciarSesion($usuario)
+{
+    $_SESSION['usuario'] = [
+        'id' => $usuario['id'] ?? null,
+        'nombre_usuario' => $usuario['nombre_usuario'] ?? '',
+        'pais' => $usuario['pais'] ?? '',
+        'ciudad' => $usuario['ciudad'] ?? '',
+        'fotoIMG' => $usuario['fotoIMG'] ?? ''
+    ];
+}
 
     public function obtenerUsuario()
     {

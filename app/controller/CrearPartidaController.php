@@ -13,12 +13,6 @@ class CrearPartidaController
 
     }
 
-  /*  public function inicio()
-    {
-        // Renderiza la vista correcta
-        echo $this->presenter->render('crearPartida');
-    }*/
-
     public function inicio()
     {
         $sesion = new ManejoSesiones();
@@ -37,10 +31,9 @@ class CrearPartidaController
 
     public function obtenerDatosDePartida() {
         $sesion = new ManejoSesiones();
-        $id_usuario = $sesion->obtenerUsuarioID();  // Obtener el ID de usuario
+        $id_usuario = $sesion->obtenerUsuarioID();
         $descripcion = $_POST['descripcion'];
-echo ($id_usuario);
-      //  $username = $usuario['nombre_usuario'] ?? 'Invitado';
+        echo ($id_usuario);
         if(!$id_usuario){
             header("Location: index.php?page=login");
             exit();
