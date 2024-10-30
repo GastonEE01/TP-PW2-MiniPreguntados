@@ -66,25 +66,13 @@ class RegistroController
     public function  activarCuenta()
     {
        $token=isset($_GET['token'])?$_GET['token']:null;
-        $idUser=isset( $_GET['ID'])?$_GET['ID']:null;
-        if ($idUser){
+        $idUser=isset( $_GET['id'])?$_GET['id']:null;
+        if ($idUser!=null){
         $this->registroModel->activarUsuario($idUser,$token);
+
+        }
         echo $this->presenter->render('login');
 
-        }
-        $token = bin2hex(random_bytes(16));
-        $userId = $this->registroModel->createUser($data,$token);
-
-        if($userId){
-            // enviar email de activación
-            $this->registroModel->activarUsuario($userId); // O maneja la activación según sea necesario
-            $this->senderEmailPHPMailer->sendActivationEmail($userId, $data['email'], $token);
-            echo "Registro exitoso. Revisa tu correo para activar tu cuenta.";
-        } else {
-            echo "Error al registrar el usuario.";
-
-        }
-        echo $this->presenter->render('login', ['success' => 'Revisa tu correo para activar tu cuenta.']);
 
     }
 }

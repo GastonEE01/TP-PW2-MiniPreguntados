@@ -50,8 +50,8 @@ class MysqlDatabase
 
         // Obtener el número de filas afectadas antes de cerrar el stmt
         $affectedRows = mysqli_stmt_affected_rows($stmt);
-        mysqli_stmt_close($stmt); // Cerrar el stmt después de obtener las filas afectadas
         $insertedId = mysqli_insert_id($this->conn);//trae el id del ultimo registro creado o eso dice chatgpt
+        mysqli_stmt_close($stmt); // Cerrar el stmt después de obtener las filas afectadas
 
         return [
             'affected_rows' => $affectedRows,

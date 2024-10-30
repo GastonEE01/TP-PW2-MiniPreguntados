@@ -23,7 +23,7 @@ class LoginController
 
         $user = $this->loginModel->loginUser($nombre_usuario, $contrasenia);
 
-        if ($user) {
+        if ($user['activo']==1) {
             $sesion = new ManejoSesiones();
             $sesion->iniciarSesion($user);
             header("Location: index.php?page=home");
