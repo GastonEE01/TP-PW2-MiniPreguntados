@@ -1,9 +1,14 @@
 {
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "f9007cadd5a9942be8dd212a40b6210f",
     "packages": [
         {
             "name": "mustache/mustache",
             "version": "v2.14.2",
-            "version_normalized": "2.14.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/mustache.php.git",
@@ -22,9 +27,7 @@
                 "friendsofphp/php-cs-fixer": "~1.11",
                 "phpunit/phpunit": "~3.7|~4.0|~5.0"
             },
-            "time": "2022-08-23T13:07:01+00:00",
             "type": "library",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Mustache": "src/"
@@ -51,12 +54,11 @@
                 "issues": "https://github.com/bobthecow/mustache.php/issues",
                 "source": "https://github.com/bobthecow/mustache.php/tree/v2.14.2"
             },
-            "install-path": "../mustache/mustache"
+            "time": "2022-08-23T13:07:01+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
             "version": "v6.9.2",
-            "version_normalized": "6.9.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
@@ -95,9 +97,7 @@
                 "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)",
                 "thenetworg/oauth2-azure": "Needed for Microsoft XOAUTH2 authentication"
             },
-            "time": "2024-10-09T10:07:50+00:00",
             "type": "library",
-            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "PHPMailer\\PHPMailer\\": "src/"
@@ -135,9 +135,16 @@
                     "type": "github"
                 }
             ],
-            "install-path": "../phpmailer/phpmailer"
+            "time": "2024-10-09T10:07:50+00:00"
         }
     ],
-    "dev": true,
-    "dev-package-names": []
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
 }

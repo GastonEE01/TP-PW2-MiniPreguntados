@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuario</title>
-    <!--<link rel="stylesheet" href="/TP-MiniPreguntados-MVC/MVC-2-2024/app/view/estilo/perfilEstilo.css">-->
     <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/perfilEstilo.css">
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="/TP-pw2-MiniPreguntados/app/view/js/perfil.js" defer></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
 <div class="container">
@@ -25,11 +27,20 @@
                     <img src="https://via.placeholder.com/200x200.png?text=Profile" alt="Foto de perfil" class="rounded-image">
                 </div>
                 <div class="profile-info">
-                    <!-- esto deberia ser un mapa -->
                     <h2 class="player-name">{{nombre_usuario}}</h2>
-                    <p class="player-location"><i class="fas fa-map-marker-alt"></i> Ubicación del Jugador</p>
-                    <p>Pais: {{pais}}</p>
-                    <p>Ciudad: {{ciudad}}</p>
+                    <p class="player-location"><i class="fas fa-map-marker-alt"></i> Ubicación:</p>
+                    <!--<div id="map" style="height: 400px; margin-top: 15px;"></div> --><!-- Contenedor para el mapa -->
+                    <!-- <div id="map"></div> Contenedor para el mapa -->
+                    <section>
+                        <div id="map" style="height: 400px; width: 100%;"></div>
+
+                        <input type="hidden" id="latitude" name="latitude" value="">
+                        <input type="hidden" id="longitude" name="longitude" value="">
+                        <input type="hidden" id="ciudad" name="ciudad" value="{{ciudad}}">
+                        <input type="hidden" id="pais" name="pais" value="{{pais}}">
+                    </section>
+                    <!--<p>Pais: {{pais}}</p>
+                    <p>Ciudad: {{ciudad}}</p>-->
 
                     <div class="game-history">
                         <h3><i class="fas fa-trophy"></i> Historial de Partidas</h3>
@@ -56,10 +67,12 @@
                 </div>
             </div>
             <div class="qr-code">
-                <img src="https://placehold.co/100x100?text=QR" alt="Código QR">                    <p>Escanea para más info</p>
+                <img src="https://placehold.co/100x100?text=QR" alt="Código QR"><p>Escanea para más info</p>
             </div>
         </div>
     </div>
 </div>
+
+
 </body>
 </html>
