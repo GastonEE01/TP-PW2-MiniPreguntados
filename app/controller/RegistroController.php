@@ -30,6 +30,11 @@ class RegistroController
             $errors[] = 'El email debe ser un Gmail válido.';
         }
 
+        // Validar que el usuario sea unico
+        if ($this->registroModel->verificarNombreUsuario($data['nombre_usuario'])){
+            $errors[] = 'El nombre de usuario ya existe.';
+        }
+
         // Validar contraseña
         if (strlen($data['contrasenia']) < 5 || !preg_match('/[A-Za-z]/', $data['contrasenia']) || !preg_match('/[0-9]/', $data['contrasenia'])) {
             $errors[] = 'La contraseña debe tener al menos 5 caracteres, incluyendo al menos 1 letra y 1 número.';
@@ -72,7 +77,6 @@ class RegistroController
 
         }
         echo $this->presenter->render('login');
-
 
     }
 }

@@ -29,8 +29,6 @@ class RegistroModel
             $data['ciudad'],
             $data['email'],
             $token
-
-
         ];
 
         return $this->database->execute($sql, $params);
@@ -58,4 +56,18 @@ class RegistroModel
         $stmt->execute();
         }
    }
+    public function verificarNombreUsuario($nombre_usuario)
+    {
+        $query = $this->database->getConnection()->prepare("SELECT COUNT(*) FROM usuario WHERE nombre_usuario = ?");
+
+        // Cambiar `bindParam` por `bind_param` y especificar el tipo de parámetro (en este caso, "s" para string)
+        $query->bind_param("s", $nombre_usuario);
+
+        $query->execute();
+        $result = $query->get_result();
+        $count = $result->fetch_row()[0];
+
+        return $count > 0; // Devuelve true si el nombre de usuario ya existe
+    }
+
 }
