@@ -113,10 +113,17 @@ main {
 }
 
 .join-button {
-    background-color: #8fbece;
-    color: white;
+    font-family: "Segoe UI Black";
+    background-color: #53bee1;    color: white;
     border: none;
     padding: 10px 15px;
     cursor: pointer;
     border-radius: 5px;
+}
+
+body input{
+    font-family: "Segoe UI Black";
+    color: black;
+    background: white;
+    right: 1000px;
 }

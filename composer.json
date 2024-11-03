@@ -1,0 +1,15 @@
+{
+    "name": "estev/tp-pw2-mini-preguntados",
+    "description": "minipreguntados",
+    "authors": [
+        {
+            "name": "GastonEE01",
+            "email": "gestevez@alumno.unlam.edu.ar"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "mustache/mustache": "^2.14",
+        "phpmailer/phpmailer": "^6.9"
+    }
+}

@@ -10,16 +10,22 @@
 <body>
 
 <div class="game-list">
+    <form action="index.php?page=guardarPartida" method="POST">
     <div class="game-entry">
         <img src="https://via.placeholder.com/60x60.png?text=Usuario" alt="Foto de perfil del usuario" class="user-pic">
         <div class="game-info">
-            <h3>Nombre del Usuario</h3>
-            <input type="text" placeholder="Descripcion de la partida">
+            <h3>{{nombre_usuario}}</h3>
+            <h3>{{id}}</h3>
+
+            <input type="text" name="descripcion" placeholder="Descripcion de la partida">
             <button class="join-button">Crear partida</button>
             <a href="index.php?page=home">
             <button class="join-button">Cancelar</button>
             </a>
-
+        </div>
+    </div>
+    </form>
+</div>
 
 </body>
 </html>

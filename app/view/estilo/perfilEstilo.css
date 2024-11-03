@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: transparent; /* Fondo transparente */
+
     margin: 0;
     padding: 0;
     display: flex;
@@ -13,6 +14,7 @@ body {
     width: 100%;
     max-width: 900px;
     padding: 20px;
+    background-color: transparent; /* Fondo transparente para la vista */
 }
 
 .card {

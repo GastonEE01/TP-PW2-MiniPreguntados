@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-  <!--  <link rel="stylesheet" href="/TP-MiniPreguntados-MVC/MVC-2-2024/app/view/estilo/registroEstilo.css"> -->
+    <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/inicioEstilo.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -24,5 +25,10 @@
     </form>
     <a href="/TP-pw2-MiniPreguntados/app/index.php?page=registro">Registrate</a>
 </div>
+{{#success}}
+    <div class="alert alert-success">
+        {{success}}
+    </div>
+{{/success}}
 </body>
 </html>

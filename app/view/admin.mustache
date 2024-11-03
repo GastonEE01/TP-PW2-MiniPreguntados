@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/adminEstilo.css">
+    <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/homeEstilo.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<header>
+    <div class="logo-container">
+        <img src="https://via.placeholder.com/150x50.png?text=LOGO" alt="Logo de la empresa" class="logo">
+    </div>
+    <nav>
+        <div>
+            <nav>
+                <a href="index.php?page=login">
+                    <button class="nav-button">Cerrar sesión</button>
+                </a>
+            </nav>
+            <h3>{{nombre_usuario}}</h3>
+        </div>
+        <div class="profile-pic-container">
+            <a href="index.php?page=perfil">
+                <img src="https://via.placeholder.com/40x40.png?text=Perfil" alt="Foto de perfil" class="profile-pic">
+            </a>
+        </div>
+    </nav>
+</header>
+<body>
+<div class="container">
+    <h1>🎮 Preguntados 🎮</h1>
+    <div class="stats-grid">
+        <div class="item">
+            <h2>Jugadores</h2>
+            <p>500</p>
+            <button onclick="openPopup('jugadores')">Ver Detalles</button>
+        </div>
+        <div class="item">
+            <h2>Preguntas</h2>
+            <p>1200</p>
+            <button onclick="openPopup('preguntas')">Ver Detalles</button>
+        </div>
+        <div class="item">
+            <h2>Preguntas Creadas</h2>
+            <p>200</p>
+            <button onclick="openPopup('preguntasCreadas')">Ver Detalles</button>
+        </div>
+        <div class="item">
+            <h2>Usuarios Nuevos</h2>
+            <p>200</p>
+            <button onclick="openPopup('usuariosNuevos')">Ver Detalles</button>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <h2>Estadísticas de Preguntas por Estado</h2>
+        <canvas id="questionChart"></canvas>
+    </div>
+
+    <div class="user-stats">
+        <h2>Estadísticas de Usuario</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Mejor Puntaje</th>
+                <th>% Acierto</th>
+                <th>Dificultad Promedio</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Usuario1</td>
+                <td>1500</td>
+                <td>75%</td>
+                <td>Media</td>
+            </tr>
+            <tr>
+                <td>Usuario2</td>
+                <td>1450</td>
+                <td>80%</td>
+                <td>Alta</td>
+            </tr>
+            <tr>
+                <td>Usuario3</td>
+                <td>1400</td>
+                <td>70%</td>
+                <td>Baja</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2 id="popupTitle"></h2>
+        <div id="popupContent"></div>
+    </div>
+</div>
+
+<script src="/TP-pw2-MiniPreguntados/app/view/js/admin.js" defer></script>
+</body>
+</html>

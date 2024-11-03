@@ -1,14 +1,17 @@
 <?php
+
 include_once("helper/MysqlDatabase.php");
 include_once("helper/MysqlObjectDatabase.php");
 include_once("helper/IncludeFilePresenter.php");
 include_once("helper/Router.php");
 include_once("helper/MustachePresenter.php");
+include_once("helper/SenderEmailPHPMailer.php");
 include_once('vendor/mustache/src/Mustache/Autoloader.php');
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
 include_once("model/UsuarioModel.php");
+include_once("model/CrearPartidaModel.php");
 
 include_once("controller/UsuarioController.php");
 include_once("controller/HomeController.php");
@@ -19,6 +22,9 @@ include_once("controller/LoginController.php");
 include_once("controller/CrearPartidaController.php");
 include_once("controller/PartidaController.php");
 include_once("controller/PreguntasPartidaController.php");
+include_once("controller/EditorController.php");
+include_once("controller/AdminController.php");
+
 
 class Configuration
 {
@@ -36,7 +42,7 @@ class Configuration
 
     public function getRegistroController()
     {
-        return new RegistroController($this->getPresenter(), new RegistroModel($this->getDatabase()));
+        return new RegistroController($this->getPresenter(), new RegistroModel($this->getDatabase()), new SenderEmailPHPMailer());
     }
 
     public function getPreguntasPartidaController()
@@ -45,7 +51,7 @@ class Configuration
     }
     public function getCrearPartidaController()
     {
-        return new CrearPartidaController($this->getPresenter());
+        return new CrearPartidaController($this->getPresenter(),new CrearPartidaModel($this->getDatabase()));
     }
 
     public function getPartidaController()
@@ -68,6 +74,15 @@ class Configuration
         return new PerfilController($this->getPresenter());
     }
 
+    public function getAdminController()
+    {
+        return new AdminController($this->getPresenter());
+    }
+
+    public function getEditorController()
+    {
+        return new EditorController($this->getPresenter());
+    }
     public function getDatabase()
     {
         $config = parse_ini_file("configuration/config.ini");

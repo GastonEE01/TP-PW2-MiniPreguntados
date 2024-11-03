@@ -2,7 +2,6 @@
 
 class HomeController
 {
-
     private $presenter;
 
 
@@ -17,12 +16,13 @@ class HomeController
         $sesion = new ManejoSesiones();
         $usuario = $sesion->obtenerUsuario();
         $username = $usuario['nombre_usuario'] ?? 'Invitado';
-
+        $id_usuario = $sesion->obtenerUsuarioID();
+        $id = $usuario['id'] ?? 'Invitado';
         echo $this->presenter->render('home', [
-            'nombre_usuario' => $username
+            'nombre_usuario' => $username,
+            'id' => $id
         ]);
     }
-
 
 
 }

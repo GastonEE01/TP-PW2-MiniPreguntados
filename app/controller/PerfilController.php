@@ -19,7 +19,10 @@ class PerfilController
         $fotoIMG = $usuario['fotoIMG'] ?? 'Invitado';
 
         echo $this->presenter->render('perfil', [
-            'nombre_usuario' => $username,'pais' => $pais,'ciudad' => $ciudad,'fotoIMG' => $fotoIMG
+            'nombre_usuario' => $username,
+            'pais' => $pais,
+            'ciudad' => $ciudad,
+            'fotoIMG' => $fotoIMG
         ]);
     }
 }
