@@ -22,6 +22,9 @@ include_once("controller/LoginController.php");
 include_once("controller/CrearPartidaController.php");
 include_once("controller/PartidaController.php");
 include_once("controller/PreguntasPartidaController.php");
+include_once("controller/EditorController.php");
+include_once("controller/AdminController.php");
+
 
 class Configuration
 {
@@ -71,6 +74,15 @@ class Configuration
         return new PerfilController($this->getPresenter());
     }
 
+    public function getAdminController()
+    {
+        return new AdminController($this->getPresenter());
+    }
+
+    public function getEditorController()
+    {
+        return new EditorController($this->getPresenter());
+    }
     public function getDatabase()
     {
         $config = parse_ini_file("configuration/config.ini");

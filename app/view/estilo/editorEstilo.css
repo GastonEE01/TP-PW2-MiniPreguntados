@@ -1,0 +1,47 @@
+body {
+    background-color: #808080;
+    font-family: Arial, sans-serif;
+}
+
+table {
+    width: 100%;
+    background-color: #000000;
+    color: #FFFFFF;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #FFFFFF;
+}
+
+img {
+    border-radius: 50%;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    color: #000000;
+    font-weight: bold;
+}
+
+.user-image {
+    width: 100px;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.agregar {
+    background-color: #00FF00;
+}
+
+.modificar {
+    background-color: #0000FF;
+}
+
+.eliminar {
+    background-color: #FF0000;
+}

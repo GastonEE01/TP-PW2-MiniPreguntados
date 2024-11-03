@@ -1,0 +1,67 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Preguntas</title>
+    <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/editorEstilo.css">
+    <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/homeEstilo.css">
+</head>
+<header>
+    <div class="logo-container">
+        <img src="https://via.placeholder.com/150x50.png?text=LOGO" alt="Logo de la empresa" class="logo">
+    </div>
+    <nav>
+        <div>
+            <nav>
+                <a href="index.php?page=login">
+                    <button class="nav-button">Cerrar sesión</button>
+                </a>
+            </nav>
+            <h3>{{nombre_usuario}}</h3>
+        </div>
+        <div class="profile-pic-container">
+            <a href="index.php?page=perfil">
+                <img src="https://via.placeholder.com/40x40.png?text=Perfil" alt="Foto de perfil" class="profile-pic">
+            </a>
+        </div>
+    </nav>
+</header>
+<body>
+<table>
+    <tr>
+        <td class="user-image">
+            <img src="https://via.placeholder.com/80x80.png?text=Usuario" alt="Imagen de usuario" width="80" height="80">
+        </td>
+        <td>
+            <h3>Nombre de Usuario</h3>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <p><strong>Pregunta propuesta:</strong> ¿Cuál es la capital de Francia?</p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <ol type="a">
+                <li>Londres</li>
+                <li>Berlín</li>
+                <li>Madrid</li>
+                <li>París <strong>(Respuesta correcta)</strong></li>
+                <li>Roma</li>
+            </ol>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="button-container">
+            <button class="agregar">Agregar Pregunta</button>
+            <button class="modificar">Modificar Pregunta</button>
+            <button class="eliminar">Eliminar Pregunta</button>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

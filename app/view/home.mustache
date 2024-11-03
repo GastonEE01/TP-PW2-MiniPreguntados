@@ -13,11 +13,80 @@
         <img src="https://via.placeholder.com/150x50.png?text=LOGO" alt="Logo de la empresa" class="logo">
     </div>
     <nav>
-        <button class="nav-button">Clasificación</button>
-        <button class="nav-button">Crear una pregunta</button>
-        <a href="index.php?page=login">
-        <button class="nav-button">Cerrar sesion</button>
-        </a>
+        <div>
+            <nav>
+                <button class="nav-button" onclick="openRanking()">Clasificación</button>
+                <button class="nav-button" onclick="openPopup()">Crear una pregunta</button>
+                <a href="index.php?page=login">
+                    <button class="nav-button">Cerrar sesión</button>
+                </a>
+            </nav>
+
+            <div id="rankingPopup" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closeRanking()">&times;</span>
+                    <h2>Ranking de los Mejores Jugadores</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="position">Posición</th>
+                            <th>Jugador</th>
+                            <th class="score">Puntaje Máximo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="position">1</td>
+                            <td>Juan Pérez</td>
+                            <td class="score">950</td>
+                        </tr>
+                        <tr>
+                            <td class="position">2</td>
+                            <td>María García</td>
+                            <td class="score">920</td>
+                        </tr>
+                        <tr>
+                            <td class="position">3</td>
+                            <td>Carlos Díaz</td>
+                            <td class="score">900</td>
+                        </tr>
+                        <!-- Repite las filas hasta el top 50 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                    <h2>Crear Nueva Pregunta</h2>
+                    <form id="createQuestionForm">
+                        <label for="question">Pregunta:</label>
+                        <input type="text" id="question" name="question" required>
+                        <label for="optionA">Opción A:</label>
+                        <input type="text" id="optionA" name="optionA" required>
+                        <label for="optionB">Opción B:</label>
+                        <input type="text" id="optionB" name="optionB" required>
+                        <label for="optionC">Opción C:</label>
+                        <input type="text" id="optionC" name="optionC" required>
+                        <label for="optionD">Opción D:</label>
+                        <input type="text" id="optionD" name="optionD" required>
+                        <label for="optionE">Opción E:</label>
+                        <input type="text" id="optionE" name="optionE" required>
+                        <label for="correctOption">Opción Correcta:</label>
+                        <select id="correctOption" name="correctOption" required>
+                            <option value="" disabled selected>Selecciona la opción correcta</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
+                        <button type="submit">Crear Pregunta</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </nav>
     <div >
     <h3>{{nombre_usuario}}</h3>
@@ -70,5 +139,6 @@
         </div>
     </div>
 </main>
+<script src="/TP-pw2-MiniPreguntados/app/view/js/home.js" defer></script>
 </body>
 </html>
