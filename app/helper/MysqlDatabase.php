@@ -36,7 +36,10 @@ class MysqlDatabase
 
         // Vincular los parámetros
         if (!empty($params)) {
-            $types = str_repeat('s', count($params)); // Asumiendo que todos los parámetros son strings
+            $types = '';
+            foreach ($params as $param) {
+                $types .= is_int($param) ? 'i' : 's'; // 'i' para enteros, 's' para strings
+            } // Asumiendo que todos los parámetros son strings
             mysqli_stmt_bind_param($stmt, $types, ...$params);
         }
 
@@ -47,16 +50,24 @@ class MysqlDatabase
             mysqli_stmt_close($stmt); // Cerrar el stmt antes de lanzar la excepción
             throw new mysqli_sql_exception(mysqli_error($this->conn));
         }
+        if (stripos($sql, 'SELECT') === 0) {
+            // Obtener el resultado de la consulta
+            $resultSet = mysqli_stmt_get_result($stmt);
+            $data = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
+            mysqli_free_result($resultSet);
+            mysqli_stmt_close($stmt); // Cerrar el stmt después de obtener los resultados
+            return $data; // Devuelve todos los resultados como un array asociativo
+        } else {
+            // Para consultas que no son SELECT
+            $affectedRows = mysqli_stmt_affected_rows($stmt);
+            $insertedId = mysqli_insert_id($this->conn); // ID del último registro insertado
+            mysqli_stmt_close($stmt); // Cerrar el stmt después de obtener las filas afectadas
 
-        // Obtener el número de filas afectadas antes de cerrar el stmt
-        $affectedRows = mysqli_stmt_affected_rows($stmt);
-        $insertedId = mysqli_insert_id($this->conn);//trae el id del ultimo registro creado o eso dice chatgpt
-        mysqli_stmt_close($stmt); // Cerrar el stmt después de obtener las filas afectadas
-
-        return [
-            'affected_rows' => $affectedRows,
-            'user_id' => $insertedId
-        ];
+            return [
+                'affected_rows' => $affectedRows,
+                'user_id' => $insertedId
+            ];
+        }
     }
 
 

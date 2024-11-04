@@ -47,6 +47,26 @@ class CrearPartidaController
         }
 
     }
+    public function guardarPartida(){
+        $sesion=New ManejoSesiones();
+
+        $user = $sesion->obtenerUsuario();
+        $descripcion=isset($_POST['descripcion'])?$_POST['descripcion']:null;
+        $descripcionDePartida=$this->crearPartidaModel->crearPartida($descripcion,$user['id']);
+        echo $this->presenter->render("home", [
+            'nombre_usuario'=>$user['nombre_usuario'],
+            'descripcion' => $descripcionDePartida
+        ]);
+    }
+    public function jugarPartida(){
+
+    $categoria=$this->crearPartidaModel-> obtenerCategoriaAlAzar();
+        echo $this->presenter->render("partida", [
+            'categoria'=>$categoria[0]['categoria']
+
+        ]);
+
+    }
 
 
 

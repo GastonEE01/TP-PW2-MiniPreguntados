@@ -11,50 +11,47 @@
     <div class="container">
         <div class="quiz-container">
             <div class="question-card">
-                <h2>¿Este es el enunciado de la pregunta?</h2>
+                <h2>{{pregunta}}</h2>
             </div>
-
+           <form action="index.php?page=PartidaController&action=validarRespuesta" method="POST">
             <div class="answer-card">
                 <label>
                     <input type="radio" name="answer" value="1">
-                    <span>Primera respuesta posible</span>
+                    <span>{{opcion1}}</span>
                 </label>
             </div>
 
             <div class="answer-card">
                 <label>
                     <input type="radio" name="answer" value="2">
-                    <span>Segunda respuesta posible</span>
+                    <span>{{opcion2}}</span>
                 </label>
             </div>
 
             <div class="answer-card">
                 <label>
                     <input type="radio" name="answer" value="3">
-                    <span>Tercera respuesta posible</span>
+                    <span>{{opcion3}}</span>
                 </label>
             </div>
 
             <div class="answer-card">
                 <label>
                     <input type="radio" name="answer" value="4">
-                    <span>Cuarta respuesta posible</span>
+                    <span>{{opcion4}}</span>
                 </label>
             </div>
 
-            <div class="answer-card">
-                <label>
-                    <input type="radio" name="answer" value="5">
-                    <span>Quinta respuesta posible</span>
-                </label>
-            </div>
 
-            <div class="button-container">
-                <button class="btn btn-primary">Enviar</button>
-                <button class="btn btn-secondary">Reportar pregunta</button>
-                <button class="btn btn-secondary">Usar trampa</button>
-                <button class="btn btn-secondary">Comprar trampa</button>
-            </div>
+
+
+                            <button class="btn btn-primary" type=submit>Enviar</button>
+            </form>
+              <div class="button-container">
+                            <button class="btn btn-secondary">Reportar pregunta</button>
+                            <button class="btn btn-secondary">Usar trampa</button>
+                            <button class="btn btn-secondary">Comprar trampa</button>
+                        </div>
         </div>
     </div>
 </body>

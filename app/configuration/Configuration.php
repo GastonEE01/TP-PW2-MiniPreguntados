@@ -12,6 +12,7 @@ include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
 include_once("model/UsuarioModel.php");
 include_once("model/CrearPartidaModel.php");
+include_once("model/PreguntasPartidaModel.php");
 
 include_once("controller/UsuarioController.php");
 include_once("controller/HomeController.php");
@@ -47,7 +48,7 @@ class Configuration
 
     public function getPreguntasPartidaController()
     {
-        return new PreguntasPartidaController($this->getPresenter());
+        return new PreguntasPartidaController($this->getPresenter(),new PreguntasPartidaModel($this->getDatabase()));
     }
     public function getCrearPartidaController()
     {
