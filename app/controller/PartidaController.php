@@ -5,11 +5,15 @@ class PartidaController
     private $presenter;
     private $preguntasPartidaModel;
     private $crearPartidaModel;
-    public function __construct($presenter,$preguntasPartidaModel,$crearPartidaModel)
+    private $homeModel;
+
+    public function __construct($presenter,$preguntasPartidaModel,$crearPartidaModel,$homeModel)
     {
         $this->presenter = $presenter;
         $this->preguntasPartidaModel=$preguntasPartidaModel;
         $this->crearPartidaModel=$crearPartidaModel;
+        $this->homeModel=$homeModel;
+
     }
 
     public function inicio()
@@ -25,6 +29,7 @@ class PartidaController
         $sesion=New ManejoSesiones();
         $user = $sesion->obtenerUsuario();
         $respuesVerificada= $this->preguntasPartidaModel->verificarRespuesta($respuesta, $user['id'],$id_partida);
+
         if ($respuesVerificada != null ){
             $categoria=$this->crearPartidaModel-> obtenerCategoriaAlAzar();
             echo $this->presenter->render("partida", [
@@ -33,10 +38,17 @@ class PartidaController
             ]);
 
         }else{
-          echo $this->presenter->render("home",[]);
+            // Actualziar el ranking despues de jugar una partida
+            $sesion=new ManejoSesiones();
+            $user=$sesion->obtenerUsuario();
+            $partidas=$this->crearPartidaModel->obtenerPartidas($user['id']);
+            $mejoresPunutajesJugador=$this->homeModel->trearMejoresPuuntajesJugadores();
+            echo $this->presenter->render('home', ['partidas'=>$partidas,
+                'puntajes'=>$mejoresPunutajesJugador,
+                'nombre_usuario'=>$user['nombre_usuario']
+            ]);
+
         }
-        print_r($id_partida);
-     //   echo $this->presenter->render('home');
 
     }
 

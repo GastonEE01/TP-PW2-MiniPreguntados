@@ -9,8 +9,8 @@ class HomeController
     public function __construct($presenter,$homeModel ,$crearPartidaModel)
     {
         $this->presenter = $presenter;
-    $this->crearPartidaModel=$crearPartidaModel;
-    $this->homeModel=$homeModel;
+        $this->crearPartidaModel=$crearPartidaModel;
+        $this->homeModel=$homeModel;
     }
 
     public function inicio()
@@ -35,6 +35,8 @@ class HomeController
             'nombre_usuario'=>$user['nombre_usuario']
             ]);
     }
+
+
 
 
 }

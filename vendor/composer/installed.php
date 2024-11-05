@@ -3,7 +3,7 @@
         'name' => 'estev/tp-pw2-mini-preguntados',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'cdfb45dc3eaf33a64ba8b60f1989035307e35cdf',
+        'reference' => '3c7a17b96030b56778a8bfa0cf4a8c8f56a9279b',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'estev/tp-pw2-mini-preguntados' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'cdfb45dc3eaf33a64ba8b60f1989035307e35cdf',
+            'reference' => '3c7a17b96030b56778a8bfa0cf4a8c8f56a9279b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

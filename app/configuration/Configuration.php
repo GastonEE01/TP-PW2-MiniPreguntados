@@ -58,7 +58,7 @@ class Configuration
 
     public function getPartidaController()
     {
-        return new PartidaController($this->getPresenter(),new PreguntasPartidaModel($this->getDatabase()),new CrearPartidaModel($this->getDatabase()));
+        return new PartidaController($this->getPresenter(),new PreguntasPartidaModel($this->getDatabase()),new CrearPartidaModel($this->getDatabase()),new HomeModel($this->getDatabase()));
     }
 
     public function getLoginController()

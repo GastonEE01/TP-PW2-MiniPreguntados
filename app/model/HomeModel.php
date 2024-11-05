@@ -9,6 +9,7 @@ class HomeModel
     {
         $this->database = $database;
     }
+
     public function trearMejoresPuuntajesJugadores()
     {
         $sql = "SELECT 
@@ -30,14 +31,17 @@ class HomeModel
 ORDER BY 
     p.Puntuacion DESC;
 ";
-
         try {
 
-            $result=$this->database->execute($sql,[]);
+            $result = $this->database->execute($sql, []);
             return $result;
         } catch (PDOException $e) {
             error_log("Error al traer los datos: " . $e->getMessage());
             // Maneja el error adecuadamente
         }
     }
+
+
+
 }
+

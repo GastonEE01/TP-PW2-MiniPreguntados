@@ -34,6 +34,7 @@ class PreguntasPartidaController
            'opcion4'=>$opcion[3]['Texto_respuesta'],
             'id_partida'=>$id_partida
         ];
+
         echo $this->presenter->render('preguntasPartida',$data);
 
     }

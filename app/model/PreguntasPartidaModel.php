@@ -18,6 +18,7 @@ class PreguntasPartidaModel{
             $min = 0; // Este debe ser el índice mínimo
             $max = count($result) - 1; // Este debe ser el índice máximo, ajustando según tu arreglo
             $randomIndex = rand($min, $max);
+
             return $result[$randomIndex];
         } catch (PDOException $e) {
             error_log("Error al crear partida: " . $e->getMessage());
