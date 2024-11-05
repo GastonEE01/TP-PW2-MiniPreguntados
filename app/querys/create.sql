@@ -306,3 +306,26 @@ INSERT INTO Status (Estado) VALUES ('En curso');
 
 -- Insertar estado 'Finalizado'
 INSERT INTO Status (Estado) VALUES ('Finalizado');
+
+-- Crear tres usuarios
+INSERT INTO Usuario (nombre, nombre_usuario, contrasenia, fecha_nacimiento, pais, sexo, ciudad, email, Path_img_perfil, activo, token, latitudMapa, longitudMapa, rol)
+VALUES
+    ('Juan Pérez', 'juanp', 'password123', '1990-05-20', 'Argentina', 'Masculino', 'Buenos Aires', 'juanp@example.com', 1, TRUE, NULL, NULL, NULL, 1),
+    ('María García', 'mariag', 'password123', '1985-11-12', 'Argentina', 'Femenino', 'Córdoba', 'mariag@example.com', 1, TRUE, NULL, NULL, NULL, 1),
+    ('Carlos Díaz', 'carlosd', 'password123', '1992-03-15', 'Argentina', 'Masculino', 'Rosario', 'carlosd@example.com', 1, TRUE, NULL, NULL, NULL, 1);
+
+
+-- Crear partidas para los usuarios
+INSERT INTO Partida (Status_id, Descripcion, Puntuacion, Puntuacion_porcentaje, Usuario_id, Fecha_creada, Fecha_finalizada)
+VALUES
+-- Partidas para Juan Pérez (usuario ID 1)
+(1, 'Partida 1 para Juan', 950, 95.00, 1, '2024-01-01 10:00:00', '2024-01-01 10:30:00'),
+(1, 'Partida 2 para Juan', 800, 80.00, 1, '2024-01-05 15:00:00', '2024-01-05 15:40:00'),
+
+-- Partidas para María García (usuario ID 2)
+(1, 'Partida 1 para María', 920, 92.00, 2, '2024-01-02 11:00:00', '2024-01-02 11:45:00'),
+(1, 'Partida 2 para María', 870, 87.00, 2, '2024-01-06 16:00:00', '2024-01-06 16:35:00'),
+
+-- Partidas para Carlos Díaz (usuario ID 3)
+(1, 'Partida 1 para Carlos', 900, 90.00, 3, '2024-01-03 12:00:00', '2024-01-03 12:50:00'),
+(1, 'Partida 2 para Carlos', 850, 85.00, 3, '2024-01-07 17:00:00', '2024-01-07 17:30:00');

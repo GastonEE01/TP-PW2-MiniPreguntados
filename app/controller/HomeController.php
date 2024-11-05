@@ -3,12 +3,14 @@
 class HomeController
 {
     private $presenter;
+    private $crearPartidaModel;
+    private $homeModel;
 
-
-    public function __construct($presenter )
+    public function __construct($presenter,$homeModel ,$crearPartidaModel)
     {
         $this->presenter = $presenter;
-
+    $this->crearPartidaModel=$crearPartidaModel;
+    $this->homeModel=$homeModel;
     }
 
     public function inicio()
@@ -22,6 +24,16 @@ class HomeController
             'nombre_usuario' => $username,
             'id' => $id
         ]);
+    }
+    public function listarPartidas(){
+        $sesion=new ManejoSesiones();
+        $user=$sesion->obtenerUsuario();
+        $partidas=$this->crearPartidaModel->obtenerPartidas($user['id']);
+        $mejoresPunutajesJugador=$this->homeModel->trearMejoresPuuntajesJugadores();
+        echo $this->presenter->render('home', ['partidas'=>$partidas,
+            'puntajes'=>$mejoresPunutajesJugador,
+            'nombre_usuario'=>$user['nombre_usuario']
+            ]);
     }
 
 

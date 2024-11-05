@@ -38,18 +38,20 @@ class PreguntasPartidaModel{
             // Maneja el error adecuadamente
         }
     }
-    public function VerificarRespuesta($respuesta , $userID,$fecha)
+   /** public function VerificarRespuesta($respuesta , $userID,$id_partida)
     {
         $sql = "SELECT * FROM Respuesta 
                 WHERE Texto_respuesta= ?";
 
         try {
 
+            // $stmt = $this->database->prepare($sql);
             $result=$this->database->execute($sql,[$respuesta]);
+
             if ($result[0]['Es_correcta']){
-                $sql="UPDATE Partida SET puntuacion = puntuacion+1 WHERE  Usuario_id=? AND Fecha_creada = ?";
+                $sql="UPDATE Partida SET puntuacion = puntuacion+1 WHERE Usuario_id = ?";
                 try {
-                $this->database->execute($sql,[$userID,$fecha]);
+                    $resultActualizacionPuntaje=$this->database->execute($sql,[$userID]);
                     return $result;
                 } catch (PDOException $e) {
                     error_log("Error al actualizar el puntaje en la partida: " . $e->getMessage());
@@ -61,7 +63,36 @@ class PreguntasPartidaModel{
             error_log("Error al crear partida: " . $e->getMessage());
             // Maneja el error adecuadamente
         }
+    }**/
+
+    public function verificarRespuesta($respuesta, $userID, $id_partida)
+    {
+        $sql = "SELECT * FROM Respuesta 
+            WHERE Texto_respuesta = ?";
+
+        try {
+            $result = $this->database->execute($sql, [$respuesta]);
+
+            if ($result && $result[0]['Es_correcta']) {
+                $sql = "UPDATE Partida SET puntuacion = puntuacion + 1 
+                    WHERE Usuario_id = ? AND ID = ?";
+
+                try {
+                    $this->database->execute($sql, [$userID, $id_partida]);
+                    return $result;
+                } catch (PDOException $e) {
+                    error_log("Error al actualizar el puntaje en la partida: " . $e->getMessage());
+                    return null;
+                }
+            }
+
+            return null;
+        } catch (PDOException $e) {
+            error_log("Error al verificar respuesta: " . $e->getMessage());
+            return null;
+        }
     }
+
 }
 
 

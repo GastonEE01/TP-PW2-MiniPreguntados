@@ -49,5 +49,18 @@ class CrearPartidaModel
             // Maneja el error adecuadamente
         }
     }
+    public function obtenerPartidas($id_user)
+    {
+        $sql = "SELECT * FROM Partida ";
+
+        try {
+
+            $result=$this->database->execute($sql,[]);
+            return $result;
+        } catch (PDOException $e) {
+            error_log("Error al buscar las partidas: " . $e->getMessage());
+            // Maneja el error adecuadamente
+        }
+    }
 
 }

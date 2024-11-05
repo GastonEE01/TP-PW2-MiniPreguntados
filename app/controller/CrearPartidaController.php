@@ -5,7 +5,6 @@ class CrearPartidaController
 
     private $presenter;
     private $crearPartidaModel;
-
     public function __construct($presenter,$crearPartidaModel)
     {
         $this->presenter = $presenter;
@@ -49,7 +48,6 @@ class CrearPartidaController
     }
     public function guardarPartida(){
         $sesion=New ManejoSesiones();
-
         $user = $sesion->obtenerUsuario();
         $descripcion=isset($_POST['descripcion'])?$_POST['descripcion']:null;
         $result=$this->crearPartidaModel->crearPartida($descripcion,$user['id']);
@@ -57,18 +55,23 @@ class CrearPartidaController
         $cantRegistros=count($partida);
         $cantRegistros-=1;
 
-        echo $this->presenter->render("home", [
+        $partidas=$this->crearPartidaModel->obtenerPartidas($user['id']);
+        echo $this->presenter->render('home', ['partidas'=>$partidas,
             'nombre_usuario'=>$user['nombre_usuario'],
-            'descripcion' => $partida[$cantRegistros]['Descripcion'],
-            'fecha_creada'=> $partida[$cantRegistros]['Fecha_creada']
+            'id_partida'=> $partida[$cantRegistros]['ID']
         ]);
+
     }
+
+
+
     public function jugarPartida(){
-    $fecha=isset($_GET['fecha'])?$_GET['fecha']:null;
+    $id_partida=isset($_GET['id_partida'])?$_GET['id_partida']:null;
+
     $categoria=$this->crearPartidaModel-> obtenerCategoriaAlAzar();
         echo $this->presenter->render("partida", [
             'categoria'=>$categoria[0]['categoria'],
-            'fecha'=> $fecha
+            'id_partida'=> $id_partida
         ]);
 
     }

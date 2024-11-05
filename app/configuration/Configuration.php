@@ -13,6 +13,7 @@ include_once("model/LoginModel.php");
 include_once("model/UsuarioModel.php");
 include_once("model/CrearPartidaModel.php");
 include_once("model/PreguntasPartidaModel.php");
+include_once("model/HomeModel.php");
 
 include_once("controller/UsuarioController.php");
 include_once("controller/HomeController.php");
@@ -57,7 +58,7 @@ class Configuration
 
     public function getPartidaController()
     {
-        return new PartidaController($this->getPresenter(),new PreguntasPartidaModel($this->getDatabase()));
+        return new PartidaController($this->getPresenter(),new PreguntasPartidaModel($this->getDatabase()),new CrearPartidaModel($this->getDatabase()));
     }
 
     public function getLoginController()
@@ -67,7 +68,7 @@ class Configuration
 
     public function getHomeController()
     {
-        return new HomeController($this->getPresenter());
+        return new HomeController($this->getPresenter(),new HomeModel($this->getDatabase()) ,new CrearPartidaModel($this->getDatabase()));
     }
 
     public function getPerfilController()

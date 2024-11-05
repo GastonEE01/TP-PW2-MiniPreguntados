@@ -36,7 +36,9 @@ class LoginController
             }else {
                     $sesion = new ManejoSesiones();
                     $sesion->iniciarSesion($user);
-                    header("Location: index.php?page=home");
+
+                header("Location: index.php?page=home&action=listarPartidas");
+                exit;
                 }
         } else {
                     echo $this->presenter->render("login", [

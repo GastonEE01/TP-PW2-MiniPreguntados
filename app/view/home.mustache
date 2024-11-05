@@ -35,24 +35,16 @@
                         </tr>
                         </thead>
                         <tbody>
+                        {{#puntajes}}
                         <tr>
-                            <td class="position">1</td>
-                            <td>Juan Pérez</td>
-                            <td class="score">950</td>
+                            <td class="position">{{position}}</td>
+                            <td>{{nombre_usuario}}</td>
+                            <td class="score">{{Puntuacion}}</td>
                         </tr>
-                        <tr>
-                            <td class="position">2</td>
-                            <td>María García</td>
-                            <td class="score">920</td>
-                        </tr>
-                        <tr>
-                            <td class="position">3</td>
-                            <td>Carlos Díaz</td>
-                            <td class="score">900</td>
-                        </tr>
-                        <!-- Repite las filas hasta el top 50 -->
+                        {{/puntajes}}
                         </tbody>
                     </table>
+
                 </div>
             </div>
 
@@ -107,16 +99,19 @@
     </div>
 
     <div class="game-list">
-        <div class="game-entry">
-            <img src="https://via.placeholder.com/60x60.png?text=Usuario" alt="Foto de perfil del usuario" class="user-pic">
-            <div class="game-info">
-                <h3>{{nombre_usuario}}</h3>
-                <p>{{descripcion}}</p>
-            </div>
+         {{#partidas}}
+            <div class="game-entry">
+                <img src="https://via.placeholder.com/60x60.png?text=Usuario" alt="Foto de perfil del usuario" class="user-pic">
+                <div class="game-info">
+                    <h3>{{nombre_usuario}}</h3>
+                    <p>{{Descripcion}}</p>
+                </div>
 
-            <a href="index.php?page=crearPartida&action=jugarPartida&fecha={{fecha_creada}}">
-            <button class="join-button">Empezar</button>
-            </a>
+                <a href="index.php?page=crearPartida&action=jugarPartida&id_partida={{id_partida}}">
+                    <button class="join-button">Empezar</button>
+                </a>
+            </div>
+            {{/partidas}}
 
         </div>
 
