@@ -47,9 +47,7 @@ class PartidaController
                 'puntajes'=>$mejoresPunutajesJugador,
                 'nombre_usuario'=>$user['nombre_usuario']
             ]);
-
         }
-
     }
 
 }
