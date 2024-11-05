@@ -22,7 +22,7 @@ class CrearPartidaModel
 
            // $stmt = $this->database->prepare($sql);
             $result=$this->database->execute($sql,[$Status_ids,$descripcion, $puntaje,0,$id_usuario, $fechaInicio,null]);
-            return $descripcion;
+            return $result;
         } catch (PDOException $e) {
             error_log("Error al crear partida: " . $e->getMessage());
             // Maneja el error adecuadamente
@@ -35,6 +35,19 @@ class CrearPartidaModel
         $sql="SELECT categoria From Categoria where id=?";
         $result =$this->database->execute($sql,$arrayRandom);
         return $result;
+    }
+    public function buscarPorID($id)
+    {
+        $sql = "SELECT * FROM Partida WHERE ID=?";
+
+        try {
+
+            $result=$this->database->execute($sql,[$id]);
+            return $result;
+        } catch (PDOException $e) {
+            error_log("Error al crear partida: " . $e->getMessage());
+            // Maneja el error adecuadamente
+        }
     }
 
 }

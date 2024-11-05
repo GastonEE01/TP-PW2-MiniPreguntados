@@ -13,31 +13,35 @@
             <div class="question-card">
                 <h2>{{pregunta}}</h2>
             </div>
-           <form action="index.php?page=PartidaController&action=validarRespuesta" method="POST">
+           <form action="index.php?page=Partida&action=validarRespuesta" method="POST">
+
+          <input type="hidden" name="id_pregunta" value="{{id_pregunta}}">
+          <input type="hidden" name="fecha" value="{{fecha}}">
+
             <div class="answer-card">
                 <label>
-                    <input type="radio" name="answer" value="1">
+                    <input type="radio" name="answer" value="{{opcion1}}">
                     <span>{{opcion1}}</span>
                 </label>
             </div>
 
             <div class="answer-card">
                 <label>
-                    <input type="radio" name="answer" value="2">
+                    <input type="radio" name="answer" value="{{opcion2}}">
                     <span>{{opcion2}}</span>
                 </label>
             </div>
 
             <div class="answer-card">
                 <label>
-                    <input type="radio" name="answer" value="3">
+                    <input type="radio" name="answer" value="{{opcion3}}">
                     <span>{{opcion3}}</span>
                 </label>
             </div>
 
             <div class="answer-card">
                 <label>
-                    <input type="radio" name="answer" value="4">
+                    <input type="radio" name="answer" value="{{opcion4}}">
                     <span>{{opcion4}}</span>
                 </label>
             </div>

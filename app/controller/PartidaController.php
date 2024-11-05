@@ -3,11 +3,11 @@
 class PartidaController
 {
     private $presenter;
-    private $preguntaPartidaModel;
-    public function __construct($presenter,$preguntaPartidaModel)
+    private $preguntasPartidaModel;
+    public function __construct($presenter,$preguntasPartidaModel)
     {
         $this->presenter = $presenter;
-        $this->preguntaPartidaModel=$preguntaPartidaModel;
+        $this->preguntasPartidaModel=$preguntasPartidaModel;
     }
 
     public function inicio()
@@ -17,6 +17,18 @@ class PartidaController
     }
     public function validarRespuesta()
     {
+        $fecha=isset($_GET['fecha'])?$_GET['fecha']:null;
+        $respuesta = isset($_POST['answer'])?$_POST['answer']:null;
+        $sesion=New ManejoSesiones();
+        $user = $sesion->obtenerUsuario();
+        $respuesVerificada= $this->preguntasPartidaModel->verificarRespuesta($respuesta, $user['id'],$fecha);
+        if ($respuesVerificada != null ){
+
+            header('location:index.php?page=crearPartida&action=jugarPartida');
+
+        }else{
+          echo $this->presenter->render("home",[]);
+        }
         print_r("asdasdasd");
      //   echo $this->presenter->render('home');
 

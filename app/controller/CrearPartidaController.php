@@ -52,18 +52,23 @@ class CrearPartidaController
 
         $user = $sesion->obtenerUsuario();
         $descripcion=isset($_POST['descripcion'])?$_POST['descripcion']:null;
-        $descripcionDePartida=$this->crearPartidaModel->crearPartida($descripcion,$user['id']);
+        $result=$this->crearPartidaModel->crearPartida($descripcion,$user['id']);
+        $partida=$this->crearPartidaModel->buscarPorID($result['user_id']);
+        $cantRegistros=count($partida);
+        $cantRegistros-=1;
+
         echo $this->presenter->render("home", [
             'nombre_usuario'=>$user['nombre_usuario'],
-            'descripcion' => $descripcionDePartida
+            'descripcion' => $partida[$cantRegistros]['Descripcion'],
+            'fecha_creada'=> $partida[$cantRegistros]['Fecha_creada']
         ]);
     }
     public function jugarPartida(){
-
+    $fecha=isset($_GET['fecha'])?$_GET['fecha']:null;
     $categoria=$this->crearPartidaModel-> obtenerCategoriaAlAzar();
         echo $this->presenter->render("partida", [
-            'categoria'=>$categoria[0]['categoria']
-
+            'categoria'=>$categoria[0]['categoria'],
+            'fecha'=> $fecha
         ]);
 
     }

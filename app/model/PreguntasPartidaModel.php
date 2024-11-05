@@ -24,7 +24,7 @@ class PreguntasPartidaModel{
             // Maneja el error adecuadamente
         }
     }
-    public function trerRespuestasDePregunta($id){
+    public function traerRespuestasDePregunta($id){
         $sql = "SELECT * FROM Respuesta WHERE pregunta_id=? ";
 
         try {
@@ -33,6 +33,30 @@ class PreguntasPartidaModel{
             $result=$this->database->execute($sql,[$id]);
             shuffle($result);
             return $result;
+        } catch (PDOException $e) {
+            error_log("Error al traer las respuestas: " . $e->getMessage());
+            // Maneja el error adecuadamente
+        }
+    }
+    public function VerificarRespuesta($respuesta , $userID,$fecha)
+    {
+        $sql = "SELECT * FROM Respuesta 
+                WHERE Texto_respuesta= ?";
+
+        try {
+
+            $result=$this->database->execute($sql,[$respuesta]);
+            if ($result[0]['Es_correcta']){
+                $sql="UPDATE Partida SET puntuacion = puntuacion+1 WHERE  Usuario_id=? AND Fecha_creada = ?";
+                try {
+                $this->database->execute($sql,[$userID,$fecha]);
+                    return $result;
+                } catch (PDOException $e) {
+                    error_log("Error al actualizar el puntaje en la partida: " . $e->getMessage());
+                }
+            }
+
+            return null;
         } catch (PDOException $e) {
             error_log("Error al crear partida: " . $e->getMessage());
             // Maneja el error adecuadamente
