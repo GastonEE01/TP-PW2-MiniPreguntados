@@ -51,11 +51,11 @@ class CrearPartidaModel
     }
     public function obtenerPartidas($id_user)
     {
-        $sql = "SELECT * FROM Partida ";
+        $sql = "SELECT * FROM Partida WHERE Usuario_id=? ";
 
         try {
 
-            $result=$this->database->execute($sql,[]);
+            $result=$this->database->execute($sql,[$id_user]);
             return $result;
         } catch (PDOException $e) {
             error_log("Error al buscar las partidas: " . $e->getMessage());

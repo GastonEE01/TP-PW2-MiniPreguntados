@@ -5,10 +5,12 @@ class CrearPartidaController
 
     private $presenter;
     private $crearPartidaModel;
-    public function __construct($presenter,$crearPartidaModel)
+    private $homeModel;
+    public function __construct($presenter,$crearPartidaModel,$homeModel)
     {
         $this->presenter = $presenter;
         $this->crearPartidaModel = $crearPartidaModel;
+        $this->homeModel=$homeModel;
 
     }
 
@@ -56,9 +58,13 @@ class CrearPartidaController
         $cantRegistros-=1;
 
         $partidas=$this->crearPartidaModel->obtenerPartidas($user['id']);
+        $mejoresPunutajesJugador=$this->homeModel->trearMejoresPuuntajesJugadores();
+
         echo $this->presenter->render('home', ['partidas'=>$partidas,
             'nombre_usuario'=>$user['nombre_usuario'],
-            'id_partida'=> $partida[$cantRegistros]['ID']
+            'id_partida'=> $partida[$cantRegistros]['ID'],
+            'puntajes'=>$mejoresPunutajesJugador,
+
         ]);
 
     }

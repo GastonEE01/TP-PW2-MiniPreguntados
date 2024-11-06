@@ -53,7 +53,7 @@ class Configuration
     }
     public function getCrearPartidaController()
     {
-        return new CrearPartidaController($this->getPresenter(),new CrearPartidaModel($this->getDatabase()));
+        return new CrearPartidaController($this->getPresenter(),new CrearPartidaModel($this->getDatabase()),new HomeModel($this->getDatabase()));
     }
 
     public function getPartidaController()
