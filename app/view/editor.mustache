@@ -1,67 +1,76 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editor de Preguntas</title>
+    <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/headerAdminEditorEstilo.css">
     <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/editorEstilo.css">
-    <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/homeEstilo.css">
+
+    <title>Header MVC con Animación Bicolor y Montañas</title>
 </head>
-<header>
-    <div class="logo-container">
-        <img src="https://via.placeholder.com/150x50.png?text=LOGO" alt="Logo de la empresa" class="logo">
-    </div>
-    <nav>
-        <div>
-            <nav>
-                <a href="index.php?page=login">
-                    <button class="nav-button">Cerrar sesión</button>
-                </a>
-            </nav>
-            <h3>{{nombre_usuario}}</h3>
-        </div>
-        <div class="profile-pic-container">
-            <a href="index.php?page=perfil">
-                <img src="https://via.placeholder.com/40x40.png?text=Perfil" alt="Foto de perfil" class="profile-pic">
-            </a>
-        </div>
-    </nav>
-</header>
 <body>
-<table>
-    <tr>
-        <td class="user-image">
-            <img src="https://via.placeholder.com/80x80.png?text=Usuario" alt="Imagen de usuario" width="80" height="80">
-        </td>
-        <td>
-            <h3>Nombre de Usuario</h3>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <p><strong>Pregunta propuesta:</strong> ¿Cuál es la capital de Francia?</p>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <ol type="a">
-                <li>Londres</li>
-                <li>Berlín</li>
-                <li>Madrid</li>
-                <li>París <strong>(Respuesta correcta)</strong></li>
-                <li>Roma</li>
-            </ol>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" class="button-container">
-            <button class="agregar">Agregar Pregunta</button>
-            <button class="modificar">Modificar Pregunta</button>
-            <button class="eliminar">Eliminar Pregunta</button>
-        </td>
-    </tr>
-</table>
+<header class="site-header">
+    <div class="background-animation"></div>
+    <div class="logo-container">
+        <div class="logo-circle">
+            <img src="https://via.placeholder.com/50" alt="Logo del sitio" class="logo-image">
+        </div>
+    </div>
+    <nav class="header-nav">
+        <button class="logout-button" onclick="logout()">Cerrar sesión</button>
+    </nav>
+    <div class="user-container">
+        <span class="username">{{username}}</span>
+        <div class="user-circle">
+            <img src="{{userImageUrl}}" alt="Imagen de perfil de {{username}}" class="user-image">
+        </div>
+    </div>
+</header>
+<div class="contenedorTabla">
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Pregunta Sugerida</th>
+            <th>Opción A</th>
+            <th>Opción B</th>
+            <th>Opción C</th>
+            <th>Opción D</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <img src="https://via.placeholder.com/50" alt="Imagen de Usuario" class="user-img">
+                <span>NombreUsuario</span>
+            </td>
+            <td>¿Cuál es la capital de Francia?</td>
+            <td>Londres</td>
+            <td>París</td>
+            <td>Berlín</td>
+            <td>Madrid</td>
+        </tr>
+        <tr>
+            <td>
+                <img src="https://via.placeholder.com/50" alt="Imagen de Usuario" class="user-img">
+                <span>OtroUsuario</span>
+            </td>
+            <td>¿En qué año comenzó la Segunda Guerra Mundial?</td>
+            <td>1939</td>
+            <td>1940</td>
+            <td>1941</td>
+            <td>1942</td>
+        </tr>
+        <!-- Puedes agregar más filas aquí para más preguntas -->
+        </tbody>
+    </table>
+    <div class="buttons-container">
+        <button class="action-button add-button">Agregar</button>
+        <button class="action-button modify-button">Modificar</button>
+        <button class="action-button delete-button">Eliminar</button>
+    </div>
+</div>
+</div>
 </body>
 </html>

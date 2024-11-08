@@ -19,6 +19,7 @@ class PreguntasPartidaController
         echo $this->presenter->render('preguntasPartida');
     }
 
+
     public function mostrarPregunta(){
         $id_partida=isset($_GET['id_partida'])?$_GET['id_partida']:null;
         print_r($id_partida);
@@ -32,7 +33,9 @@ class PreguntasPartidaController
             'opcion2'=>$opcion[1]['Texto_respuesta'],
            'opcion3'=>$opcion[2]['Texto_respuesta'],
            'opcion4'=>$opcion[3]['Texto_respuesta'],
-            'id_partida'=>$id_partida
+            'id_partida'=>$id_partida,
+            'categoria' => $categoria
+
         ];
 
         echo $this->presenter->render('preguntasPartida',$data);

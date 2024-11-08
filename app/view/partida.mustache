@@ -12,12 +12,12 @@
 <div class="container">
     <div class="ruleta">
         <svg viewBox="0 0 100 100">
-            <path d="M50,50 L100,50 A50,50 0 0,1 75,93.3 Z" class="section bg-red-500"></path>
-            <path d="M50,50 L75,93.3 A50,50 0 0,1 25,93.3 Z" class="section bg-blue-500"></path>
-            <path d="M50,50 L25,93.3 A50,50 0 0,1 0,50 Z" class="section bg-green-500"></path>
-            <path d="M50,50 L0,50 A50,50 0 0,1 25,6.7 Z" class="section bg-yellow-500"></path>
-            <path d="M50,50 L25,6.7 A50,50 0 0,1 75,6.7 Z" class="section bg-purple-500"></path>
-            <path d="M50,50 L75,6.7 A50,50 0 0,1 100,50 Z" class="section bg-orange-500"></path>
+            <path d="M50,50 L100,50 A50,50 0 0,1 75,93.3 Z" class="section bg-red-500"></path> <!-- Deporte  -->
+            <path d="M50,50 L75,93.3 A50,50 0 0,1 25,93.3 Z" class="section bg-yellow-500"></path> <!-- Historia  -->
+            <path d="M50,50 L25,93.3 A50,50 0 0,1 0,50 Z" class="section bg-green-500"></path> <!-- Ciencia  -->
+            <path d="M50,50 L0,50 A50,50 0 0,1 25,6.7 Z" class="section bg-blue-500"></path> <!-- Geografia  -->
+            <path d="M50,50 L25,6.7 A50,50 0 0,1 75,6.7 Z" class="section bg-orange-500"></path> <!-- Arte -->
+            <path d="M50,50 L75,6.7 A50,50 0 0,1 100,50 Z" class="section bg-purple-500"></path> <!-- Cine  -->
         </svg>
         <div class="number" style="top: 15%; left: 50%;">Arte</div>
         <div class="number" style="top: 30%; left: 80%;">Cine</div>
@@ -27,8 +27,6 @@
         <div class="number" style="top: 30%; left: 20%;">Geografía</div>
         <a href="index.php?page=preguntasPartida&action=mostrarPregunta&categoria={{categoria}}&id_partida={{id_partida}}">
         <button class="tirar-button">Tirar</button>
-        <p>es un texto para vizualizar la categria,eliminar esta etiqueta p y el h2<p>
-        <h2> {{categoria}}</h2>
         </a>
         <a href="index.php?page=home&action=listarPartidas">
             <button class="close">Volver</button>

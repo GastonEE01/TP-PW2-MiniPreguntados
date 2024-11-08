@@ -32,16 +32,16 @@ svg {
     stroke-width: 0.5;
 }
 
-.bg-red-500 { fill: #ef4444; }
-.bg-blue-500 { fill: #3b82f6; }
-.bg-green-500 { fill: #10b981; }
-.bg-yellow-500 { fill: #f59e0b; }
-.bg-purple-500 { fill: #8b5cf6; }
-.bg-orange-500 { fill: #f97316; }
+.bg-red-500 { fill: #f44336; }
+.bg-blue-500 { fill: #2196f3; }
+.bg-green-500 { fill: #4caf50; }
+.bg-yellow-500 { fill: #ffeb3b; }
+.bg-purple-500 { fill: #9c27b0; }
+.bg-orange-500 { fill: #ff9800; }
 
 .number {
     position: absolute;
-    color: white;
+    color: #000000;
     font-size: 24px;
     font-weight: bold;
     transform: translate(-50%, -50%);

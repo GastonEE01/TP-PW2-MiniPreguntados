@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/preguntasEstilo.css">
 
 </head>
-<body>
+<body onload="mostrarFondo('{{categoria}}')">
     <div class="container">
         <div class="quiz-container">
             <div class="question-card">
                 <h2>{{pregunta}}</h2>
             </div>
-           <form action="index.php?page=Partida&action=validarRespuesta" method="POST">
+            <h2>{{categoria}}</h2>
+            <h2>aa: {{Es_correcta}}</h2>
+
+            <form action="index.php?page=Partida&action=validarRespuesta" method="POST">
 
           <input type="hidden" name="id_pregunta" value="{{id_pregunta}}">
           <input type="hidden" name="id_partida" value="{{id_partida}}">
@@ -45,12 +48,24 @@
                     <span>{{opcion4}}</span>
                 </label>
             </div>
-
-
-
-
                             <button class="btn btn-primary" type=submit>Enviar</button>
-            </form>
+
+              <div id="{{Es_correcta}}" class="modal {{Es_correcta}}" style="display: none;" onload="showModalCorrecta({{Es_correcta}})">
+                   <div class="modal-content">
+                       <h2>¡Respuesta Correcta!</h2>
+                       <p>Serás redirigido a la ruleta...</p>
+                   </div>
+               </div>
+               <div id="{{Es_correcta}}" class="modal {{Es_correcta}}" style="display: none;" onload="showModalPerdiste({{Es_correcta}})">
+                   <div class="modal-content">
+                       <h2>¡Perdiste!</h2>
+                       <p>Serás redirigido al inicio...</p>
+                       <button onclick="redirectToHome()">Aceptar</button>
+                   </div>
+               </div>
+
+
+           </form>
               <div class="button-container">
                             <button class="btn btn-secondary">Reportar pregunta</button>
                             <button class="btn btn-secondary">Usar trampa</button>
@@ -58,5 +73,10 @@
                         </div>
         </div>
     </div>
+
+
+
+    <script src="/TP-pw2-MiniPreguntados/app/view/js/preguntaPartida.js" defer></script>
+
 </body>
 </html>
