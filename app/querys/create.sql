@@ -77,12 +77,28 @@ CREATE TABLE Reporte (
     FOREIGN KEY (Usuario_id) REFERENCES Usuario(id)
 );
 
+/*
 CREATE TABLE Sugerencia (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     Pregunta TEXT NOT NULL,
     Categoria VARCHAR(50),
     Usuario_id INT,
     FOREIGN KEY (Usuario_id) REFERENCES Usuario(id)
+);
+*/
+
+/* Modifique la tabla para implementar que el usuario pueda crear pregunta*/
+CREATE TABLE Sugerencia (
+                            ID INT PRIMARY KEY AUTO_INCREMENT,
+                            Pregunta TEXT NOT NULL,
+                            OpcionA VARCHAR(255) NOT NULL,
+                            OpcionB VARCHAR(255) NOT NULL,
+                            OpcionC VARCHAR(255) NOT NULL,
+                            OpcionD VARCHAR(255) NOT NULL,
+                            OpcionCorrecta CHAR(1) NOT NULL, -- para almacenar la letra de la opción correcta
+                            Categoria VARCHAR(50),
+                            Usuario_id INT,
+                            FOREIGN KEY (Usuario_id) REFERENCES Usuario(id)
 );
 
 INSERT INTO  usuario(id,nombre,nombre_usuario,contrasenia,fecha_nacimiento,pais,sexo,ciudad,email,rol,latitudMapa,longitudMapa)

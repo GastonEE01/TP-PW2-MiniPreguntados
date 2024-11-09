@@ -19,26 +19,21 @@ function mostrarFondo(categoria) {
     document.body.style.backgroundColor = colorFondo;
 }
 
-function showModalCorrecta(Es_correcta) {
-    if(Es_correcta == 1)
-    var modal = document.getElementById("modalCorrecta");
-    modal.style.display = "block"; // Mostrar el modal
 
-    // Redirigir después de 3 segundos
-    setTimeout(function() {
-        window.location.href = "/ruleta"; // Aquí va la URL de la ruleta
-    }, 3000); // Redirige después de 3 segundos
-}
+function mostrarModal(Es_correcta) {
+    console.log(Es_correcta);
+    if (Es_correcta == 1) {
+        document.getElementById("modalCorrecta").style.display = "block";
+        setTimeout(function() {
+            window.location.href = "/partida";
+        }, 3000);
+    } else if (Es_correcta == null) {
+        document.getElementById("modalPerdiste").style.display = "block";
+        setTimeout(function() {
+            window.location.href = "/home";
+        }, 3000);
+    }
 
-function showModalPerdiste(Es_correcta) {
-    if(Es_correcta == 0)
-        var modal = document.getElementById("modalPerdiste");
-    modal.style.display = "block"; // Mostrar el modal
-
-    // Redirigir a home cuando el modal sea cerrado
-    setTimeout(function() {
-        window.location.href = "/home"; // Aquí va la URL del home
-    }, 3000); // Redirige después de 3 segundos
 }
 
 

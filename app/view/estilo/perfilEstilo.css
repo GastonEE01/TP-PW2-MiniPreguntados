@@ -153,3 +153,21 @@ body {
 .close{
     margin-left: 100px;
 }
+
+.game-history{
+    background: #2196f3;
+
+}
+.game-header span{
+    font-family: "Arial Black";
+    background: #f44336;
+    margin-left: 20px;
+    color: #2c3e50;
+}
+
+.game-entry{
+    font-family: "Arial ";
+    font-size: 18px;
+    background: #f44336;
+    color: #2c3e50;
+}

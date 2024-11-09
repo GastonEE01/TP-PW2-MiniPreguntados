@@ -39,30 +39,24 @@
                         <input type="hidden" id="ciudad" name="ciudad" value="{{ciudad}}">
                         <input type="hidden" id="pais" name="pais" value="{{pais}}">
                     </section>
-                    <!--<p>Pais: {{pais}}</p>
-                    <p>Ciudad: {{ciudad}}</p>-->
 
                     <div class="game-history">
                         <h3><i class="fas fa-trophy"></i> Historial de Partidas</h3>
-                        <div class="game-entry">
-                            <span>2023-10-15</span>
-                            <span class="badge victory">Victoria</span>
-                            <span>150 pts</span>
+                        <div class="game-header">
+                            <span>Partida Creada</span>
+                            <span>Partida Finalizada</span>
+                            <span>Descripción</span>
+                            <span>Puntos</span>
                         </div>
-                        <div class="game-entry">
-                            <span>2023-10-10</span>
-                            <span class="badge defeat">Derrota</span>
-                            <span>75 pts</span>
-                        </div>
-                        <div class="game-entry">
-                            <span>2023-10-05</span>
-                            <span class="badge victory">Victoria</span>
-                            <span>200 pts</span>
-                        </div>
-                    </div>
-                    <div class="final-score">
-                        <h3>Puntaje Final</h3>
-                        <p class="score">1250 puntos</p>
+
+                        {{#partidas}}
+                            <div class="game-entry">
+                                <span>{{Fecha_creada}}</span>
+                                <span>{{Fecha_finalizada}}</span>
+                                <span>{{Descripcion}}</span>
+                                <span>{{Puntuacion}} pts</span>
+                            </div>
+                        {{/partidas}}
                     </div>
                 </div>
             </div>

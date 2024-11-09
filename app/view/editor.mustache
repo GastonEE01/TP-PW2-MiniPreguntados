@@ -5,20 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/headerAdminEditorEstilo.css">
     <link rel="stylesheet" href="/TP-pw2-MiniPreguntados/app/view/estilo/editorEstilo.css">
-
     <title>Header MVC con Animación Bicolor y Montañas</title>
 </head>
 <body>
 <header class="site-header">
     <div class="background-animation"></div>
+
+    <!-- Logo Section -->
     <div class="logo-container">
         <div class="logo-circle">
             <img src="https://via.placeholder.com/50" alt="Logo del sitio" class="logo-image">
         </div>
     </div>
+
+    <!-- Navigation Section -->
     <nav class="header-nav">
-        <button class="logout-button" onclick="logout()">Cerrar sesión</button>
+        <a href="index.php?page=login">
+        <button class="logout-button" >Cerrar sesión</button>
+        </a>
+
     </nav>
+
+    <!-- User Info Section -->
     <div class="user-container">
         <span class="username">{{username}}</span>
         <div class="user-circle">
@@ -26,51 +34,63 @@
         </div>
     </div>
 </header>
+
+<!-- Main Content Section -->
 <div class="contenedorTabla">
-<div class="container">
-    <table>
-        <thead>
-        <tr>
-            <th>Usuario</th>
-            <th>Pregunta Sugerida</th>
-            <th>Opción A</th>
-            <th>Opción B</th>
-            <th>Opción C</th>
-            <th>Opción D</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                <img src="https://via.placeholder.com/50" alt="Imagen de Usuario" class="user-img">
-                <span>NombreUsuario</span>
-            </td>
-            <td>¿Cuál es la capital de Francia?</td>
-            <td>Londres</td>
-            <td>París</td>
-            <td>Berlín</td>
-            <td>Madrid</td>
-        </tr>
-        <tr>
-            <td>
-                <img src="https://via.placeholder.com/50" alt="Imagen de Usuario" class="user-img">
-                <span>OtroUsuario</span>
-            </td>
-            <td>¿En qué año comenzó la Segunda Guerra Mundial?</td>
-            <td>1939</td>
-            <td>1940</td>
-            <td>1941</td>
-            <td>1942</td>
-        </tr>
-        <!-- Puedes agregar más filas aquí para más preguntas -->
-        </tbody>
-    </table>
-    <div class="buttons-container">
-        <button class="action-button add-button">Agregar</button>
-        <button class="action-button modify-button">Modificar</button>
-        <button class="action-button delete-button">Eliminar</button>
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Pregunta Sugerida</th>
+                <th>Opción A</th>
+                <th>Opción B</th>
+                <th>Opción C</th>
+                <th>Opción D</th>
+                <th>Opción Correcta</th>
+                <th>Categoría</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#preguntasSugeridas}}
+                <tr>
+                    <td>
+                        <img src="https://via.placeholder.com/50" alt="Imagen de Usuario" class="user-img">
+                        <span>{{nombre_usuario}}</span>
+                    </td>
+                    <td>{{Pregunta}}</td>
+                    <td>{{OpcionA}}</td>
+                    <td>{{OpcionB}}</td>
+                    <td>{{OpcionC}}</td>
+                    <td>{{OpcionD}}</td>
+                    <td>{{OpcionCorrecta}}</td>
+                    <td>{{Categoria}}</td>
+                    <td>
+                        <div class="buttons-container">
+                            <form action="index.php?page=editor&action=agregarPregunta" method="post">
+                                <input type="hidden" name="ID" value="{{ID}}">
+                                <input type="hidden" name="Pregunta" value="{{Pregunta}}">
+                                <input type="hidden" name="OpcionA" value="{{OpcionA}}">
+                                <input type="hidden" name="OpcionB" value="{{OpcionB}}">
+                                <input type="hidden" name="OpcionC" value="{{OpcionC}}">
+                                <input type="hidden" name="OpcionD" value="{{OpcionD}}">
+                                <input type="hidden" name="OpcionCorrecta" value="{{OpcionCorrecta}}">
+                                <input type="hidden" name="Categoria" value="{{Categoria}}">
+                                <button class="action-button add-button">Agregar</button>
+                            </form>
+                            <button class="action-button modify-button">Modificar</button>
+                            <form action="index.php?page=editor&action=eliminarPregunta" method="post">
+                                <input type="hidden" name="ID" value="{{ID}}">
+                                <button type="submit" class="action-button delete-button" onclick="return confirm('¿Estás seguro de que deseas eliminar esta pregunta?');">Eliminar</button>
+                            </form>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+            {{/preguntasSugeridas}}
+        </table>
     </div>
-</div>
 </div>
 </body>
 </html>

@@ -54,9 +54,9 @@
                 <div class="popup-content">
                     <span class="close" onclick="closePopup()">&times;</span>
                     <h2>Crear Nueva Pregunta</h2>
-                    <form id="createQuestionForm">
-                        <label for="question">Pregunta:</label>
-                        <input type="text" id="question" name="question" required>
+                    <form action="index.php?page=home&action=usuarioSugerirPregunta" method="POST">
+                        <label for="pregunta">Pregunta:</label>
+                        <input type="text" id="pregunta" name="pregunta" required>
                         <label for="optionA">Opción A:</label>
                         <input type="text" id="optionA" name="optionA" required>
                         <label for="optionB">Opción B:</label>
@@ -65,19 +65,17 @@
                         <input type="text" id="optionC" name="optionC" required>
                         <label for="optionD">Opción D:</label>
                         <input type="text" id="optionD" name="optionD" required>
-                        <label for="optionE">Opción E:</label>
-                        <input type="text" id="optionE" name="optionE" required>
+
                         <label for="correctOption">Opción Correcta:</label>
-                        <select id="correctOption" name="correctOption" required>
+                        <select id="opcionCorrecta" name="opcionCorrecta" required>
                             <option value="" disabled selected>Selecciona la opción correcta</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
                             <option value="D">D</option>
-                            <option value="E">E</option>
                         </select>
-                        <label for="correctOption">Categoria:</label>
-                        <select id="correctOption" name="correctOption" required>
+                        <label for="categoriaElegida">Categoria:</label>
+                        <select id="categoriaElegida" name="categoriaElegida" required>
                             <option value="" disabled selected>Selecciona la opción correcta</option>
                             <option value="Arte">Arte</option>
                             <option value="Cine">Cine</option>
