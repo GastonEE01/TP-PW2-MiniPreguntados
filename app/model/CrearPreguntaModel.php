@@ -112,6 +112,39 @@ class CrearPreguntaModel
         return $id;
     }
 
+    function actualizarPregunta($db, $id, $pregunta, $opcionA, $opcionB, $opcionC, $opcionD, $opcionCorrecta, $categoria) {
+        $sql = "UPDATE Sugerencia 
+            SET Pregunta = ?, OpcionA = ?, OpcionB = ?, OpcionC = ?, OpcionD = ?, OpcionCorrecta = ?, Categoria = ?
+            WHERE ID = ?";
 
+        // Ejecutar la consulta
+        $resultado = $db->execute($sql, [$pregunta, $opcionA, $opcionB, $opcionC, $opcionD, $opcionCorrecta, $categoria, $id]);
 
+        // Verificar si se actualizó alguna fila
+        if ($resultado['affected_rows'] > 0) {
+            echo "Pregunta actualizada exitosamente.";
+        } else {
+            echo "Advertencia: No se actualizó ninguna fila. Verifica si los datos son idénticos a los almacenados.";
+        }
+    }
+    public function modificarPreguntaSugerida($id, $pregunta, $opcionA, $opcionB, $opcionC, $opcionD, $opcionCorrecta, $categoria,$idUsuario) {
+        $sql = "UPDATE Sugerencia 
+        SET ID = ?, Pregunta = ?, OpcionA = ?, OpcionB = ?, OpcionC = ?, OpcionD = ?, OpcionCorrecta = ?, Categoria = ?, Usuario_id = ?
+        WHERE ID = ?";
+
+        $params = [
+            $id,
+            $pregunta,
+            $opcionA,
+            $opcionB,
+            $opcionC,
+            $opcionD,
+            $opcionCorrecta,
+            $categoria,
+            $idUsuario,
+            $id
+        ];
+
+        return $this->database->execute($sql, $params);
+    }
 }

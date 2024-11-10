@@ -29,8 +29,8 @@ class EditorController
             'pais' => $pais,
             'ciudad' => $ciudad,
             'fotoIMG' => $fotoIMG,
-            'preguntasSugeridas' => $pregutasSugeridas
-
+            'preguntasSugeridas' => $pregutasSugeridas,
+            'id' => $id
         ]);
     }
 
@@ -88,6 +88,28 @@ class EditorController
             echo "No se proporcionó un ID para eliminar.";
         }
     }
+    public function modificarPregunta($data) {
+        // Extraer los datos
+        $id = $data['ID'];
+        $pregunta = $data['Pregunta'];
+        $opcionA = $data['OpcionA'];
+        $opcionB = $data['OpcionB'];
+        $opcionC = $data['OpcionC'];
+        $opcionD = $data['OpcionD'];
+        $opcionCorrecta = $data['OpcionCorrecta'];
+        $categoria = $data['Categoria'];
+        $idUsuario = $data['Usuario_id'];
+
+        $resultado = $this->crearPreguntaModel->modificarPreguntaSugerida($id, $pregunta, $opcionA, $opcionB, $opcionC, $opcionD, $opcionCorrecta, $categoria,$idUsuario);
+
+        if ($resultado['affected_rows'] > 0) {
+            echo "Pregunta actualizada exitosamente.";
+        } else {
+            echo "Advertencia: No se actualizó ninguna fila. Verifica que el ID existe y los datos han cambiado.";
+        }
+    }
+
+
 
 }
 

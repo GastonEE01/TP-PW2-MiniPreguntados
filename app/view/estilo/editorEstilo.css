@@ -14,16 +14,16 @@ body {
 table {
     width: 75%;
     border-collapse: collapse;
-    background-color: white;
+    background-color: #ff9800;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 th, td {
     padding: 12px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #000000;
 }
 th {
-    background-color: #f2f2f2;
+    background-color: #9c27b0;
     font-weight: bold;
 }
 .user-img {
@@ -55,4 +55,15 @@ th {
 .contenedorTabla{
   /*  background: red;*/
     margin-top: 3%;
+}
+
+body input{
+    width: 100px;
+    font-family: "Arial Black";
+    font-size: 16px;
+}
+
+body span{
+    font-family: "Arial Black";
+
 }

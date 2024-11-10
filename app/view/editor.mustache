@@ -21,9 +21,8 @@
     <!-- Navigation Section -->
     <nav class="header-nav">
         <a href="index.php?page=login">
-        <button class="logout-button" >Cerrar sesión</button>
+            <button class="logout-button">Cerrar sesión</button>
         </a>
-
     </nav>
 
     <!-- User Info Section -->
@@ -51,42 +50,71 @@
                 <th>Categoría</th>
             </tr>
             </thead>
-            <tbody>
+        <tbody>
             {{#preguntasSugeridas}}
-                <tr>
-                    <td>
-                        <img src="https://via.placeholder.com/50" alt="Imagen de Usuario" class="user-img">
-                        <span>{{nombre_usuario}}</span>
-                    </td>
-                    <td>{{Pregunta}}</td>
-                    <td>{{OpcionA}}</td>
-                    <td>{{OpcionB}}</td>
-                    <td>{{OpcionC}}</td>
-                    <td>{{OpcionD}}</td>
-                    <td>{{OpcionCorrecta}}</td>
-                    <td>{{Categoria}}</td>
-                    <td>
-                        <div class="buttons-container">
-                            <form action="index.php?page=editor&action=agregarPregunta" method="post">
-                                <input type="hidden" name="ID" value="{{ID}}">
-                                <input type="hidden" name="Pregunta" value="{{Pregunta}}">
-                                <input type="hidden" name="OpcionA" value="{{OpcionA}}">
-                                <input type="hidden" name="OpcionB" value="{{OpcionB}}">
-                                <input type="hidden" name="OpcionC" value="{{OpcionC}}">
-                                <input type="hidden" name="OpcionD" value="{{OpcionD}}">
-                                <input type="hidden" name="OpcionCorrecta" value="{{OpcionCorrecta}}">
-                                <input type="hidden" name="Categoria" value="{{Categoria}}">
-                                <button class="action-button add-button">Agregar</button>
-                            </form>
-                            <button class="action-button modify-button">Modificar</button>
-                            <form action="index.php?page=editor&action=eliminarPregunta" method="post">
-                                <input type="hidden" name="ID" value="{{ID}}">
-                                <button type="submit" class="action-button delete-button" onclick="return confirm('¿Estás seguro de que deseas eliminar esta pregunta?');">Eliminar</button>
-                            </form>
-                        </div>
-                    </td>
+            <tr>
+                <td>
+                    <img src="https://via.placeholder.com/50" alt="Imagen de Usuario" class="user-img">
+                    <span>{{nombre_usuario}}</span>
+                </td>
+                <td>
+                    <input type="text" name="Pregunta" value="{{Pregunta}}" class="input-question">
+                </td>
+                <td>
+                    <input type="text" name="OpcionA" value="{{OpcionA}}" class="input-option">
+                </td>
+                <td>
+                    <input type="text" name="OpcionB" value="{{OpcionB}}" class="input-option">
+                </td>
+                <td>
+                    <input type="text" name="OpcionC" value="{{OpcionC}}" class="input-option">
+                </td>
+                <td>
+                    <input type="text" name="OpcionD" value="{{OpcionD}}" class="input-option">
+                </td>
+                <td>
+                    <input type="text" name="OpcionCorrecta" value="{{OpcionCorrecta}}" class="input-option">
+                </td>
+                <td>
+                    <input type="text" name="Categoria" value="{{Categoria}}" class="input-category">
+                </td>
 
-                </tr>
+                <td>
+                    <div class="buttons-container">
+                        <form action="index.php?page=editor&action=agregarPregunta" method="post">
+                            <input type="hidden" name="ID" value="{{ID}}">
+                            <input type="hidden" name="Pregunta" value="{{Pregunta}}">
+                            <input type="hidden" name="OpcionA" value="{{OpcionA}}">
+                            <input type="hidden" name="OpcionB" value="{{OpcionB}}">
+                            <input type="hidden" name="OpcionC" value="{{OpcionC}}">
+                            <input type="hidden" name="OpcionD" value="{{OpcionD}}">
+                            <input type="hidden" name="OpcionCorrecta" value="{{OpcionCorrecta}}">
+                            <input type="hidden" name="Categoria" value="{{Categoria}}">
+                            <button class="action-button add-button">Agregar</button>
+                        </form>
+
+                        <!-- Formulario para modificar la pregunta -->
+                        <form action="index.php?page=editor&action=modificarPregunta" method="post">
+                            <input type="hidden" name="ID" value="{{ID}}">
+                            <input type="hidden" name="Pregunta" value="{{Pregunta}}">
+                            <input type="hidden" name="OpcionA" value="{{OpcionA}}">
+                            <input type="hidden" name="OpcionB" value="{{OpcionB}}">
+                            <input type="hidden" name="OpcionC" value="{{OpcionC}}">
+                            <input type="hidden" name="OpcionD" value="{{OpcionD}}">
+                            <input type="hidden" name="OpcionCorrecta" value="{{OpcionCorrecta}}">
+                            <input type="hidden" name="Categoria" value="{{Categoria}}">
+                            <input type="hidden" name="Usuario_id" value="{{Usuario_id}}">
+                            <button class="action-button modify-button" type="submit">Modificar</button>
+                        </form>
+
+                        <!-- Formulario para eliminar la pregunta -->
+                        <form action="index.php?page=editor&action=eliminarPregunta" method="post">
+                            <input type="hidden" name="ID" value="{{ID}}">
+                            <button type="submit" class="action-button delete-button" onclick="return confirm('¿Estás seguro de que deseas eliminar esta pregunta?');">Eliminar</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
             </tbody>
             {{/preguntasSugeridas}}
         </table>
