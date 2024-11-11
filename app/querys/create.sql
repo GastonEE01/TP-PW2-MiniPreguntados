@@ -48,6 +48,8 @@ CREATE TABLE Pregunta (
     Categoria_id INT,
     FOREIGN KEY (Categoria_id) REFERENCES Categoria(ID)
 );
+
+
 ALTER TABLE Pregunta
     ADD COLUMN mostrada INT DEFAULT 1,
     ADD COLUMN acertada INT DEFAULT 1;

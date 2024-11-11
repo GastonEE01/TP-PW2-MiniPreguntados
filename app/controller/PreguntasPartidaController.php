@@ -27,7 +27,7 @@ class PreguntasPartidaController
         $user = $sesion->obtenerUsuario();
         $username = $user['nombre_usuario'] ?? 'Invitado';
 
-        $respuesta = isset($_POST['answer'])?$_POST['answer']:null;
+      //  $respuesta = isset($_POST['answer'])?$_POST['answer']:null;
 
         $categoria=isset($_GET['categoria'])?$_GET['categoria']:null;
         $nivelUsuario=$this->usuarioModel->verificarNivelDeUsuario($user['id']);

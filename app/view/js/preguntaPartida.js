@@ -39,7 +39,7 @@ function mostrarModal(Es_correcta) {
 // temporalizador
 let countdownElement = document.getElementById('countdown');
 let progressBar = document.getElementById('progressBar');
-let totalTime = 15; // Tiempo total en segundos
+let totalTime = 10; // Tiempo total en segundos
 let timeLeft = totalTime;
 let modal = document.getElementById('timeOverModal');
 let closeModal = document.getElementById('closeModal');
@@ -57,26 +57,37 @@ let countdownInterval = setInterval(() => {
         clearInterval(countdownInterval); // Detener el temporizador
 
         // Reproducir el sonido
-        let alertSound = document.getElementById('alertSound');
-        alertSound.play();
+        //let alertSound = document.getElementById('alertSound');
+     //   alertSound.play();
 
         // Mostrar el modal
-        modal.style.display = "flex";
+      //  modal.style.display = "flex";
 
         // Esperar a que se cierre el modal para redirigir
-        closeModal.onclick = function() {
-            modal.style.display = "none"; // Cerrar el modal
-            window.location.href = 'home.html'; // Asegúrate de que esta ruta sea correcta
-        };
+      //  closeModal.onclick = function() {
+      //      modal.style.display = "none"; // Cerrar el modal
+      //      window.location.href = 'home.html'; // Asegúrate de que esta ruta sea correcta
+     //   };
 
         // También cerrar el modal al hacer clic fuera del contenido
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none"; // Cerrar el modal
-                window.location.href = 'home.html'; // Asegúrate de que esta ruta sea correcta
-            }
-        };
+     //   window.onclick = function(event) {
+       //     if (event.target == modal) {
+        //         modal.style.display = "none"; // Cerrar el modal
+         //        window.location.href = 'home.html'; // Asegúrate de que esta ruta sea correcta
+          //  }
+      //  };
     }
 }, 1000); // Actualizar cada segundo
 
+let enviarRespuesta=document.getElementById("enviarRespuesta")
 
+   enviarRespuesta.addEventListener("click",()=>{
+        let valorDelContador=countdownElement.textContent
+       document.getElementById("tiempo").setAttribute("value", valorDelContador);
+
+
+
+
+        alert(valorDelContador)
+
+    })

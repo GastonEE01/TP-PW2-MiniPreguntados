@@ -85,8 +85,28 @@ class PreguntasPartidaModel{
     }
 
 
-    public function verificarRespuesta($respuesta, $userID, $id_partida)
+    public function verificarRespuesta($respuesta, $userID, $id_partida,$tiempo)
     {
+        if ($tiempo==0){
+            $sql1_buscaPregunta="SELECT p.*
+                        FROM Pregunta p
+                        JOIN Respuesta r ON p.ID = r.Pregunta_id
+                        WHERE r.Texto_respuesta = ?"; //busca pregunta que tenga como campo pregunta la respuesta que envio el usuario
+
+            $pregunta=$this->database->execute($sql1_buscaPregunta, [$respuesta]);
+
+            $sql_actualizaPreguntaErrada = "UPDATE Pregunta
+                                            SET mostrada = mostrada + 1
+                                            WHERE Pregunta=?"; //si no es acertada solo suma un punto en el campo mostrada
+
+            $sql_ActualizarUsuario_respondeMal="UPDATE Usuario
+                                            SET total_respuestas =total_respuestas + 1
+                                            WHERE id=?";
+
+            $this->database->execute($sql_actualizaPreguntaErrada, [$pregunta[0]['Pregunta']]);
+            $this->database->execute($sql_ActualizarUsuario_respondeMal, [$userID]);
+            return null;
+        }
         $sql = "SELECT * FROM Respuesta 
             WHERE Texto_respuesta = ?";
 
@@ -128,12 +148,12 @@ class PreguntasPartidaModel{
                                             SET mostrada = mostrada + 1
                                             WHERE Pregunta=?"; //si no es acertada solo suma un punto en el campo mostrada
 
-                $sql_ActualizarUsuario_respondeBien="UPDATE Usuario
+                $sql_ActualizarUsuario_respondeMal="UPDATE Usuario
                                             SET total_respuestas =total_respuestas + 1
                                             WHERE id=?";
 
               $this->database->execute($sql_actualizaPreguntaErrada, [$pregunta[0]['Pregunta']]);
-                $this->database->execute($sql_actualizaPreguntaErrada, [$userID]);
+                $this->database->execute($sql_ActualizarUsuario_respondeMal, [$userID]);
 
             }
 
