@@ -25,6 +25,8 @@ class PreguntasPartidaController
         print_r($id_partida);
         $sesion=New ManejoSesiones();
         $user = $sesion->obtenerUsuario();
+        $username = $user['nombre_usuario'] ?? 'Invitado';
+
         $respuesta = isset($_POST['answer'])?$_POST['answer']:null;
 
         $categoria=isset($_GET['categoria'])?$_GET['categoria']:null;
@@ -42,8 +44,8 @@ class PreguntasPartidaController
            'opcion4'=>$opcion[3]['Texto_respuesta'],
             'id_partida'=>$id_partida,
             'categoria' => $categoria,
-            'Es_correcta' =>  $respuesVerificada
-
+            'Es_correcta' =>  $respuesVerificada,
+            'nombre_usuario' => $username
 
         ];
 

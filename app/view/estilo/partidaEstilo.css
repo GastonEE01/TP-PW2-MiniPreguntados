@@ -91,3 +91,31 @@ svg {
 .close:hover {
     background-color: darkred;
 }
+
+/* usuario + img perfil*/
+.profile-container {
+    display: flex; /* Usamos flex para alinear los elementos */
+    flex-direction: column; /* Cambiamos la dirección de la alineación a vertical */
+    align-items: center; /* Alinea la imagen y el nombre de manera centrada */
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.profile-pic-container {
+    flex-shrink: 0; /* Impide que la imagen se reduzca */
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Hace la imagen circular */
+}
+
+#userName {
+    margin-top: 10px; /* Espacio entre la imagen y el nombre */
+    font-size: 1.8rem;
+    margin: 0;
+}

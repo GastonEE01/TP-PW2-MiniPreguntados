@@ -36,4 +36,47 @@ function mostrarModal(Es_correcta) {
 
 }
 
+// temporalizador
+let countdownElement = document.getElementById('countdown');
+let progressBar = document.getElementById('progressBar');
+let totalTime = 15; // Tiempo total en segundos
+let timeLeft = totalTime;
+let modal = document.getElementById('timeOverModal');
+let closeModal = document.getElementById('closeModal');
+
+// Función para actualizar el contador y la barra de progreso
+let countdownInterval = setInterval(() => {
+    timeLeft--;
+    countdownElement.textContent = timeLeft;
+
+    // Calcular el ancho de la barra de progreso
+    let progressPercentage = ((totalTime - timeLeft) / totalTime) * 100;
+    progressBar.style.width = progressPercentage + '%';
+
+    if (timeLeft <= 0) {
+        clearInterval(countdownInterval); // Detener el temporizador
+
+        // Reproducir el sonido
+        let alertSound = document.getElementById('alertSound');
+        alertSound.play();
+
+        // Mostrar el modal
+        modal.style.display = "flex";
+
+        // Esperar a que se cierre el modal para redirigir
+        closeModal.onclick = function() {
+            modal.style.display = "none"; // Cerrar el modal
+            window.location.href = 'home.html'; // Asegúrate de que esta ruta sea correcta
+        };
+
+        // También cerrar el modal al hacer clic fuera del contenido
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none"; // Cerrar el modal
+                window.location.href = 'home.html'; // Asegúrate de que esta ruta sea correcta
+            }
+        };
+    }
+}, 1000); // Actualizar cada segundo
+
 

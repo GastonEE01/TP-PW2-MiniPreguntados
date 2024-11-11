@@ -8,13 +8,31 @@
 
 </head>
 <body onload="mostrarFondo('{{categoria}}')">
+
+<div class="profile-container">
+    <!-- Contenedor de la foto de perfil y nombre -->
+    <div class="profile-pic-container">
+        <a href="index.php?page=perfil">
+            <img src="https://via.placeholder.com/40x40.png?text=Perfil" alt="Foto de perfil" class="profile-pic">
+        </a>
+    </div>
+    <!-- Nombre del usuario -->
+    <h2 id="userName">{{nombre_usuario}}</h2>
+</div>
+
+<!-- Barra de progreso -->
+<div id="timeContainer">
+
+    <h1 id="countdownText">Tiempo restante <span id="countdown">15</span> seg</h1>
+    <div id="progressBarContainer">
+        <div id="progressBar"></div>
+    </div>
+</div>
     <div class="container">
         <div class="quiz-container">
             <div class="question-card">
                 <h2>{{pregunta}}</h2>
             </div>
-            <h2>{{categoria}}</h2>
-            <h2>aa: {{Es_correcta}}</h2>
 
             <form action="index.php?page=Partida&action=validarRespuesta" method="POST">
 
