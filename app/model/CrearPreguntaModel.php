@@ -11,11 +11,9 @@ class CrearPreguntaModel
 
     public function crearSugerenciaPregunta($data, $id_usuario)
     {
-        // Ajustamos la consulta SQL. Eliminamos 'ID' si es una columna autoincremental.
         $sql = "INSERT INTO Sugerencia (pregunta, opcionA, opcionB, opcionC, opcionD, opcionCorrecta, categoria, Usuario_id) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        // Ajustamos los parámetros para coincidir con la consulta
         $params = [
             $data['Pregunta'],
             $data['OpcionA'],
@@ -27,7 +25,6 @@ class CrearPreguntaModel
             $id_usuario
         ];
 
-        // Ejecutamos la consulta
         $this->database->execute($sql, $params);
     }
 
