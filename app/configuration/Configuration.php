@@ -42,7 +42,10 @@ class Configuration
     {
         return new InicioController($this->getPresenter());
     }
-
+    public function getUsuarioController()
+    {
+        return new UsuarioController(new UsuarioModel($this->getDatabase()),$this->getPresenter());
+    }
     public function getRegistroController()
     {
         return new RegistroController($this->getPresenter(), new RegistroModel($this->getDatabase()), new SenderEmailPHPMailer());
@@ -50,7 +53,7 @@ class Configuration
 
     public function getPreguntasPartidaController()
     {
-        return new PreguntasPartidaController($this->getPresenter(),new PreguntasPartidaModel($this->getDatabase()));
+        return new PreguntasPartidaController($this->getPresenter(),new PreguntasPartidaModel($this->getDatabase()),new UsuarioModel($this->getDatabase()));
     }
     public function getCrearPartidaController()
     {

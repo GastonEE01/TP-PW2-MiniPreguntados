@@ -37,9 +37,6 @@ class PartidaController
                 'id_partida'=> $id_partida,
                 'Es_correcta' =>  $respuesVerificada
             ]);
-            print_r('Es_correcta');
-            print_r(            $this->preguntasPartidaModel->verificarRespuesta($respuesta, $user['id'],$id_partida)
-            );
 
         }else{
             // Actualziar el ranking despues de jugar una partida
@@ -52,10 +49,8 @@ class PartidaController
                 'nombre_usuario'=>$user['nombre_usuario'],
                 'Es_correcta' =>  $respuesVerificada
             ]);
-            print_r('Es_correcta');
-            print_r(            $this->preguntasPartidaModel->verificarRespuesta($respuesta, $user['id'],$id_partida)
-            );
-        }
+
+       }
     }
 
 }

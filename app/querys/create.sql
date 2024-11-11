@@ -27,6 +27,14 @@ CREATE TABLE Usuario (
     FOREIGN KEY (rol) REFERENCES Rol(ID)
 );
 
+ALTER TABLE Usuario
+    ADD COLUMN total_respuestas INT DEFAULT 1,
+    ADD COLUMN total_respuestas_correctas INT DEFAULT 0;
+
+UPDATE Usuario
+SET total_respuestas_correctas = 0,
+    total_respuestas=1;
+
 CREATE TABLE Categoria (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     Categoria VARCHAR(50) NOT NULL,
@@ -40,6 +48,15 @@ CREATE TABLE Pregunta (
     Categoria_id INT,
     FOREIGN KEY (Categoria_id) REFERENCES Categoria(ID)
 );
+ALTER TABLE Pregunta
+    ADD COLUMN mostrada INT DEFAULT 1,
+    ADD COLUMN acertada INT DEFAULT 1;
+
+UPDATE Pregunta
+SET Dificultad = 1,
+     mostrada = 1,
+    acertada=1;
+
 CREATE TABLE Respuesta (
 ID INT PRIMARY KEY AUTO_INCREMENT,
 Texto_respuesta TEXT NOT NULL,
@@ -157,6 +174,50 @@ INSERT INTO Pregunta (Pregunta, Dificultad, Categoria_id) VALUES ('¿En qué con
 INSERT INTO Pregunta (Pregunta, Dificultad, Categoria_id) VALUES ('¿Cuál es el río más largo del mundo?', 1, 6);
 INSERT INTO Pregunta (Pregunta, Dificultad, Categoria_id) VALUES ('¿Qué país tiene más habitantes?', 1, 6);
 INSERT INTO Pregunta (Pregunta, Dificultad, Categoria_id) VALUES ('¿Dónde se encuentra el Monte Everest?', 1, 6);
+
+
+UPDATE Pregunta
+SET Dificultad =2
+WHERE ID=3;
+UPDATE Pregunta
+SET Dificultad =3
+WHERE ID=4;
+
+UPDATE Pregunta
+SET Dificultad =3
+WHERE ID=7;
+UPDATE Pregunta
+SET Dificultad =2
+WHERE ID=6;
+
+UPDATE Pregunta
+SET Dificultad =3
+WHERE ID=14;
+UPDATE Pregunta
+SET Dificultad =2
+WHERE ID=15;
+
+UPDATE Pregunta
+SET Dificultad =3
+WHERE ID=18;
+UPDATE Pregunta
+SET Dificultad =2
+WHERE ID=17;
+
+UPDATE Pregunta
+SET Dificultad =3
+WHERE ID=21;
+UPDATE Pregunta
+SET Dificultad =2
+WHERE ID=22;
+
+UPDATE Pregunta
+SET Dificultad =3
+WHERE ID=27;
+UPDATE Pregunta
+SET Dificultad =2
+WHERE ID=30;
+
 
 INSERT INTO Respuesta (Texto_respuesta, Es_correcta, Pregunta_id) VALUES ('Leonardo da Vinci', TRUE, 1);
 INSERT INTO Respuesta (Texto_respuesta, Es_correcta, Pregunta_id) VALUES ('Pablo Picasso', FALSE, 1);

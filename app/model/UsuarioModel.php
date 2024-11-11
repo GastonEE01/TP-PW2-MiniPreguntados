@@ -9,17 +9,7 @@ class UsuarioModel
         $this->database = $database;
     }
 
- /*   public function validate($user, $pass)
-    {
-        $sql = "SELECT 1 
-                FROM usuario 
-                WHERE username = '" . $user. "' 
-                AND password = '" . $pass . "'";
 
-        $usuario = $this->database->query($sql);
-
-        return sizeof($usuario) == 1;
-    }*/
 
     public function validate($username, $password)
     {
@@ -53,6 +43,24 @@ class UsuarioModel
             $stmt->bind_param("i", $userId);
             return $stmt->execute(); // Verifica si la ejecución es exitosa
         }
+    }
+    public function verificarNivelDeUsuario($id){
+        $sql="SELECT * FROM Usuario WHERE id=?";
+       $result= $this->database->execute($sql, [$id]);
+    if ($result!=null){
+        $total_respuestas_correctas=$result[0]['total_respuestas_correctas'];
+        $total_respuestas=$result[0]['total_respuestas'];
+        $porcentajeDeAcierto=($total_respuestas_correctas/$total_respuestas)*100;
+        if ($porcentajeDeAcierto>=70){
+            return 3;
+        }elseif ($porcentajeDeAcierto<=30){
+            return 1;
+        }else{
+            return 2;
+        }
+
+    }
+    return null;
     }
 
 }
