@@ -54,6 +54,7 @@ class CrearPreguntaModel
     {
         // Obtener id de categoria
         $idCategoria = $this->obtenerCategoria($categoria); // Llama a obtenerCategoria usando $this
+
         // agregar pregunta
         $sqlPregunta = "INSERT INTO Pregunta (Pregunta, Dificultad, Categoria_id,mostrada,acertada) VALUES (?, ?, ?,?,?)";
         $dificultad = 1; // Nivel de dificultad predeterminado
@@ -129,7 +130,6 @@ class CrearPreguntaModel
                 return 6;
                 break;
             default:
-                $id=1;
                 break;
         }
 
