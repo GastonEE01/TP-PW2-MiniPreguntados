@@ -23,14 +23,14 @@ class EditorController
         $pais = $usuario['pais'] ?? 'Invitado';
         $ciudad = $usuario['ciudad'] ?? 'Invitado';
         $fotoIMG = $usuario['fotoIMG'] ?? 'Invitado';
-        $pregutasSugeridas = $this->crearPreguntaModel->obtenerPreguntasSugeridas($id);
+        $pregutasSugeridas = $this->crearPreguntaModel->obtenerPreguntasSugeridas();
         echo $this->presenter->render('editor', [
             'nombre_usuario' => $username,
             'pais' => $pais,
             'ciudad' => $ciudad,
             'fotoIMG' => $fotoIMG,
             'preguntasSugeridas' => $pregutasSugeridas,
-            'id' => $id
+            'ID' => $id
         ]);
     }
 
@@ -39,7 +39,7 @@ class EditorController
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ID'])) {
             // Obtener el ID de la pregunta a eliminar
             $id = $_POST['ID'];
-            print_r($id); // Asegúrate de que muestra un valor correcto
+              print_r($id); // Asegúrate de que muestra un valor correcto
 
             // Llamada al modelo para eliminar la pregunta
             $this->crearPreguntaModel->eliminarPregunta($id);
@@ -49,27 +49,34 @@ class EditorController
         exit();
     }
 
-    public function agregarPregunta($params)
+    public function agregarPregunta()
     {
         // Comprobamos que sea una solicitud POST y que se haya enviado un ID
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ID'])) {
+
             // Obtener el ID de la pregunta a eliminar
+
             $id = $_POST['ID'];
 
+            $pregunta=isset($_POST['Pregunta'])?$_POST['Pregunta']:null;
+
+            $OpcionA=isset($_POST['OpcionA'])?$_POST['OpcionA']:null;
+
+            $OpcionB=isset($_POST['OpcionB'])?$_POST['OpcionB']:null;
+
+            $OpcionC=isset($_POST['OpcionC'])?$_POST['OpcionC']:null;
+
+            $OpcionD=isset($_POST['OpcionD'])?$_POST['OpcionD']:null;
+
+            $OpcionCorrecta=isset($_POST['OpcionCorrecta'])?$_POST['OpcionCorrecta']:null;
+
+            $Categoria=isset($_POST['Categoria'])?$_POST['Categoria']:null;
             // Asegúrate de que los parámetros necesarios estén presentes
-            if (isset($params['Pregunta'], $params['OpcionA'], $params['OpcionB'], $params['OpcionC'], $params['OpcionD'], $params['OpcionCorrecta'], $params['Categoria'])) {
+            if ($pregunta !=null && $OpcionA !=null  && $OpcionB !=null&& $OpcionC !=null&& $OpcionD !=null&& $OpcionCorrecta !=null && $Categoria!=null) {
                 // Llamar al modelo para agregar la pregunta y sus respuestas
                 try {
-                    $this->crearPreguntaModel->agregarPregunta(
-                        $params['Pregunta'],
-                        $params['OpcionA'],
-                        $params['OpcionB'],
-                        $params['OpcionC'],
-                        $params['OpcionD'],
-                        $params['OpcionCorrecta'],
-                        $params['Categoria']
-                    );
 
+                    $this->crearPreguntaModel->agregarPregunta($pregunta,$OpcionA,$OpcionB,$OpcionC,$OpcionD,$OpcionCorrecta,$Categoria);
                     // Llamar al método para eliminar la pregunta en la tabla sugerencia usando el ID
                     $this->crearPreguntaModel->eliminarPregunta($id);
 
@@ -78,7 +85,7 @@ class EditorController
                     exit();
                 } catch (Exception $e) {
                     // Manejar error si ocurre
-                    echo "Error al agregar la pregunta: " . $e->getMessage();
+                    echo "Error al agregar la pregunta: " . $e->getMessage() ;
                 }
             } else {
                 // Si faltan parámetros, mostrar un mensaje de error
@@ -88,22 +95,31 @@ class EditorController
             echo "No se proporcionó un ID para eliminar.";
         }
     }
-    public function modificarPregunta($data) {
+    public function modificarPregunta() {
         // Extraer los datos
-        $id = $data['ID'];
-        $pregunta = $data['Pregunta'];
-        $opcionA = $data['OpcionA'];
-        $opcionB = $data['OpcionB'];
-        $opcionC = $data['OpcionC'];
-        $opcionD = $data['OpcionD'];
-        $opcionCorrecta = $data['OpcionCorrecta'];
-        $categoria = $data['Categoria'];
-        $idUsuario = $data['Usuario_id'];
 
-        $resultado = $this->crearPreguntaModel->modificarPreguntaSugerida($id, $pregunta, $opcionA, $opcionB, $opcionC, $opcionD, $opcionCorrecta, $categoria,$idUsuario);
+        $Usuario_id = isset($_POST['Usuario_id'])?$_POST['Usuario_id']:null;
+
+        $Pregunta=isset($_POST['Pregunta'])?$_POST['Pregunta']:null;
+
+        $OpcionA=isset($_POST['OpcionA'])?$_POST['OpcionA']:null;
+
+        $OpcionB=isset($_POST['OpcionB'])?$_POST['OpcionB']:null;
+
+        $OpcionC=isset($_POST['OpcionC'])?$_POST['OpcionC']:null;
+
+        $OpcionD=isset($_POST['OpcionD'])?$_POST['OpcionD']:null;
+
+        $OpcionCorrecta=isset($_POST['OpcionCorrecta'])?$_POST['OpcionCorrecta']:null;
+
+        $Categoria=isset($_POST['Categoria'])?$_POST['Categoria']:null;
+
+        $ID=isset($_POST['ID'])?$_POST['ID']:null;
+
+        $resultado = $this->crearPreguntaModel->modificarPreguntaSugerida($Pregunta, $OpcionA, $OpcionB, $OpcionC, $OpcionD, $OpcionCorrecta, $Categoria,$Usuario_id,$ID);
 
         if ($resultado['affected_rows'] > 0) {
-            echo "Pregunta actualizada exitosamente.";
+            $this->inicio();
         } else {
             echo "Advertencia: No se actualizó ninguna fila. Verifica que el ID existe y los datos han cambiado.";
         }

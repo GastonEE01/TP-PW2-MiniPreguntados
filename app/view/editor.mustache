@@ -57,6 +57,10 @@
                     <img src="https://via.placeholder.com/50" alt="Imagen de Usuario" class="user-img">
                     <span>{{nombre_usuario}}</span>
                 </td>
+                        <form action="index.php?page=editor&action=modificarPregunta" method="post">
+                        <input type="hidden" name="ID" value="{{ID}}">
+                        <input type="hidden" name="Usuario_id" value="{{Usuario_id}}">
+
                 <td>
                     <input type="text" name="Pregunta" value="{{Pregunta}}" class="input-question">
                 </td>
@@ -78,6 +82,8 @@
                 <td>
                     <input type="text" name="Categoria" value="{{Categoria}}" class="input-category">
                 </td>
+                <button class="action-button modify-button" type="submit">Modificar</button>
+ </form>
 
                 <td>
                     <div class="buttons-container">
@@ -93,19 +99,7 @@
                             <button class="action-button add-button">Agregar</button>
                         </form>
 
-                        <!-- Formulario para modificar la pregunta -->
-                        <form action="index.php?page=editor&action=modificarPregunta" method="post">
-                            <input type="hidden" name="ID" value="{{ID}}">
-                            <input type="hidden" name="Pregunta" value="{{Pregunta}}">
-                            <input type="hidden" name="OpcionA" value="{{OpcionA}}">
-                            <input type="hidden" name="OpcionB" value="{{OpcionB}}">
-                            <input type="hidden" name="OpcionC" value="{{OpcionC}}">
-                            <input type="hidden" name="OpcionD" value="{{OpcionD}}">
-                            <input type="hidden" name="OpcionCorrecta" value="{{OpcionCorrecta}}">
-                            <input type="hidden" name="Categoria" value="{{Categoria}}">
-                            <input type="hidden" name="Usuario_id" value="{{Usuario_id}}">
-                            <button class="action-button modify-button" type="submit">Modificar</button>
-                        </form>
+
 
                         <!-- Formulario para eliminar la pregunta -->
                         <form action="index.php?page=editor&action=eliminarPregunta" method="post">
