@@ -170,4 +170,37 @@ class CrearPreguntaModel
             $ID
         ]);
     }
+
+    public function obtenerReportes()
+    {
+                $sql = "SELECT p.Pregunta AS texto_pregunta,r.* 
+                FROM reporte r
+                INNER JOIN Pregunta p ON r.Pregunta_id = p.ID";
+
+                try {
+
+                    $result = $this->database->execute($sql, []);
+                    return $result;
+                } catch (PDOException $e) {
+                    error_log("Error al obtener preguntas sugeridas: " . $e->getMessage());
+                }
+            }
+
+    public function eliminarReporte($idReporte){
+        $sql = "DELETE FROM reporte WHERE ID = ?";
+        $this->database->execute($sql, [$idReporte]);
+    }
+
+    public function eliminarRespuestas($idPregunta) {
+        $sql = "DELETE FROM respuesta WHERE Pregunta_id = ?";
+        $this->database->execute($sql, [$idPregunta]);
+    }
+    public function eliminarPreguntaRe($idPregunta){
+        $sql = "DELETE FROM pregunta WHERE ID = ?";
+        $this->database->execute($sql, [$idPregunta]);
+    }
+    public function eliminarReporteRelacionado($idPregunta) {
+        $sql = "DELETE FROM reporte WHERE Pregunta_id = ?";
+        $this->database->execute($sql, [$idPregunta]);
+    }
 }

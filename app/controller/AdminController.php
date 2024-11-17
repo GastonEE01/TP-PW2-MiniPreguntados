@@ -16,4 +16,16 @@ class AdminController
     }
 
 
+    public function obtenerEstadisticasPreguntas() {
+        // Datos ficticios que podrían venir de una consulta a la base de datos
+        $estadisticas = [
+            'Pendiente' => 15,
+            'Aprobada' => 20,
+            'Rechazada' => 5,
+            'Reportada' => 7,
+            'Desactivada' => 3
+        ];
+        header('Content-Type: application/json');
+        echo json_encode($estadisticas);
+    }
 }

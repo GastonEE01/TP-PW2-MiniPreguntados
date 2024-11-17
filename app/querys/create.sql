@@ -120,14 +120,11 @@ CREATE TABLE Sugerencia (
                             FOREIGN KEY (Usuario_id) REFERENCES Usuario(id)
 );
 
-INSERT INTO  usuario(id,nombre,nombre_usuario,contrasenia,fecha_nacimiento,pais,sexo,ciudad,email,rol,latitudMapa,longitudMapa)
+INSERT INTO  usuario(id,nombre,nombre_usuario,contrasenia,fecha_nacimiento,pais,sexo,ciudad,email,Path_img_perfil,activo,token,latitudMapa,longitudMapa,rol,total_respuestas,total_respuestas_correctas)
 values
-    (100,'admin','admin_user','1234a','2000-02-02','Argentina','FEMENINO','La pampa','admin@gmail.com',3,0,0  ),
-    (101,'editor','editor_user','1234e','2000-02-02','Argentina','FEMENINO','La pampa','editor@gmail.com',2,0,0  );
+    (100,'admin','admin_user','1234a','2000-02-02','Argentina','FEMENINO','La pampa','admin@gmail.com',null,1,0,0,0,2,0,0 ),
+    (101,'editor','editor_user','1234e','2000-02-02','Argentina','FEMENINO','La pampa','editor@gmail.com',null,1,0,0,0,3,0,0  );
 
-UPDATE usuario
-SET rol = 3
-WHERE id = 100;
 
 UPDATE usuario
 SET activo = 1

@@ -15,31 +15,52 @@ function mostrarFondo(categoria) {
     } else if (categoria == 'Geografía') {
         colorFondo = '#2196f3';
     }
-    // Asignar el color al fondo del body
     document.body.style.backgroundColor = colorFondo;
 }
 
+let countdownElement = document.getElementById('countdown');
+let progressBar = document.getElementById('progressBar');
+let totalTime = 15; // Tiempo total en segundos
+let timeLeft = totalTime;
+let modal = document.getElementById('timeOverModal');
+let closeModal = document.getElementById('closeModal');
 
-function mostrarModal(Es_correcta) {
-    console.log(Es_correcta);
-    if (Es_correcta == 1) {
-        document.getElementById("modalCorrecta").style.display = "block";
-        setTimeout(function() {
-            window.location.href = "/partida";
-        }, 3000);
-    } else if (Es_correcta == null) {
-        document.getElementById("modalPerdiste").style.display = "block";
-        setTimeout(function() {
-            window.location.href = "/home";
-        }, 3000);
+// Función para actualizar el contador y la barra de progreso
+let countdownInterval = setInterval(() => {
+    timeLeft--;
+    countdownElement.textContent = timeLeft;
+
+    // Calcular el ancho de la barra de progreso
+    let progressPercentage = ((totalTime - timeLeft) / totalTime) * 100;
+    progressBar.style.width = progressPercentage + '%';
+
+    if (timeLeft <= 0) {
+        clearInterval(countdownInterval); // Detener el temporizador
+
+        // Reproducir el sonido
+       // let alertSound = document.getElementById('alertSound');
+      //  alertSound.play();
+
+        modal.style.display = "flex";
+
+        closeModal.onclick = function() {
+            modal.style.display = "none"; // Cerrar el modal
+            window.location.href = 'index.php?page=home';
+        };
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none"; // Cerrar el modal
+                window.location.href = 'index.php?page=home';
+            }
+        };
     }
-
-}
-
+}, 1000); // Actualizar cada segundo
+/*
 // temporalizador
 let countdownElement = document.getElementById('countdown');
 let progressBar = document.getElementById('progressBar');
-let totalTime = 10; // Tiempo total en segundos
+let totalTime = 3; // Tiempo total en segundos
 let timeLeft = totalTime;
 let modal = document.getElementById('timeOverModal');
 let closeModal = document.getElementById('closeModal');
@@ -78,7 +99,7 @@ let countdownInterval = setInterval(() => {
       //  };
     }
 }, 1000); // Actualizar cada segundo
-
+/*
 let enviarRespuesta=document.getElementById("enviarRespuesta")
 
    enviarRespuesta.addEventListener("click",()=>{
@@ -90,4 +111,21 @@ let enviarRespuesta=document.getElementById("enviarRespuesta")
 
         alert(valorDelContador)
 
-    })
+    })*/
+
+function mostrarModalReportar() {
+    document.getElementById("reportarPreguntaModal").style.display = "block";
+}
+
+// Función para cerrar el modal
+document.getElementById("closeModal").onclick = function() {
+    document.getElementById("reportarPreguntaModal").style.display = "none";
+}
+
+// Función para reportar la pregunta (puedes ajustarla según tu lógica)
+function reportarPregunta() {
+    let motivo = document.getElementById("motivoReporte").value;
+    alert("Pregunta reportada con motivo: " + motivo);
+    // Aquí podrías agregar la lógica para enviar el reporte al servidor
+    document.getElementById("reportarPreguntaModal").style.display = "none"; // Cerrar el modal después de enviar el reporte
+}

@@ -6,11 +6,15 @@ class PreguntasPartidaController
     private $presenter;
     private $preguntaPartidaModel;
     private $usuarioModel;
-    public function __construct($presenter,$preguntaPartidaModel,$usuarioModel )
+    private $crearPartidaModel;
+
+    public function __construct($presenter,$preguntaPartidaModel,$usuarioModel,$crearPartidaModel)
     {
         $this->presenter = $presenter;
         $this->preguntaPartidaModel=$preguntaPartidaModel;
         $this->usuarioModel=$usuarioModel;
+        $this->crearPartidaModel=$crearPartidaModel;
+
     }
 
     public function inicio()
@@ -54,4 +58,36 @@ class PreguntasPartidaController
       //  print_r(1);
 
     }
+
+    public function reportarPregunta() {
+        $sesion = new ManejoSesiones();
+        $usuario = $sesion->obtenerUsuario();
+        $id_usuario = $sesion->obtenerUsuarioID();
+        $idUsuario = $usuario['id'] ?? 'Invitado';
+
+        if (isset($_POST['descripcionSeleccionada']) && isset($_POST['id_pregunta'])) {
+            $data = [
+                'Pregunta_id' => $_POST['id_pregunta'],
+                'Descripcion' => $_POST['selectMotivo'],
+                'Usuario_id' => $idUsuario
+            ];
+
+         /* Hay que actualzar la partida,agregarle la partida que finalizo asi se muestra en  el perfil,lo mismo con el temporatizador cuando esta en 0
+            $partidas = $this->crearPartidaModel->obtenerPartidas($id_usuario);
+            $id=isset($_POST['id_partida'])?$_POST['id_partida']:null;
+            $id_partida=intval($id);
+            $actualizarPartida = $this->crearPartidaModel->actualizarPartida($id_partida);
+*/
+            $this->preguntaPartidaModel->crearReportePregunta($data, $idUsuario);
+
+            echo $this->presenter->render('home'/*, ['partidas' => $actualizarPartida
+            ]*/);
+
+        } else {
+            echo "Faltan datos en el formulario.";
+        }
+    }
+
+
+
 }

@@ -164,7 +164,20 @@ class PreguntasPartidaModel{
         }
     }
 
+    public function crearReportePregunta($data, $idUsuario){
+        $sql = "INSERT INTO reporte (Pregunta_id, Descripcion, Usuario_id)
+            VALUES (?,?,?)";
+
+        $params = [
+            $data['Pregunta_id'],
+            $data['Descripcion'],
+            $idUsuario
+        ];
+        $this->database->execute($sql, $params);
+    }
+
 }
+
 
 
 

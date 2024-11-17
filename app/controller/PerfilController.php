@@ -20,7 +20,7 @@ class PerfilController
         $pais = $usuario['pais'] ?? 'Invitado';
         $ciudad = $usuario['ciudad'] ?? 'Invitado';
         $fotoIMG = $usuario['fotoIMG'] ?? 'Invitado';
-        $partidas=$this->crearPartidaModel->obtenerPartidas($usuario['id']);
+        $partidas=$this->crearPartidaModel->obtenerPartidasFinalizadas($usuario['id']);
 
         echo $this->presenter->render('perfil', [
             'nombre_usuario' => $username,

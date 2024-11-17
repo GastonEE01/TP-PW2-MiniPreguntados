@@ -53,7 +53,7 @@ class Configuration
 
     public function getPreguntasPartidaController()
     {
-        return new PreguntasPartidaController($this->getPresenter(),new PreguntasPartidaModel($this->getDatabase()),new UsuarioModel($this->getDatabase()));
+        return new PreguntasPartidaController($this->getPresenter(),new PreguntasPartidaModel($this->getDatabase()),new UsuarioModel($this->getDatabase()),new CrearPartidaModel($this->getDatabase()));
     }
     public function getCrearPartidaController()
     {

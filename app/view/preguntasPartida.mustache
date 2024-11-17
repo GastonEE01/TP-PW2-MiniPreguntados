@@ -23,7 +23,7 @@
 <!-- Barra de progreso -->
 <div id="timeContainer">
 
-    <h1 id="countdownText">Tiempo restante <span id="countdown">3</span> seg</h1>
+    <h1 id="countdownText">Tiempo restante <span id="countdown">15</span> seg</h1>
     <div id="progressBarContainer">
         <div id="progressBar"></div>
     </div>
@@ -69,31 +69,42 @@
             </div>
               <button id="enviarRespuesta"  class="btn btn-primary" type=submit>Enviar</button>
 
-                <div  style="display: none;" onload="mostrarModal({{Es_correcta}})">
-                   <div class="modal-content">
-                       <h2>¡Respuesta Correcta!</h2>
-                       <p>Serás redirigido a la ruleta...</p>
-                   </div>
-               </div>
-               <div id="{{Es_correcta}}" class="modal {{Es_correcta}}" style="display: none;" onload="mostrarModal({{Es_correcta}})">
-                   <div class="modal-content">
-                       <h2>¡Perdiste!</h2>
-                       <p>Serás redirigido al inicio...</p>
-                       <button onclick="redirectToHome()">Aceptar</button>
-                   </div>
-               </div>
-
-
            </form>
               <div class="button-container">
-                            <button class="btn btn-secondary">Reportar pregunta</button>
+                            <button class="btn btn-secondary" onclick="mostrarModalReportar()">Reportar pregunta</button>
                             <button class="btn btn-secondary">Usar trampa</button>
                             <button class="btn btn-secondary">Comprar trampa</button>
                         </div>
         </div>
     </div>
 
-
+<!-- Modal de reportar pregunta -->
+<div id="reportarPreguntaModal" class="modal" style="display: none;">
+    <div class="modal-content-reporte">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Seleccione el motivo del reporte</h2>
+        <form id="formReportarPregunta" action="index.php?page=preguntasPartida&action=reportarPregunta" method="POST">
+           <select name="selectMotivo">
+           <option>Elija un opcion</option>
+           <option value="La pregunta mal formulada">La pregunta mal formulada</option>
+           <option value="La pregunta no tiene la respuesta correcta">La pregunta no tiene la respuesta correcta</option>
+           <option value="La pregunta no pertece a esta categoria">La pregunta no pertece a esta categoria</option>
+       </select>
+            <input type="hidden" id="tipoMotivo" name="motivoSeleccionado">
+            <input type="hidden" id="descripcion" name="descripcionSeleccionada">
+            <input type="hidden" name="id_pregunta" value="{{id_pregunta}}">
+        <button class="botonReporte" type="submit">Enviar reporte</button>
+       </form>
+    </div>
+</div>
+<!-- Modal de temporalizador -->
+<div id="timeOverModal" class="modal">
+    <div class="modal-content-temporalizador">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>¡Tiempo Terminado!</h2>
+        <p>Se ha acabado el tiempo. Cierre este mensaje para continuar.</p>
+    </div>
+</div>
 
     <script src="/TP-pw2-MiniPreguntados/app/view/js/preguntaPartida.js"></script>
 

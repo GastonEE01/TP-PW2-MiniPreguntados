@@ -51,7 +51,7 @@ class CrearPartidaModel
     }
     public function obtenerPartidas($id_user)
     {
-        $sql = "SELECT * FROM Partida WHERE Usuario_id=? ";
+        $sql = "SELECT * FROM Partida WHERE Usuario_id=? AND Fecha_finalizada is null ";
 
         try {
 
@@ -61,6 +61,29 @@ class CrearPartidaModel
             error_log("Error al buscar las partidas: " . $e->getMessage());
             // Maneja el error adecuadamente
         }
+    }
+
+    public function obtenerPartidasFinalizadas($id_user)
+    {
+        $sql = "SELECT * FROM Partida WHERE Usuario_id=? AND Fecha_finalizada is not null ";
+
+        try {
+
+            $result=$this->database->execute($sql,[$id_user]);
+            return $result;
+        } catch (PDOException $e) {
+            error_log("Error al buscar las partidas: " . $e->getMessage());
+            // Maneja el error adecuadamente
+        }
+    }
+    public function actualizarPartida($idPartida)
+    {
+        $fechaFinalizada = date('Y-m-d H:i:s');
+        $sql = "UPDATE partida 
+                SET Fecha_finalizada  = ?
+                WHERE ID = ?";
+        $result =$this->database->execute($sql,[$fechaFinalizada,$idPartida]);
+        return $result;
     }
 
 }

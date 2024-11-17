@@ -34,9 +34,9 @@
     </div>
 </header>
 
+<h2>Preguntas sugeridas por usuarios</h2>
 <!-- Main Content Section -->
 <div class="contenedorTabla">
-    <div class="container">
         <table>
             <thead>
             <tr>
@@ -48,6 +48,8 @@
                 <th>Opción D</th>
                 <th>Opción Correcta</th>
                 <th>Categoría</th>
+                <th>Acciones</th>
+
             </tr>
             </thead>
         <tbody>
@@ -57,36 +59,52 @@
                     <img src="https://via.placeholder.com/50" alt="Imagen de Usuario" class="user-img">
                     <span>{{nombre_usuario}}</span>
                 </td>
-                        <form action="index.php?page=editor&action=modificarPregunta" method="post">
-                        <input type="hidden" name="ID" value="{{ID}}">
-                        <input type="hidden" name="Usuario_id" value="{{Usuario_id}}">
-
-                <td>
-                    <input type="text" name="Pregunta" value="{{Pregunta}}" class="input-question">
-                </td>
-                <td>
-                    <input type="text" name="OpcionA" value="{{OpcionA}}" class="input-option">
-                </td>
-                <td>
-                    <input type="text" name="OpcionB" value="{{OpcionB}}" class="input-option">
-                </td>
-                <td>
-                    <input type="text" name="OpcionC" value="{{OpcionC}}" class="input-option">
-                </td>
-                <td>
-                    <input type="text" name="OpcionD" value="{{OpcionD}}" class="input-option">
-                </td>
-                <td>
-                    <input type="text" name="OpcionCorrecta" value="{{OpcionCorrecta}}" class="input-option">
-                </td>
-                <td>
-                    <input type="text" name="Categoria" value="{{Categoria}}" class="input-category">
-                </td>
-                <button class="action-button modify-button" type="submit">Modificar</button>
- </form>
-
+                <td>{{Pregunta}}</td>
+                <td>{{OpcionA}}</td>
+                <td>{{OpcionB}}</td>
+                <td>{{OpcionC}}</td>
+                <td>{{OpcionD}}</td>
+                <td>{{OpcionCorrecta}}</td>
+                <td>{{Categoria}}</td>
                 <td>
                     <div class="buttons-container">
+                        <button id="openModal" class="action-button modify-button open-modal" data-id="{{ID}}" >Modificar</button>
+                        <!-- Modal de modificar pregunta -->
+
+                        <div id="modal-{{ID}}" class="modal">
+                            <div class="modal-content">
+                                <span class="close" data-id="{{ID}}">&times;</span>
+                                <h3>Modificar Pregunta</h3>
+                                <form id="modifyForm" action="index.php?page=editor&action=modificarPregunta" method="post">
+                                    <input type="hidden" name="ID" value="{{ID}}">
+                                    <input type="hidden" name="Usuario_id" value="{{Usuario_id}}">
+
+                                    <label for="Pregunta">Pregunta:</label>
+                                    <input type="text" id="Pregunta" name="Pregunta" value="{{Pregunta}}" required>
+
+                                    <label for="OpcionA">Opción A:</label>
+                                    <input type="text" id="OpcionA" name="OpcionA" value="{{OpcionA}}" required>
+
+                                    <label for="OpcionB">Opción B:</label>
+                                    <input type="text" id="OpcionB" name="OpcionB" value="{{OpcionB}}" required>
+
+                                    <label for="OpcionC">Opción C:</label>
+                                    <input type="text" id="OpcionC" name="OpcionC" value="{{OpcionC}}" required>
+
+                                    <label for="OpcionD">Opción D:</label>
+                                    <input type="text" id="OpcionD" name="OpcionD" value="{{OpcionD}}" required>
+
+                                    <label for="OpcionCorrecta">Opción Correcta:</label>
+                                    <input type="text" id="OpcionCorrecta" name="OpcionCorrecta" value="{{OpcionCorrecta}}" required>
+
+                                    <label for="Categoria">Categoría:</label>
+                                    <input type="text" id="Categoria" name="Categoria" value="{{Categoria}}" required>
+
+                                    <button type="submit" class="action-button modify-button" >Guardar Cambios</button>
+                                </form>
+                            </div>
+                        </div>
+
                         <form action="index.php?page=editor&action=agregarPregunta" method="post">
                             <input type="hidden" name="ID" value="{{ID}}">
                             <input type="hidden" name="Pregunta" value="{{Pregunta}}">
@@ -98,9 +116,6 @@
                             <input type="hidden" name="Categoria" value="{{Categoria}}">
                             <button class="action-button add-button">Agregar</button>
                         </form>
-
-
-
                         <!-- Formulario para eliminar la pregunta -->
                         <form action="index.php?page=editor&action=eliminarPregunta" method="post">
                             <input type="hidden" name="ID" value="{{ID}}">
@@ -114,5 +129,46 @@
         </table>
     </div>
 </div>
+<h2>Reportes de Preguntas</h2>
+<div class="contenedorTabla">
+<table>
+    <thead>
+    <tr>
+        <th>Pregunta ID</th>
+        <th>Pregunta reportada</th>
+        <th>Motivo del reporte</th>
+        <th>Usuario que la reporto</th>
+        <th>Acciones</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {{#reportes}}
+        <tr>
+
+            <td>{{Pregunta_id}}</td>
+            <td>{{texto_pregunta}}</td>
+            <td>{{Descripcion}}</td>
+            <td>{{nombre_usuario}}</td>
+            <td>
+                <form action="index.php?page=editor&action=rechazarReporte" method="post">
+                    <input type="hidden" name="ID" value="{{ID}}"> <!--Como en el array me traigo toda la tabla reporte este es su id -->
+                    <button  class="action-button delete-button" >Rechazar</button>
+                </form>
+                <form action="index.php?page=editor&action=aprobarReporte" method="post">
+                    <input type="hidden" name="ID" value="{{ID}}">
+                    <input type="hidden" name="Pregunta_id" value="{{Pregunta_id}}">
+                    <button class="action-button add-button"  >Aprobar</button>
+                </form>
+
+            </td>
+        </tr>
+
+    {{/reportes}}
+    </tbody>
+</table>
+</div>
+<script src="/TP-pw2-MiniPreguntados/app/view/js/editor.js" ></script>
+
 </body>
 </html>

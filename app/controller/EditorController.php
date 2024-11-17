@@ -24,13 +24,15 @@ class EditorController
         $ciudad = $usuario['ciudad'] ?? 'Invitado';
         $fotoIMG = $usuario['fotoIMG'] ?? 'Invitado';
         $pregutasSugeridas = $this->crearPreguntaModel->obtenerPreguntasSugeridas();
+        $reportes = $this->crearPreguntaModel-> obtenerReportes();
         echo $this->presenter->render('editor', [
             'nombre_usuario' => $username,
             'pais' => $pais,
             'ciudad' => $ciudad,
             'fotoIMG' => $fotoIMG,
             'preguntasSugeridas' => $pregutasSugeridas,
-            'ID' => $id
+            'ID' => $id,
+            'reportes' => $reportes
         ]);
     }
 
@@ -123,6 +125,34 @@ class EditorController
         } else {
             echo "Advertencia: No se actualizó ninguna fila. Verifica que el ID existe y los datos han cambiado.";
         }
+    }
+
+    public function rechazarReporte() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ID'])) {
+            // Obtener el ID de la pregunta a eliminar
+            $idReporte = $_POST['ID'];
+
+            $this->crearPreguntaModel->eliminarReporte($idReporte);
+        }
+        header('Location: index.php?page=editor');
+        exit();
+    }
+
+    public function aprobarReporte() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ID']) && isset($_POST['Pregunta_id'])) {
+            // Obtener el ID de la pregunta a eliminar
+            $idReporte = $_POST['ID'];
+            $idPregunta = $_POST['Pregunta_id'];
+
+            $this->crearPreguntaModel->eliminarRespuestas($idPregunta);
+            $this->crearPreguntaModel->eliminarReporteRelacionado($idPregunta);
+
+            $this->crearPreguntaModel->eliminarPreguntaRe($idPregunta);
+            $this->crearPreguntaModel->eliminarReporte($idReporte);
+
+        }
+        header('Location: index.php?page=editor');
+        exit();
     }
 
 

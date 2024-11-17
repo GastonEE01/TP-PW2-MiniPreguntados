@@ -41,14 +41,15 @@ class PartidaController
                     'id_partida' => $id_partida,
                     'Es_correcta' => $respuesVerificada
                 ]);
-
             } else {
                 // Actualziar el ranking despues de jugar una partida
                 $sesion = new ManejoSesiones();
                 $user = $sesion->obtenerUsuario();
                 $partidas = $this->crearPartidaModel->obtenerPartidas($user['id']);
                 $mejoresPunutajesJugador = $this->homeModel->trearMejoresPuuntajesJugadores();
-                echo $this->presenter->render('home', ['partidas' => $partidas,
+             //   print_r($partidas);
+                $actualizarPartida = $this->crearPartidaModel->actualizarPartida($id_partida);
+                echo $this->presenter->render('home', ['partidas' => $actualizarPartida,
                     'puntajes' => $mejoresPunutajesJugador,
                     'nombre_usuario' => $user['nombre_usuario'],
                     'Es_correcta' => $respuesVerificada
