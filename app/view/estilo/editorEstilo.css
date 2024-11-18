@@ -5,6 +5,11 @@ body {
     background-color: #756868;
 }
 
+body h2,h3{
+    text-align: center;
+    font-family: "Century";
+}
+
 .logo-container {
     width: 130px; /* Tamaño fijo */
     height: auto; /* Proporcional */
@@ -15,12 +20,6 @@ body {
     width: 130px; /* Ajusta el ancho */
     height: auto; /* Mantiene las proporciones */
 }
-body h2,h3{
-    text-align: center;
-    font-family: "Century";
-}
-
-
 /*contenedor de los botones*/
 .container {
     display: flex;
