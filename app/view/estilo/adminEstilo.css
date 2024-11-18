@@ -6,6 +6,17 @@ body {
     padding: 20px;
 }
 
+.logo-container {
+    width: 130px; /* Tamaño fijo */
+    height: auto; /* Proporcional */
+    max-width: none; /* Evita restricciones */
+    display: block; /* Elimina posibles comportamientos de inline */}
+
+.logo {
+    width: 130px; /* Ajusta el ancho */
+    height: auto; /* Mantiene las proporciones */
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;

@@ -2,7 +2,25 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #FF5A1F;
+    animation: backgroundChange 8s infinite; /* Cambia colores cada 8 segundos */
+}
+
+@keyframes backgroundChange {
+    0% {
+        background-color: #FF5A1F; /* Color 1 */
+    }
+    25% {
+        background-color: #FFCC00; /* Color 2 */
+    }
+    50% {
+        background-color: #28A745; /* Color 3 */
+    }
+    75% {
+        background-color: #007BFF; /* Color 4 */
+    }
+    100% {
+        background-color: #FF5A1F; /* Vuelve al Color 1 */
+    }
 }
 
 header {
@@ -19,7 +37,8 @@ header {
 }
 
 .logo {
-    max-height: 50px;
+    width: 130px; /* Ajusta el ancho */
+    height: auto; /* Mantiene las proporciones */
 }
 
 nav {
