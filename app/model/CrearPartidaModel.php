@@ -68,7 +68,6 @@ class CrearPartidaModel
         $sql = "SELECT * FROM Partida WHERE Usuario_id=? AND Fecha_finalizada is not null ";
 
         try {
-
             $result=$this->database->execute($sql,[$id_user]);
             return $result;
         } catch (PDOException $e) {

@@ -45,11 +45,11 @@ class PartidaController
                 // Actualziar el ranking despues de jugar una partida
                 $sesion = new ManejoSesiones();
                 $user = $sesion->obtenerUsuario();
-                $partidas = $this->crearPartidaModel->obtenerPartidas($user['id']);
                 $mejoresPunutajesJugador = $this->homeModel->trearMejoresPuuntajesJugadores();
              //   print_r($partidas);
                 $actualizarPartida = $this->crearPartidaModel->actualizarPartida($id_partida);
-                echo $this->presenter->render('home', ['partidas' => $actualizarPartida,
+                $partidas = $this->crearPartidaModel->obtenerPartidas($user['id']);
+                echo $this->presenter->render('home', ['partidas' => $partidas,
                     'puntajes' => $mejoresPunutajesJugador,
                     'nombre_usuario' => $user['nombre_usuario'],
                     'Es_correcta' => $respuesVerificada

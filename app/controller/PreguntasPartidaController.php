@@ -66,6 +66,7 @@ class PreguntasPartidaController
         $idUsuario = $usuario['id'] ?? 'Invitado';
 
         if (isset($_POST['descripcionSeleccionada']) && isset($_POST['id_pregunta'])) {
+
             $data = [
                 'Pregunta_id' => $_POST['id_pregunta'],
                 'Descripcion' => $_POST['selectMotivo'],
@@ -79,9 +80,10 @@ class PreguntasPartidaController
             $actualizarPartida = $this->crearPartidaModel->actualizarPartida($id_partida);
 */
             $this->preguntaPartidaModel->crearReportePregunta($data, $idUsuario);
+            $partidas=$this->crearPartidaModel->obtenerPartidas($usuario['id']);
 
-            echo $this->presenter->render('home'/*, ['partidas' => $actualizarPartida
-            ]*/);
+            echo $this->presenter->render('home', ['partidas' => $partidas
+            ]);
 
         } else {
             echo "Faltan datos en el formulario.";
