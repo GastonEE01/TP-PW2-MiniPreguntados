@@ -23,7 +23,7 @@ Options -Indexes
 
 <IfModule mod_rewrite.c>
    RewriteEngine On
-   RewriteBase /TP-MiniPreguntados-MVC/
+   RewriteBase /tp-pw2-MiniPreguntados/app/
 
   #  Excluir de la reescritura archivos estáticos (css, js, imágenes, etc.)
     RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -31,7 +31,7 @@ Options -Indexes
     RewriteRule ^ - [L]
 
    #  Reglas para manejar las rutas MVC dinámicas
-    RewriteRule ^(.*)/(.*)/(.*)$ index.php?page=$1&action=$2&$3 [L,QSA]
+    RewriteRule ^(.*)/(.*)/(.*)$ index.php?page=$1&action=$2&params=$3 [L,QSA]
     RewriteRule ^(.*)/(.*)$ index.php?page=$1&action=$2 [L,QSA]
     RewriteRule ^(.*)$ index.php?page=$1 [L,QSA]
 </IfModule>
