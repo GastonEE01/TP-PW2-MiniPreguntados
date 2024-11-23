@@ -4,6 +4,7 @@
 include_once("helper/ManejoSesiones.php");
 include_once("configuration/Configuration.php");
 require __DIR__ . '/../vendor/autoload.php';
+//require __DIR__ . '../vendor/autoload.php;
 
 $configuration = new Configuration();
 $router = $configuration->getRouter();

@@ -6,7 +6,7 @@ include_once("helper/IncludeFilePresenter.php");
 include_once("helper/Router.php");
 include_once("helper/MustachePresenter.php");
 include_once("helper/SenderEmailPHPMailer.php");
-include_once('vendor/mustache/src/Mustache/Autoloader.php');
+//include_once('vendor/mustache/src/Mustache/Autoloader.php');
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");

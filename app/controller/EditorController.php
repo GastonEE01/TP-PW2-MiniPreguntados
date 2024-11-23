@@ -47,7 +47,8 @@ class EditorController
             $this->crearPreguntaModel->eliminarPregunta($id);
         }
         // Redirigir al editor después de eliminar la pregunta
-        header('Location: index.php?page=editor');
+        header("Location: /tp-pw2-MiniPreguntados/app/editor");
+        exit();
         exit();
     }
 
@@ -83,7 +84,9 @@ class EditorController
                     $this->crearPreguntaModel->eliminarPregunta($id);
 
                     // Redirigir después de agregar y eliminar la pregunta de sugerencia
-                    header('Location: index.php?page=editor');
+                    header("Location: /tp-pw2-MiniPreguntados/app/editor");
+                    exit();
+
                     exit();
                 } catch (Exception $e) {
                     // Manejar error si ocurre
@@ -134,7 +137,7 @@ class EditorController
 
             $this->crearPreguntaModel->eliminarReporte($idReporte);
         }
-        header('Location: index.php?page=editor');
+        header("Location: /tp-pw2-MiniPreguntados/app/editor");
         exit();
     }
 
@@ -151,7 +154,7 @@ class EditorController
             $this->crearPreguntaModel->eliminarReporte($idReporte);
 
         }
-        header('Location: index.php?page=editor');
+        header("Location: /tp-pw2-MiniPreguntados/app/editor");
         exit();
     }
 

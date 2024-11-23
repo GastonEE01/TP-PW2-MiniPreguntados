@@ -59,10 +59,18 @@ class HomeController
 
         // Llamar al modelo para crear la sugerencia de pregunta
         $this->crearPreguntaModel->crearSugerenciaPregunta($data, $id_usuario);
-
+        $partidas = $this->crearPartidaModel->obtenerPartidas($id_usuario);
+        $mejoresPunutajesJugador = $this->homeModel->trearMejoresPuuntajesJugadores();
+        $user = $sesion->obtenerUsuario();
+        echo $this->presenter->render('home', [
+            'partidas' => $partidas,
+            'puntajes' => $mejoresPunutajesJugador,
+            'nombre_usuario' => $user['nombre_usuario']
+        ]);
         // Redirigir a la vista home
-        header('Location: index.php?page=home');
-        exit();
+        //header('Location: index.php?page=home');
+       /* header("Location: home");
+        exit();*/
     }
 }
 

@@ -12,9 +12,7 @@
 <div class="profile-container">
     <!-- Contenedor de la foto de perfil y nombre -->
     <div class="profile-pic-container">
-        <a href="index.php?page=perfil">
             <img src="https://via.placeholder.com/40x40.png?text=Perfil" alt="Foto de perfil" class="profile-pic">
-        </a>
     </div>
     <!-- Nombre del usuario -->
     <h2 id="userName">{{nombre_usuario}}</h2>
@@ -34,8 +32,7 @@
                 <h2>{{pregunta}}</h2>
             </div>
 
-            <form id="formValidarRespuesta" action="index.php?page=Partida&action=validarRespuesta" method="POST">
-
+            <form id="formValidarRespuesta" action="/tp-pw2-MiniPreguntados/app/Partida/validarRespuesta" method="POST">
           <input type="hidden" name="id_pregunta" value="{{id_pregunta}}">
           <input type="hidden" name="id_partida" value="{{id_partida}}">
           <input id="tiempo" type="hidden" name="tiempo" value="1">
@@ -83,8 +80,10 @@
     <div class="modal-content-reporte">
         <span class="close" id="closeModal">&times;</span>
         <h2>Seleccione el motivo del reporte</h2>
-        <form id="formReportarPregunta" action="index.php?page=preguntasPartida&action=reportarPregunta" method="POST">
-           <select name="selectMotivo">
+<!--        <form id="formReportarPregunta" action="index.php?page=preguntasPartida&action=reportarPregunta" method="POST">-->
+            <form id="formReportarPregunta" action="/tp-pw2-MiniPreguntados/app/preguntasPartida/reportarPregunta" method="POST">
+
+            <select name="selectMotivo">
            <option>Elija un opcion</option>
            <option value="La pregunta mal formulada">La pregunta mal formulada</option>
            <option value="La pregunta no tiene la respuesta correcta">La pregunta no tiene la respuesta correcta</option>

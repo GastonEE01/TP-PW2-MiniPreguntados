@@ -57,7 +57,8 @@
                 <div class="popup-content">
                     <span class="close" onclick="closePopup()">&times;</span>
                     <h2>Crear Nueva Pregunta</h2>
-                    <form action="index.php?page=home&action=usuarioSugerirPregunta" method="POST">
+                    <!--<form action="index.php?page=home&action=usuarioSugerirPregunta" method="POST">-->
+                    <form action="/tp-pw2-MiniPreguntados/app/home/usuarioSugerirPregunta" method="POST">
                         <label for="pregunta">Pregunta:</label>
                         <input type="text" id="pregunta" name="pregunta" required>
                         <label for="optionA">Opción A:</label>
@@ -96,7 +97,9 @@
     <h3>{{nombre_usuario}}</h3>
     </div>
     <div class="profile-pic-container">
-        <a href="index.php?page=perfil">
+        <!--<a href="index.php?page=perfil">-->
+        <a href="/tp-pw2-MiniPreguntados/app/perfil">
+
         <img src="https://via.placeholder.com/40x40.png?text=Perfil" alt="Foto de perfil" class="profile-pic">
         </a>
     </div>
@@ -107,7 +110,6 @@
         <a href="/tp-pw2-MiniPreguntados/app/crearPartida">
         <button class="create-game-button">Crear partida</button>
         </a>
-        <input type="search" placeholder="Buscar partida" class="search-bar">
     </div>
 
     <div class="game-list">

@@ -26,12 +26,14 @@ class LoginController
         if ($user['activo'] == 1) {
             // Si el rol es 2, redirige a la vista del editor
             if ($user['rol'] == 2) {
-                header("Location: index.php?page=editor");
+               // header("Location: index.php?page=editor");
+                 header("Location: editor");
                 exit;
             }
             // Si el rol es 3, redirige a la vista del administrador
             elseif ($user['rol'] == 3) {
-                header("Location: index.php?page=admin");
+                header("Location: admin");
+
                 exit;
             }else {
                     $sesion = new ManejoSesiones();

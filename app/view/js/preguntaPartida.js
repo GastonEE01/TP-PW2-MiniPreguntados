@@ -20,7 +20,7 @@ function mostrarFondo(categoria) {
 
 let countdownElement = document.getElementById('countdown');
 let progressBar = document.getElementById('progressBar');
-let totalTime = 15; // Tiempo total en segundos
+let totalTime = 3; // Tiempo total en segundos
 let timeLeft = totalTime;
 let modal = document.getElementById('timeOverModal');
 let closeModal = document.getElementById('closeModal');
@@ -45,13 +45,13 @@ let countdownInterval = setInterval(() => {
 
         closeModal.onclick = function() {
             modal.style.display = "none"; // Cerrar el modal
-            window.location.href = 'index.php?page=home';
+            window.location.href = '/tp-pw2-MiniPreguntados/app/home/listarPartidas';
         };
 
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none"; // Cerrar el modal
-                window.location.href = 'index.php?page=home';
+                window.location.href = '/tp-pw2-MiniPreguntados/app/home/listarPartidas';
             }
         };
     }
