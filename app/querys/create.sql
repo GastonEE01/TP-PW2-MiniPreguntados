@@ -1,4 +1,4 @@
-/*CREATE TABLE Rol (
+CREATE TABLE Rol (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     Rol VARCHAR(50) NOT NULL
 );
@@ -107,7 +107,7 @@ CREATE TABLE Sugerencia (
 */
 
 /* Modifique la tabla para implementar que el usuario pueda crear pregunta*/
-/*CREATE TABLE Sugerencia (
+CREATE TABLE Sugerencia (
                             ID INT PRIMARY KEY AUTO_INCREMENT,
                             Pregunta TEXT NOT NULL,
                             OpcionA VARCHAR(255) NOT NULL,
@@ -405,10 +405,10 @@ VALUES
 -- Partidas para Carlos Díaz (usuario ID 3)
 (1, 'Partida 1 para Carlos', 900, 90.00, 3, '2024-01-03 12:00:00', '2024-01-03 12:50:00'),
 (1, 'Partida 2 para Carlos', 850, 85.00, 3, '2024-01-07 17:00:00', '2024-01-07 17:30:00');
-*/
 
 
 
+/*
 -- Tabla Usuario
 CREATE TABLE Usuario (
                          id INT AUTO_INCREMENT PRIMARY KEY,
@@ -770,3 +770,4 @@ INSERT INTO Respuesta (Texto_respuesta, Es_correcta, Pregunta_id) VALUES
                                                                       ('Océano Atlántico', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es el océano más grande?')),
                                                                       ('Océano Índico', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es el océano más grande?')),
                                                                       ('Océano Ártico', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es el océano más grande?'));
+*/

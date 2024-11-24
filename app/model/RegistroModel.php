@@ -16,13 +16,8 @@ class RegistroModel
 
     // modificacion del metodo
     public function createUser($data,$token) {
-        $rol = 1;
-        $activo= 0;
-        $total_respuestas = 0;
-        $total_respuestas_correctas = 0;
-        $enLinea = 0;
-        $sql = "INSERT INTO usuario (nombre, nombre_usuario, contrasenia, fecha_nacimiento, pais, sexo, ciudad, email,Path_img_perfil,activo,token,latitudMapa,longitudMapa,total_respuestas,total_respuestas_correctas,enLinea,rol)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO usuario (nombre, nombre_usuario, contrasenia, fecha_nacimiento, pais, sexo, ciudad, email,token)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $params = [
             $data['nombre'],
@@ -33,15 +28,7 @@ class RegistroModel
             $data['sexo'],
             $data['ciudad'],
             $data['email'],
-            $data['fotoIMG'],
-            $activo,
-            $token,
-            $data['latitude'],
-            $data['longitude'],
-            $total_respuestas,
-            $total_respuestas_correctas,
-            $enLinea,
-            $rol
+            $token
         ];
 
         return $this->database->execute($sql, $params);

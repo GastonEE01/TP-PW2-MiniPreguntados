@@ -20,7 +20,7 @@ function mostrarFondo(categoria) {
 
 let countdownElement = document.getElementById('countdown');
 let progressBar = document.getElementById('progressBar');
-let totalTime = 3; // Tiempo total en segundos
+let totalTime = 30; // Tiempo total en segundos
 let timeLeft = totalTime;
 let modal = document.getElementById('timeOverModal');
 let closeModal = document.getElementById('closeModal');
