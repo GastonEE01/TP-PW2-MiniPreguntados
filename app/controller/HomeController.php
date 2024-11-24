@@ -23,6 +23,11 @@ class HomeController
         $username = $usuario['nombre_usuario'] ?? 'Invitado';
         $id_usuario = $sesion->obtenerUsuarioID();
         $id = $usuario['id'] ?? 'Invitado';
+
+        // Valido que el usuario tenga la sesion iniciada, sino lo mando al login
+        if ($username == 'Invitado')
+            header("Location: /tp-pw2-MiniPreguntados/app/login");
+
         echo $this->presenter->render('home', [
             'nombre_usuario' => $username,
             'id' => $id
@@ -33,11 +38,25 @@ class HomeController
     {
         $sesion = new ManejoSesiones();
         $user = $sesion->obtenerUsuario();
+        $id_usuario = $sesion->obtenerUsuarioID();
+        $id = $usuario['id'] ?? 'Invitado';
+        $username = $user['nombre_usuario'] ?? 'Invitado';
+        //print_r($sesion);
+        //print_r($username);
+        //print_r($id);
+
+        // Valido que el usuario tenga la sesion iniciada, sino lo mando al login
+        if ($username == 'Invitado')
+            header("Location: /tp-pw2-MiniPreguntados/app/login");
+
         $partidas = $this->crearPartidaModel->obtenerPartidas($user['id']);
         $mejoresPunutajesJugador = $this->homeModel->trearMejoresPuuntajesJugadores();
+
         echo $this->presenter->render('home', ['partidas' => $partidas,
             'puntajes' => $mejoresPunutajesJugador,
-            'nombre_usuario' => $user['nombre_usuario']
+            'nombre_usuario' => $user['nombre_usuario'],
+            'id' => $id_usuario
+
         ]);
     }
 
@@ -69,8 +88,8 @@ class HomeController
         ]);
         // Redirigir a la vista home
         //header('Location: index.php?page=home');
-       /* header("Location: home");
-        exit();*/
+        /* header("Location: home");
+         exit();*/
     }
 }
 

@@ -1,4 +1,4 @@
-CREATE TABLE Rol (
+/*CREATE TABLE Rol (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     Rol VARCHAR(50) NOT NULL
 );
@@ -107,7 +107,7 @@ CREATE TABLE Sugerencia (
 */
 
 /* Modifique la tabla para implementar que el usuario pueda crear pregunta*/
-CREATE TABLE Sugerencia (
+/*CREATE TABLE Sugerencia (
                             ID INT PRIMARY KEY AUTO_INCREMENT,
                             Pregunta TEXT NOT NULL,
                             OpcionA VARCHAR(255) NOT NULL,
@@ -405,3 +405,368 @@ VALUES
 -- Partidas para Carlos Díaz (usuario ID 3)
 (1, 'Partida 1 para Carlos', 900, 90.00, 3, '2024-01-03 12:00:00', '2024-01-03 12:50:00'),
 (1, 'Partida 2 para Carlos', 850, 85.00, 3, '2024-01-07 17:00:00', '2024-01-07 17:30:00');
+*/
+
+
+
+-- Tabla Usuario
+CREATE TABLE Usuario (
+                         id INT AUTO_INCREMENT PRIMARY KEY,
+                         nombre VARCHAR(50) NOT NULL,
+                         nombre_usuario VARCHAR(50) NOT NULL,
+                         contrasenia VARCHAR(255) NOT NULL,
+                         fecha_nacimiento DATE NOT NULL,
+                         pais VARCHAR(255) NOT NULL,
+                         sexo VARCHAR(255) NOT NULL,
+                         ciudad VARCHAR(255) NOT NULL,
+                         email VARCHAR(255) NOT NULL,
+                         Path_img_perfil VARCHAR(255),
+                         activo BOOLEAN DEFAULT FALSE,
+                         token INT,
+                         latitudMapa INT,
+                         longitudMapa INT,
+                         total_respuestas INT DEFAULT 1,
+                         total_respuestas_correctas INT DEFAULT 0,
+                         enLinea BOOLEAN DEFAULT FALSE,
+                         rol INT NOT NULL DEFAULT 1
+);
+
+-- Tabla Categoria
+CREATE TABLE Categoria (
+                           ID INT AUTO_INCREMENT PRIMARY KEY,
+                           Categoria VARCHAR(50) NOT NULL,
+                           Color VARCHAR(50)
+);
+
+-- Tabla Pregunta
+CREATE TABLE Pregunta (
+                          ID INT AUTO_INCREMENT PRIMARY KEY,
+                          Pregunta TEXT NOT NULL,
+                          Dificultad INT NOT NULL,
+                          Categoria_id INT,
+                          mostrada INT DEFAULT 1,
+                          acertada INT DEFAULT 1,
+                          FOREIGN KEY (Categoria_id) REFERENCES Categoria(ID)
+);
+
+-- Tabla Respuesta
+CREATE TABLE Respuesta (
+                           ID INT AUTO_INCREMENT PRIMARY KEY,
+                           Texto_respuesta TEXT NOT NULL,
+                           Es_correcta BOOLEAN DEFAULT FALSE,
+                           Pregunta_id INT,
+                           id_partida INT,
+                           FOREIGN KEY (Pregunta_id) REFERENCES Pregunta(ID)
+);
+
+-- Tabla Partida
+CREATE TABLE Partida (
+                         ID INT AUTO_INCREMENT PRIMARY KEY,
+                         Descripcion TEXT NOT NULL,
+                         Puntuacion INT NOT NULL,
+                         Puntuacion_porcentaje DECIMAL(5, 2) NOT NULL,
+                         Usuario_id INT,
+                         Fecha_creada DATETIME DEFAULT CURRENT_TIMESTAMP,
+                         Fecha_finalizada DATETIME,
+                         FOREIGN KEY (Usuario_id) REFERENCES Usuario(id)
+);
+
+-- Tabla Pregunta_vista
+CREATE TABLE Pregunta_vista (
+                                ID INT AUTO_INCREMENT PRIMARY KEY,
+                                Usuario_id INT,
+                                Pregunta_id INT,
+                                FOREIGN KEY (Usuario_id) REFERENCES Usuario(id),
+                                FOREIGN KEY (Pregunta_id) REFERENCES Pregunta(ID)
+);
+
+-- Tabla Reporte
+CREATE TABLE Reporte (
+                         ID INT AUTO_INCREMENT PRIMARY KEY,
+                         Pregunta_id INT,
+                         Descripcion TEXT NOT NULL,
+                         Usuario_id INT,
+                         FOREIGN KEY (Pregunta_id) REFERENCES Pregunta(ID),
+                         FOREIGN KEY (Usuario_id) REFERENCES Usuario(id)
+);
+
+-- Tabla Sugerencia
+CREATE TABLE Sugerencia (
+                            ID INT AUTO_INCREMENT PRIMARY KEY,
+                            Pregunta TEXT NOT NULL,
+                            OpcionA TEXT NOT NULL,
+                            OpcionB TEXT NOT NULL,
+                            OpcionC TEXT NOT NULL,
+                            OpcionD TEXT NOT NULL,
+                            OpcionCorrecta CHAR(1) NOT NULL,
+                            Categoria VARCHAR(50) NOT NULL,
+                            Usuario_id INT,
+                            FOREIGN KEY (Usuario_id) REFERENCES Usuario(id)
+);
+
+
+INSERT INTO Categoria (Categoria, Color) VALUES ('Arte', 'Azul');
+INSERT INTO Categoria (Categoria, Color) VALUES ('Cine', 'Rojo');
+INSERT INTO Categoria (Categoria, Color) VALUES ('Deportes', 'Verde');
+INSERT INTO Categoria (Categoria, Color) VALUES ('Historia', 'Amarillo');
+INSERT INTO Categoria (Categoria, Color) VALUES ('Ciencia', 'Morado');
+INSERT INTO Categoria (Categoria, Color) VALUES ('Geografía', 'Naranja');
+
+-- Insertar usuario "editor"
+INSERT INTO Usuario (
+    nombre,
+    nombre_usuario,
+    contrasenia,
+    fecha_nacimiento,
+    pais,
+    sexo,
+    ciudad,
+    email,
+    Path_img_perfil,
+    activo,
+    token,
+    latitudMapa,
+    longitudMapa,
+    total_respuestas,
+    total_respuestas_correctas,
+    enLinea,
+    rol
+) VALUES (
+             'Editor User',             -- nombre
+             'editor',                  -- nombre_usuario
+             '1234e',                   -- contrasenia
+             '1990-01-01',              -- fecha_nacimiento
+             'Argentina',               -- pais
+             'Masculino',               -- sexo
+             'Buenos Aires',            -- ciudad
+             'editor@example.com',      -- email
+             'path/to/editor_profile',  -- Path_img_perfil
+             TRUE,                      -- activo
+             NULL,                      -- token
+             -34,                       -- latitudMapa
+             -58,                       -- longitudMapa
+             10,                        -- total_respuestas
+             8,                         -- total_respuestas_correctas
+             TRUE,                      -- enLinea
+             2                          -- rol (editor)
+         );
+
+-- Insertar usuario "admin"
+INSERT INTO Usuario (
+    nombre,
+    nombre_usuario,
+    contrasenia,
+    fecha_nacimiento,
+    pais,
+    sexo,
+    ciudad,
+    email,
+    Path_img_perfil,
+    activo,
+    token,
+    latitudMapa,
+    longitudMapa,
+    total_respuestas,
+    total_respuestas_correctas,
+    enLinea,
+    rol
+) VALUES (
+             'Admin User',              -- nombre
+             'admin',                   -- nombre_usuario
+             '1234a',                   -- contrasenia
+             '1985-05-15',              -- fecha_nacimiento
+             'Argentina',               -- pais
+             'Femenino',                -- sexo
+             'Córdoba',                 -- ciudad
+             'admin@example.com',       -- email
+             'path/to/admin_profile',   -- Path_img_perfil
+             TRUE,                      -- activo
+             NULL,                      -- token
+             -31,                       -- latitudMapa
+             -64,                       -- longitudMapa
+             15,                        -- total_respuestas
+             12,                        -- total_respuestas_correctas
+             TRUE,                      -- enLinea
+             3                          -- rol (admin)
+         );
+
+INSERT INTO Categoria (Categoria, Color) VALUES ('Arte', 'Azul');
+INSERT INTO Categoria (Categoria, Color) VALUES ('Cine', 'Rojo');
+INSERT INTO Categoria (Categoria, Color) VALUES ('Deportes', 'Verde');
+INSERT INTO Categoria (Categoria, Color) VALUES ('Historia', 'Amarillo');
+INSERT INTO Categoria (Categoria, Color) VALUES ('Ciencia', 'Morado');
+INSERT INTO Categoria (Categoria, Color) VALUES ('Geografía', 'Naranja');
+
+-- Insertar preguntas para la categoría "Arte"
+INSERT INTO Pregunta (Pregunta, Dificultad, Categoria_id) VALUES
+                                                              ('¿Quién pintó la Mona Lisa?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Arte')),
+                                                              ('¿Dónde se encuentra el Museo del Louvre?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Arte')),
+                                                              ('¿Qué técnica de pintura utilizó Leonardo da Vinci en la Mona Lisa?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Arte')),
+                                                              ('¿En qué movimiento artístico se encuentra el Guernica?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Arte')),
+                                                              ('¿Quién es conocido como El Greco?', 3, (SELECT ID FROM Categoria WHERE Categoria = 'Arte')),
+                                                              ('¿Quién pintó la Capilla Sixtina?', 3, (SELECT ID FROM Categoria WHERE Categoria = 'Arte')),
+                                                              ('¿En qué período artístico se desarrolló la pintura de la Capilla Sixtina?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Arte')),
+                                                              ('¿En qué año fue pintada la Mona Lisa?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Arte')),
+                                                              ('¿De qué material está hecha la escultura de David de Miguel Ángel?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Arte')),
+                                                              ('¿Qué estilo artístico utilizó Salvador Dalí?', 3, (SELECT ID FROM Categoria WHERE Categoria = 'Arte'));
+
+-- Insertar respuestas para las preguntas de la categoría "Arte"
+INSERT INTO Respuesta (Texto_respuesta, Es_correcta, Pregunta_id) VALUES
+                                                                      ('Leonardo da Vinci', TRUE, 1),
+                                                                      ('Francia', TRUE, 2),
+                                                                      ('Óleo sobre lienzo', TRUE, 3),
+                                                                      ('Cubismo', TRUE, 4),
+                                                                      ('Doménikos Theotokópoulos', TRUE, 5),
+                                                                      ('Miguel Ángel', TRUE, 6),
+                                                                      ('Renacimiento', TRUE, 7),
+                                                                      ('1512', TRUE, 8),
+                                                                      ('Bronce', TRUE, 9),
+                                                                      ('Surrealismo', TRUE, 10);
+
+-- Insertar preguntas para la categoría "Cine"
+INSERT INTO Pregunta (Pregunta, Dificultad, Categoria_id) VALUES
+                                                              ('¿Quién dirigió la película "El Padrino"?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Cine')),
+                                                              ('¿Qué actor protagonizó la película "Forrest Gump"?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Cine')),
+                                                              ('¿En qué año se estrenó "La Guerra de las Galaxias"?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Cine')),
+                                                              ('¿Cómo se llama el personaje principal en la película "Titanic"?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Cine')),
+                                                              ('¿Quién ganó el Oscar a Mejor Director en 2018?', 3, (SELECT ID FROM Categoria WHERE Categoria = 'Cine')),
+                                                              ('¿Cuál es el nombre de la saga de películas sobre un mago joven?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Cine')),
+                                                              ('¿Qué película ganó el Oscar a Mejor Película en 2020?', 3, (SELECT ID FROM Categoria WHERE Categoria = 'Cine')),
+                                                              ('¿En qué película aparece el personaje de "Jack Sparrow"?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Cine')),
+                                                              ('¿Quién dirigió la película "Inception"?', 3, (SELECT ID FROM Categoria WHERE Categoria = 'Cine')),
+                                                              ('¿En qué película de Pixar aparece el personaje de "Woody"?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Cine'));
+
+-- Insertar respuestas para las preguntas de la categoría "Cine"
+INSERT INTO Respuesta (Texto_respuesta, Es_correcta, Pregunta_id) VALUES
+                                                                      ('Francis Ford Coppola', TRUE, 1),
+                                                                      ('Tom Hanks', TRUE, 2),
+                                                                      ('1977', TRUE, 3),
+                                                                      ('Rose', TRUE, 4),
+                                                                      ('Guillermo del Toro', TRUE, 5),
+                                                                      ('Harry Potter', TRUE, 6),
+                                                                      ('Parasite', TRUE, 7),
+                                                                      ('Piratas del Caribe', TRUE, 8),
+                                                                      ('Christopher Nolan', TRUE, 9),
+                                                                      ('Toy Story', TRUE, 10);
+
+-- Insertar preguntas para la categoría "Deportes"
+INSERT INTO Pregunta (Pregunta, Dificultad, Categoria_id) VALUES
+                                                              ('¿Quién ganó el Mundial de Fútbol 2018?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Deportes')),
+                                                              ('¿Cuántos jugadores tiene un equipo de fútbol en el campo?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Deportes')),
+                                                              ('¿En qué año se celebraron los primeros Juegos Olímpicos modernos?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Deportes')),
+                                                              ('¿Qué deporte se juega con una raqueta y una pelota amarilla?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Deportes')),
+                                                              ('¿En qué país se originó el rugby?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Deportes')),
+                                                              ('¿Cuántos minutos dura un partido de fútbol profesional?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Deportes')),
+                                                              ('¿Quién es conocido como el mejor jugador de tenis de todos los tiempos?', 3, (SELECT ID FROM Categoria WHERE Categoria = 'Deportes')),
+                                                              ('¿Qué país ganó el Mundial de Fútbol 2014?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Deportes')),
+                                                              ('¿Cuántos jugadores forman un equipo de baloncesto?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Deportes')),
+                                                              ('¿En qué año se jugó el primer Super Bowl?', 3, (SELECT ID FROM Categoria WHERE Categoria = 'Deportes'));
+
+-- Insertar respuestas para las preguntas de la categoría "Deportes"
+INSERT INTO Respuesta (Texto_respuesta, Es_correcta, Pregunta_id) VALUES
+                                                                      ('Francia', TRUE, 1),
+                                                                      ('11', TRUE, 2),
+                                                                      ('1896', TRUE, 3),
+                                                                      ('Tenis', TRUE, 4),
+                                                                      ('Inglaterra', TRUE, 5),
+                                                                      ('90 minutos', TRUE, 6),
+                                                                      ('Roger Federer', TRUE, 7),
+                                                                      ('Alemania', TRUE, 8),
+                                                                      ('5', TRUE, 9),
+                                                                      ('1967', TRUE, 10);
+
+-- Insertar preguntas para la categoría "Historia"
+INSERT INTO Pregunta (Pregunta, Dificultad, Categoria_id) VALUES
+                                                              ('¿Quién fue el primer presidente de los Estados Unidos?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Historia')),
+                                                              ('¿En qué año comenzó la Revolución Francesa?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Historia')),
+                                                              ('¿Qué imperio construyó la Gran Muralla China?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Historia')),
+                                                              ('¿Dónde tuvo lugar la Batalla de Waterloo?', 3, (SELECT ID FROM Categoria WHERE Categoria = 'Historia')),
+                                                              ('¿Quién fue el primer emperador de Roma?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Historia')),
+                                                              ('¿En qué año terminó la Segunda Guerra Mundial?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Historia')),
+                                                              ('¿Qué evento histórico ocurrió el 11 de septiembre de 2001?', 3, (SELECT ID FROM Categoria WHERE Categoria = 'Historia')),
+                                                              ('¿Quién descubrió América?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Historia')),
+                                                              ('¿Qué guerra enfrentó a Estados Unidos y Vietnam?', 3, (SELECT ID FROM Categoria WHERE Categoria = 'Historia')),
+                                                              ('¿En qué año cayó el Muro de Berlín?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Historia'));
+
+-- Insertar respuestas para las preguntas de la categoría "Historia"
+INSERT INTO Respuesta (Texto_respuesta, Es_correcta, Pregunta_id) VALUES
+                                                                      ('George Washington', TRUE, 1),
+                                                                      ('1789', TRUE, 2),
+                                                                      ('Dinastía Ming', TRUE, 3),
+                                                                      ('Bélgica', TRUE, 4),
+                                                                      ('Augusto', TRUE, 5),
+                                                                      ('1945', TRUE, 6),
+                                                                      ('Los atentados del 11 de septiembre', TRUE, 7),
+                                                                      ('Cristóbal Colón', TRUE, 8),
+                                                                      ('Guerra de Vietnam', TRUE, 9),
+                                                                      ('1989', TRUE, 10);
+
+-- Insertar preguntas para la categoría Ciencia
+INSERT INTO Pregunta (Pregunta, Dificultad, Categoria_id) VALUES
+                                                              ('¿Cuál es el elemento químico con el símbolo O?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Ciencia')),
+                                                              ('¿Qué planeta es conocido como el "Planeta Rojo"?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Ciencia')),
+                                                              ('¿Qué parte del cuerpo humano produce insulina?', 3, (SELECT ID FROM Categoria WHERE Categoria = 'Ciencia')),
+                                                              ('¿Cómo se llama el proceso mediante el cual las plantas producen su propio alimento?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Ciencia')),
+                                                              ('¿Quién propuso la teoría de la relatividad?', 4, (SELECT ID FROM Categoria WHERE Categoria = 'Ciencia'));
+
+-- Insertar respuestas para la categoría Ciencia
+INSERT INTO Respuesta (Texto_respuesta, Es_correcta, Pregunta_id) VALUES
+                                                                      ('Oxígeno', TRUE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es el elemento químico con el símbolo O?')),
+                                                                      ('Hidrógeno', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es el elemento químico con el símbolo O?')),
+                                                                      ('Carbono', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es el elemento químico con el símbolo O?')),
+                                                                      ('Nitrógeno', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es el elemento químico con el símbolo O?')),
+
+                                                                      ('Marte', TRUE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Qué planeta es conocido como el "Planeta Rojo"?')),
+                                                                      ('Júpiter', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Qué planeta es conocido como el "Planeta Rojo"?')),
+                                                                      ('Venus', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Qué planeta es conocido como el "Planeta Rojo"?')),
+                                                                      ('Saturno', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Qué planeta es conocido como el "Planeta Rojo"?')),
+
+                                                                      ('El páncreas', TRUE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Qué parte del cuerpo humano produce insulina?')),
+                                                                      ('El hígado', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Qué parte del cuerpo humano produce insulina?')),
+                                                                      ('Los riñones', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Qué parte del cuerpo humano produce insulina?')),
+                                                                      ('El corazón', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Qué parte del cuerpo humano produce insulina?')),
+
+                                                                      ('Fotosíntesis', TRUE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cómo se llama el proceso mediante el cual las plantas producen su propio alimento?')),
+                                                                      ('Respiración celular', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cómo se llama el proceso mediante el cual las plantas producen su propio alimento?')),
+                                                                      ('Transpiración', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cómo se llama el proceso mediante el cual las plantas producen su propio alimento?')),
+                                                                      ('Digestión', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cómo se llama el proceso mediante el cual las plantas producen su propio alimento?')),
+
+                                                                      ('Albert Einstein', TRUE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Quién propuso la teoría de la relatividad?')),
+                                                                      ('Isaac Newton', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Quién propuso la teoría de la relatividad?')),
+                                                                      ('Galileo Galilei', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Quién propuso la teoría de la relatividad?')),
+                                                                      ('Nikola Tesla', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Quién propuso la teoría de la relatividad?'));
+
+-- Insertar preguntas para la categoría Geografía
+INSERT INTO Pregunta (Pregunta, Dificultad, Categoria_id) VALUES
+                                                              ('¿Cuál es la capital de Francia?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Geografía')),
+                                                              ('¿En qué continente se encuentra el río Amazonas?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Geografía')),
+                                                              ('¿Qué país tiene más habitantes del mundo?', 1, (SELECT ID FROM Categoria WHERE Categoria = 'Geografía')),
+                                                              ('¿En qué continente se encuentra el desierto del Sahara?', 2, (SELECT ID FROM Categoria WHERE Categoria = 'Geografía')),
+                                                              ('¿Cuál es el océano más grande?', 3, (SELECT ID FROM Categoria WHERE Categoria = 'Geografía'));
+
+-- Insertar respuestas para la categoría Geografía
+INSERT INTO Respuesta (Texto_respuesta, Es_correcta, Pregunta_id) VALUES
+                                                                      ('París', TRUE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es la capital de Francia?')),
+                                                                      ('Londres', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es la capital de Francia?')),
+                                                                      ('Roma', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es la capital de Francia?')),
+                                                                      ('Madrid', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es la capital de Francia?')),
+
+                                                                      ('Sudamérica', TRUE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿En qué continente se encuentra el río Amazonas?')),
+                                                                      ('África', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿En qué continente se encuentra el río Amazonas?')),
+                                                                      ('Asia', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿En qué continente se encuentra el río Amazonas?')),
+                                                                      ('Europa', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿En qué continente se encuentra el río Amazonas?')),
+
+                                                                      ('China', TRUE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Qué país tiene más habitantes del mundo?')),
+                                                                      ('India', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Qué país tiene más habitantes del mundo?')),
+                                                                      ('Estados Unidos', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Qué país tiene más habitantes del mundo?')),
+                                                                      ('Indonesia', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Qué país tiene más habitantes del mundo?')),
+
+                                                                      ('África', TRUE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿En qué continente se encuentra el desierto del Sahara?')),
+                                                                      ('Asia', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿En qué continente se encuentra el desierto del Sahara?')),
+                                                                      ('América del Norte', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿En qué continente se encuentra el desierto del Sahara?')),
+                                                                      ('Oceanía', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿En qué continente se encuentra el desierto del Sahara?')),
+
+                                                                      ('Océano Pacífico', TRUE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es el océano más grande?')),
+                                                                      ('Océano Atlántico', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es el océano más grande?')),
+                                                                      ('Océano Índico', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es el océano más grande?')),
+                                                                      ('Océano Ártico', FALSE, (SELECT ID FROM Pregunta WHERE Pregunta = '¿Cuál es el océano más grande?'));

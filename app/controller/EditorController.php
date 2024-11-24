@@ -25,6 +25,11 @@ class EditorController
         $fotoIMG = $usuario['fotoIMG'] ?? 'Invitado';
         $pregutasSugeridas = $this->crearPreguntaModel->obtenerPreguntasSugeridas();
         $reportes = $this->crearPreguntaModel-> obtenerReportes();
+
+        // Valido que el usuario tenga la sesion iniciada, sino lo mando al login
+        if($username=='Invitado')
+            header("Location: /tp-pw2-MiniPreguntados/app/login");
+
         echo $this->presenter->render('editor', [
             'nombre_usuario' => $username,
             'pais' => $pais,
@@ -48,7 +53,6 @@ class EditorController
         }
         // Redirigir al editor después de eliminar la pregunta
         header("Location: /tp-pw2-MiniPreguntados/app/editor");
-        exit();
         exit();
     }
 
