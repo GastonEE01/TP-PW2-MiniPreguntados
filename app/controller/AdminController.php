@@ -4,10 +4,11 @@ class AdminController
 {
 
     private $presenter;
-
-    public function __construct($presenter)
+    private  $adminModel;
+    public function __construct($presenter,$adminModel)
     {
         $this->presenter = $presenter;
+        $this->adminModel=$adminModel;
     }
 
     public function inicio()
@@ -28,16 +29,98 @@ class AdminController
         ]);
     }
 
-    public function obtenerEstadisticasPreguntas() {
+
+    public function obtenerEstadisticasPreguntas1() {
         // Datos ficticios que podrían venir de una consulta a la base de datos
-        $estadisticas = [
-            'Pendiente' => 15,
-            'Aprobada' => 20,
-            'Rechazada' => 5,
-            'Reportada' => 7,
-            'Desactivada' => 3
-        ];
-        header('Content-Type: application/json');
-        echo json_encode($estadisticas);
+            $data=$this->adminModel->traerPreguntasCorrectas();
+  // Datos ficticios que podrían venir de una consulta a la base de datos
+       // $data = [55, 44];  // Ejemplo de datos numéricos
+
+        $width = 500;
+        $height = 300;
+
+// Crear una imagen en blanco
+        $image = imagecreate($width, $height);
+
+// Colores
+        $white = imagecolorallocate($image, 255, 255, 255);
+        $black = imagecolorallocate($image, 0, 0, 0);
+        $blue = imagecolorallocate($image, 100, 149, 237);
+
+// Fondo blanco
+        imagefill($image, 0, 0, $white);
+
+// Dibujar el gráfico de barras
+        $barWidth = 40;
+        $barSpacing = 120;
+        $baseLine = $height - 50;
+        $font = 5;  // Tamaño de la fuente
+
+// Definir etiquetas para las barras
+        $labels = ['correctas '.$data[0]. "%", 'incorrectas '.$data[1]. "%"];  // Etiquetas de las barras
+
+        $x = $barSpacing;
+        foreach ($data as $index => $value) {
+            $barHeight = $value * 5; // Escalar los valores, ajusta el factor si es necesario
+            imagefilledrectangle($image, $x, $baseLine - $barHeight, $x + $barWidth, $baseLine, $blue);
+            imagestring($image, $font, $x, $baseLine + 20, $labels[$index], $black); // Etiqueta debajo de la barra
+            $x += $barWidth + $barSpacing;
+        }
+
+// Guardar la imagen como archivo
+        $filePath = __DIR__ . '/../chart.png';
+        imagepng($image, $filePath);
+        imagedestroy($image);
+
+        header('location:/tp-pw2-MiniPreguntados/app/descargar_pdf.php');
+
+}
+    public function obtenerUsuarioPorEdad() {
+        $data = $this->adminModel->clasificarUsuariosPorEdad(); // Ejemplo: ['Niños (0-12)' => 5, 'Adultos Jóvenes (18-35)' => 15]
+
+
+        $width = 1000;
+        $height = 500;
+
+// Crear una imagen en blanco
+        $image = imagecreate($width, $height);
+
+// Colores
+        $white = imagecolorallocate($image, 255, 255, 255);
+        $black = imagecolorallocate($image, 0, 0, 0);
+        $blue = imagecolorallocate($image, 100, 149, 237);
+
+// Fondo blanco
+        imagefill($image, 0, 0, $white);
+
+// Dibujar el gráfico de barras
+        $barWidth = 40;
+        $barSpacing = 120;
+        $baseLine = $height - 50;
+        $font = 5;  // Tamaño de la fuente
+
+// Definir etiquetas para las barras
+        $labels = ['niños'.$data[0].'%','adolecntes'.$data[1].'%','adultos'.$data[2].'%','ancianos'.$data[3].'%'];  // Etiquetas de las barras
+
+        $x = $barSpacing;
+        foreach ($data as $index => $value) {
+            $barHeight = $value * 5; // Escalar los valores, ajusta el factor si es necesario
+            imagefilledrectangle($image, $x, $baseLine - $barHeight, $x + $barWidth, $baseLine, $blue);
+            imagestring($image, $font, $x, $baseLine + 20, $labels[$index], $black); // Etiqueta debajo de la barra
+            $x += $barWidth + $barSpacing;
+        }
+
+// Guardar la imagen como archivo
+        $filePath = __DIR__ . '/../chart.png';
+        imagepng($image, $filePath);
+        imagedestroy($image);
+
+        header('location:/tp-pw2-MiniPreguntados/app/descargar_pdf.php');
+
     }
+
+
+
+
+
 }
