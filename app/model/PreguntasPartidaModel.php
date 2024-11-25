@@ -57,7 +57,6 @@ class PreguntasPartidaModel{
         }
         try {
 
-            // $stmt = $this->database->prepare($sql);
             $result=$this->database->execute($sql,[$categoria,$nivelDeUsuario]);
             $min = 0; // Este debe ser el índice mínimo
             $max = count($result) - 1; // Este debe ser el índice máximo, ajustando según tu arreglo

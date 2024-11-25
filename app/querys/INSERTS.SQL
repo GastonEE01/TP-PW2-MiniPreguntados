@@ -302,7 +302,7 @@ VALUES
     ('Michael Jordan', TRUE, 26),
     ('LeBron James', FALSE, 26),
     ('Kobe Bryant', FALSE, 26),
-    ('Shaquille O\'Neal', FALSE, 26);
+    ('Shaquille O\Neal', FALSE, 26);
 
 -- Respuestas para "¿Cuántos sets debe ganar un jugador para ganar un partido de tenis en Grand Slam?" (ID Pregunta = 27)
 INSERT INTO Respuesta (Texto_respuesta, Es_correcta, Pregunta_id)

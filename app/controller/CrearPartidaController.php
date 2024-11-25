@@ -86,11 +86,16 @@ class CrearPartidaController
 
         // Validar que sea un número o manejar errores
         $id_partida = is_numeric($id_partida) ? $id_partida : null;
+        $sesion = new ManejoSesiones();
+        $usuario = $sesion->obtenerUsuario();
+        $username = $usuario['nombre_usuario'] ?? 'Invitado';
 
     $categoria=$this->crearPartidaModel-> obtenerCategoriaAlAzar();
+
         echo $this->presenter->render("partida", [
             'categoria'=>$categoria[0]['categoria'],
-            'id_partida'=> $id_partida
+            'id_partida'=> $id_partida,
+            'nombre_usuario'=>$username
         ]);
 
     }

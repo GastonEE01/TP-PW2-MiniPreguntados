@@ -32,7 +32,7 @@ class PartidaController
         $sesion=New ManejoSesiones();
         $user = $sesion->obtenerUsuario();
 
-        if (0){
+        if ($respuesta!=null){
             $respuesVerificada= $this->preguntasPartidaModel->verificarRespuesta($respuesta, $user['id'],$id_partida,$tiempo_int);
             if ($respuesVerificada != null) {
                 $categoria = $this->crearPartidaModel->obtenerCategoriaAlAzar();
@@ -45,9 +45,7 @@ class PartidaController
                 $sesion = new ManejoSesiones();
                 $user = $sesion->obtenerUsuario();
                 $mejoresPunutajesJugador = $this->homeModel->trearMejoresPuuntajesJugadores();
-                //   print_r($partidas);
                 $actualizarPartida = $this->crearPartidaModel->actualizarPartida($id_partida);
-                print_r($actualizarPartida);
                 $partidas = $this->crearPartidaModel->obtenerPartidas($user['id']);
                 echo $this->presenter->render('home', ['partidas' => $partidas,
                     'puntajes' => $mejoresPunutajesJugador,
@@ -56,16 +54,12 @@ class PartidaController
 
             }
         }else{
-            print_r( $respuesta );
-            print_r(gettype($respuesta));
-            print_r("asdasdasd");
+
             // Actualziar el ranking despues de jugar una partida
             $actualizarPartida = $this->crearPartidaModel->actualizarPartida($id_partida);
             $sesion = new ManejoSesiones();
             $user = $sesion->obtenerUsuario();
             $mejoresPunutajesJugador1 = $this->homeModel->trearMejoresPuuntajesJugadores();
-            //   print_r($partidas);
-            print_r($actualizarPartida);
             $partidas1 = $this->crearPartidaModel->obtenerPartidas($user['id']);
             echo $this->presenter->render('home', ['partidas' => $partidas1,
                 'puntajes' => $mejoresPunutajesJugador1,

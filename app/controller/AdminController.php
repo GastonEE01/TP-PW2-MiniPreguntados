@@ -116,7 +116,7 @@ class AdminController
         imagedestroy($image);
 
         header('location:/tp-pw2-MiniPreguntados/app/descargar_pdf.php');
-
+exit();
     }
 
 

@@ -30,7 +30,7 @@ class CrearPartidaModel
     }
     public function obtenerCategoriaAlAzar(){
         $numRandom=rand(1,6);
-        $arrayRandom=array();
+        $arrayRandom=[];
       array_push($arrayRandom,$numRandom);
         $sql="SELECT categoria From Categoria where id=?";
         $result =$this->database->execute($sql,$arrayRandom);
