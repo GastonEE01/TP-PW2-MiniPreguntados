@@ -1,13 +1,13 @@
 <?php
-require '../vendor/autoload.php'; // Asegúrate de incluir el autoload de Composer
+require '../vendor/autoload.php';
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-// Configuración de DOMPDF
+// Configuración de Dompdf
 $options = new Options();
 $options->set('isHtml5ParserEnabled', true);
-$options->set('isRemoteEnabled', true); // Permite cargar imágenes remotas (URLs)
+$options->set('isRemoteEnabled', true);
 $dompdf = new Dompdf($options);
 
 // Contenido HTML del PDF
@@ -15,23 +15,23 @@ $html = '
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ejemplo PDF</title>
-   
+    <title>Reporte de Usuarios por Edad</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        img { max-width: 100%; height: auto; margin: 20px 0; }
+    </style>
 </head>
 <body>
-    <img src="http://localhost/tp-pw2-MiniPreguntados/app/chart.png" alt="Gráfico de Estadísticas">
+    <h1>Reporte de Usuarios por Edad</h1>
+    <img src="http://localhost/tp-pw2-MiniPreguntados/app/chart.png" alt="Gráfico de Usuarios por Edad">
 </body>
 </html>
 ';
 
-// Cargar el contenido HTML en DOMPDF
+// Generar el PDF
 $dompdf->loadHtml($html);
-
-// (Opcional) Configurar tamaño de papel y orientación
-//$dompdf->setPaper('A4', 'portrait'); // 'portrait' o 'landscape'
-
-// Renderizar el PDF
+$dompdf->setPaper('A4', 'landscape'); // Cambiar orientación si es necesario
 $dompdf->render();
 
 // Enviar el PDF al navegador
-$dompdf->stream('reporte.pdf', ['Attachment' => 0]); // 'Attachment' => 0 para visualizar en el navegador
+$dompdf->stream('usuarios_por_edad.pdf', ['Attachment' => 0]); // 'Attachment' => 0 para visualizar
