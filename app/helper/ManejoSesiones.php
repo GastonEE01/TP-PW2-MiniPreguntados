@@ -10,16 +10,29 @@ class ManejoSesiones
         }
     }
 
-public function iniciarSesion($usuario)
-{
-    $_SESSION['usuario'] = [
-        'id' => $usuario['id'] ?? null,
-        'nombre_usuario' => $usuario['nombre_usuario'] ?? '',
-        'pais' => $usuario['pais'] ?? '',
-        'ciudad' => $usuario['ciudad'] ?? '',
-        'fotoIMG' => $usuario['fotoIMG'] ?? ''
-    ];
-}
+    public function limpiarCache()
+    {
+        $_SESSION = [];
+    }
+
+    public function iniciarSesion($usuario)
+    {
+        /*   if (session_status() === PHP_SESSION_NONE) {
+               session_start();
+           }
+           */// Limpia posibles datos anteriores en $_SESSION
+        $this->limpiarCache();
+
+        $_SESSION['usuario'] = [
+            'id' => $usuario['id'] ?? null,
+            'nombre_usuario' => $usuario['nombre_usuario'] ?? '',
+            'pais' => $usuario['pais'] ?? '',
+            'ciudad' => $usuario['ciudad'] ?? '',
+            'rol' => $usuario['rol'] ?? '',
+            'activo' => $usuario['activo'] ?? '',
+            'enLinea' => 1
+        ];
+    }
 
     public function obtenerUsuario()
     {
@@ -35,6 +48,7 @@ public function iniciarSesion($usuario)
 
     public function cerrarSesion()
     {
+        error_log("Cerrando sesión: " . print_r($_SESSION, true));
         session_unset();
         session_destroy();
     }

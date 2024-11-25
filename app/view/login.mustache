@@ -12,9 +12,10 @@
 <body>
 <div class="background-container"></div>
 <div class="container">
-    <h1>Formulario de Inicio de Sesión</h1>
-    <form action="index.php?page=login&action=login" method="post">
-         <div class="form-group">
+    <h1>Bienvenido a preguntados</h1>
+         <form action="/tp-pw2-MiniPreguntados/app/login/validarUsuario" method="post">
+
+    <div class="form-group">
             <label for="username">Nombre de Usuario:</label>
             <input class="form-control" type="text" id="username" name="nombre_usuario" required>
         </div>
@@ -24,12 +25,21 @@
         </div>
             <button class="btn btn-primary col-12 mt-3" type="submit">Iniciar Sesión</button>
     </form>
-    <a href="/TP-pw2-MiniPreguntados/app/index.php?page=registro">Registrate</a>
+    <a href="/TP-pw2-MiniPreguntados/app/registro">Registrate</a>
+
+    {{#success}}
+        <div class="alert alert-success">
+            {{success}}
+        </div>
+    {{/success}}
+
+    {{#error}}
+        <div class="alert alert-danger mt-3">
+            {{error}}
+        </div>
+    {{/error}}
 </div>
-{{#success}}
-    <div class="alert alert-success">
-        {{success}}
-    </div>
-{{/success}}
+
+
 </body>
 </html>

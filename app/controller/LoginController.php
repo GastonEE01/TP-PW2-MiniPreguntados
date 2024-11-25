@@ -13,39 +13,48 @@ class LoginController
 
     public function inicio()
     {
-        echo $this->presenter->render('login');
+        $sesion = new ManejoSesiones();
+        // Limpio la cache por si el usuario va para atras ( <- ) y NO APRETO EL BOTON DE CERRAR SESION
+        $sesion->limpiarCache();
+        echo $this->presenter->render('login', []);
     }
 
-    public function login($data)
+    public function validarUsuario($data)
     {
         $nombre_usuario = $data['nombre_usuario'] ?? null;
         $contrasenia = $data['contrasenia'] ?? null;
 
         $user = $this->loginModel->loginUser($nombre_usuario, $contrasenia);
 
-        if ($user['activo'] == 1) {
-            // Si el rol es 2, redirige a la vista del editor
+        if ($user && isset($user['activo']) && $user['activo'] == 1) {
+            $sesion = new ManejoSesiones();
+            $sesion->iniciarSesion($user);
             if ($user['rol'] == 2) {
-                header("Location: index.php?page=editor");
+                header("Location: /tp-pw2-MiniPreguntados/app/editor");
                 exit;
             }
-            // Si el rol es 3, redirige a la vista del administrador
             elseif ($user['rol'] == 3) {
-                header("Location: index.php?page=admin");
+                header("Location: /tp-pw2-MiniPreguntados/app/admin");
                 exit;
-            }else {
-                    $sesion = new ManejoSesiones();
-                    $sesion->iniciarSesion($user);
-
-                header("Location: home/listarPartidas");
+            } else {
+                header("Location: /tp-pw2-MiniPreguntados/app/home/listarPartidas");
                 exit;
-                }
-        } else {
-                    echo $this->presenter->render("login", [
-                        'error' => 'Nombre de usuario o contraseña incorrectos'
-                    ]);
-                }
             }
+        } else {
+            echo $this->presenter->render("login", [
+                'error' => 'Nombre de usuario o contraseña incorrectos'
+            ]);
+        }
     }
+
+    public function cerrarSesion()
+    {
+        $sesion = new ManejoSesiones();
+        $sesion->cerrarSesion();
+        header("Location: /tp-pw2-MiniPreguntados/app/login");
+        exit;
+    }
+
+}
 
 

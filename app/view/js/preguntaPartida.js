@@ -44,14 +44,14 @@ let countdownInterval = setInterval(() => {
         modal.style.display = "flex";
 
         closeModal.onclick = function() {
+            window.location.href = '/tp-pw2-MiniPreguntados/app/Partida/validarRespuesta';
             modal.style.display = "none"; // Cerrar el modal
-            window.location.href = 'index.php?page=home';
         };
 
         window.onclick = function(event) {
             if (event.target == modal) {
+                window.location.href = '/tp-pw2-MiniPreguntados/app/Partida/validarRespuesta';
                 modal.style.display = "none"; // Cerrar el modal
-                window.location.href = 'index.php?page=home';
             }
         };
     }

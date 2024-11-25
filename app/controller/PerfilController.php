@@ -22,6 +22,9 @@ class PerfilController
         $fotoIMG = $usuario['fotoIMG'] ?? 'Invitado';
         $partidas=$this->crearPartidaModel->obtenerPartidasFinalizadas($usuario['id']);
 
+        if($username=='Invitado' )
+            header("Location: /tp-pw2-MiniPreguntados/app/login");
+
         echo $this->presenter->render('perfil', [
             'nombre_usuario' => $username,
             'pais' => $pais,

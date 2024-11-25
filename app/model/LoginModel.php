@@ -11,8 +11,16 @@ class LoginModel
 
     public function loginUser($nombre_usuario, $contrasenia) {
 
+        if (empty($nombre_usuario) || empty($contrasenia)) {
+            return null; // Devolver null si hay datos faltantes
+        }
+
         $sql = "SELECT contrasenia FROM usuario WHERE nombre_usuario = ?"; //buscamos la contraseña hasheada
         $stmt1=$this->database->execute($sql,[$nombre_usuario]);
+
+        if (empty($stmt1)) {
+            return null;
+        }
 
         $hashAlmacenado = $stmt1[0]['contrasenia'];//almacenamos la contraceña hasheada
         if ($hashAlmacenado && password_verify($contrasenia, $hashAlmacenado)) {//verificamos si la contraceña que ingreso el usuario concuerda con la contraseña hasheada en la base de datos
@@ -35,8 +43,7 @@ class LoginModel
 
             $stmt->close();
         } else {
-            // Contraseña incorrecta
-            echo "Usuario o contraseña incorrectos";
+            return null;
         }
 
     }

@@ -26,12 +26,10 @@ class PreguntasPartidaController
 
     public function mostrarPregunta(){
         $id_partida=isset($_GET['id_partida'])?$_GET['id_partida']:null;
-       // print_r($id_partida);
         $sesion=New ManejoSesiones();
         $user = $sesion->obtenerUsuario();
         $username = $user['nombre_usuario'] ?? 'Invitado';
 
-      //  $respuesta = isset($_POST['answer'])?$_POST['answer']:null;
 
         $categoria=isset($_GET['categoria'])?$_GET['categoria']:null;
         $nivelUsuario=$this->usuarioModel->verificarNivelDeUsuario($user['id']);

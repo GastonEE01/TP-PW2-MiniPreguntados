@@ -6,7 +6,7 @@ include_once("helper/IncludeFilePresenter.php");
 include_once("helper/Router.php");
 include_once("helper/MustachePresenter.php");
 include_once("helper/SenderEmailPHPMailer.php");
-include_once('vendor/mustache/src/Mustache/Autoloader.php');
+//include_once('vendor/mustache/src/Mustache/Autoloader.php');
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
@@ -15,6 +15,7 @@ include_once("model/CrearPartidaModel.php");
 include_once("model/PreguntasPartidaModel.php");
 include_once("model/HomeModel.php");
 include_once("model/CrearPreguntaModel.php");
+include_once("model/AdminModel.php");
 
 include_once("controller/UsuarioController.php");
 include_once("controller/HomeController.php");
@@ -82,7 +83,7 @@ class Configuration
 
     public function getAdminController()
     {
-        return new AdminController($this->getPresenter());
+        return new AdminController($this->getPresenter(),new AdminModel($this->getDatabase()));
     }
 
     public function getEditorController()

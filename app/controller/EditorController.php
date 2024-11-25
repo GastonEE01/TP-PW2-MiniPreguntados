@@ -25,8 +25,21 @@ class EditorController
         $fotoIMG = $usuario['fotoIMG'] ?? 'Invitado';
         $pregutasSugeridas = $this->crearPreguntaModel->obtenerPreguntasSugeridas();
         $reportes = $this->crearPreguntaModel-> obtenerReportes();
+
+        $usuarios=$this->crearPreguntaModel->ObtenerTodosLosUsuarios();
+        foreach ($reportes as &$reporte) {
+            foreach ($usuarios as $usuario) {
+                if ($reporte['Usuario_id'] === $usuario['id']) {
+                    $reporte['nombre_usuario'] = $usuario['nombre'];
+                    break;
+                }
+            }
+        }
+        // Valido que el usuario tenga la sesion iniciada, sino lo mando al login
+        if($username=='Invitado' || $username=="admin")
+            header("Location: /tp-pw2-MiniPreguntados/app/login");
+
         echo $this->presenter->render('editor', [
-            'nombre_usuario' => $username,
             'pais' => $pais,
             'ciudad' => $ciudad,
             'fotoIMG' => $fotoIMG,
@@ -47,7 +60,7 @@ class EditorController
             $this->crearPreguntaModel->eliminarPregunta($id);
         }
         // Redirigir al editor después de eliminar la pregunta
-        header('Location: index.php?page=editor');
+        header("Location: /tp-pw2-MiniPreguntados/app/editor");
         exit();
     }
 
@@ -83,7 +96,9 @@ class EditorController
                     $this->crearPreguntaModel->eliminarPregunta($id);
 
                     // Redirigir después de agregar y eliminar la pregunta de sugerencia
-                    header('Location: index.php?page=editor');
+                    header("Location: /tp-pw2-MiniPreguntados/app/editor");
+                    exit();
+
                     exit();
                 } catch (Exception $e) {
                     // Manejar error si ocurre
@@ -134,7 +149,7 @@ class EditorController
 
             $this->crearPreguntaModel->eliminarReporte($idReporte);
         }
-        header('Location: index.php?page=editor');
+        header("Location: /tp-pw2-MiniPreguntados/app/editor");
         exit();
     }
 
@@ -151,7 +166,7 @@ class EditorController
             $this->crearPreguntaModel->eliminarReporte($idReporte);
 
         }
-        header('Location: index.php?page=editor');
+        header("Location: /tp-pw2-MiniPreguntados/app/editor");
         exit();
     }
 

@@ -18,14 +18,14 @@
 
     <!-- Navigation Section -->
     <nav class="header-nav">
-        <a href="index.php?page=login">
+        <a href="/tp-pw2-MiniPreguntados/app/login/cerrarSesion">
             <button class="logout-button">Cerrar sesión</button>
         </a>
     </nav>
 
     <!-- User Info Section -->
     <div class="user-container">
-        <span class="username">{{username}}</span>
+        <span class="username">{{nombre_usuario}}</span>
         <div class="user-circle">
             <img src="{{userImageUrl}}" alt="Imagen de perfil de {{username}}" class="user-image">
         </div>
@@ -73,7 +73,8 @@
                             <div class="modal-content">
                                 <span class="close" data-id="{{ID}}">&times;</span>
                                 <h3>Modificar Pregunta</h3>
-                                <form id="modifyForm" action="index.php?page=editor&action=modificarPregunta" method="post">
+                                <!--<form id="modifyForm" action="index.php?page=editor&action=modificarPregunta" method="post">-->
+                                    <form id="modifyForm" action="/tp-pw2-MiniPreguntados/app/editor/modificarPregunta" method="post">
                                     <input type="hidden" name="ID" value="{{ID}}">
                                     <input type="hidden" name="Usuario_id" value="{{Usuario_id}}">
 
@@ -102,9 +103,9 @@
                                 </form>
                             </div>
                         </div>
-
-                        <form action="index.php?page=editor&action=agregarPregunta" method="post">
-                            <input type="hidden" name="ID" value="{{ID}}">
+                       <!-- <form action="index.php?page=editor&action=agregarPregunta" method="post">-->
+                        <form id="modifyForm" action="/tp-pw2-MiniPreguntados/app/editor/agregarPregunta" method="post">
+                        <input type="hidden" name="ID" value="{{ID}}">
                             <input type="hidden" name="Pregunta" value="{{Pregunta}}">
                             <input type="hidden" name="OpcionA" value="{{OpcionA}}">
                             <input type="hidden" name="OpcionB" value="{{OpcionB}}">
@@ -115,7 +116,9 @@
                             <button class="action-button add-button">Agregar</button>
                         </form>
                         <!-- Formulario para eliminar la pregunta -->
-                        <form action="index.php?page=editor&action=eliminarPregunta" method="post">
+                       <!-- <form action="index.php?page=editor&action=eliminarPregunta" method="post">-->
+                            <form id="modifyForm" action="/tp-pw2-MiniPreguntados/app/editor/eliminarPregunta" method="post">
+
                             <input type="hidden" name="ID" value="{{ID}}">
                             <button type="submit" class="action-button delete-button" onclick="return confirm('¿Estás seguro de que deseas eliminar esta pregunta?');">Eliminar</button>
                         </form>
@@ -149,11 +152,14 @@
             <td>{{Descripcion}}</td>
             <td>{{nombre_usuario}}</td>
             <td>
-                <form action="index.php?page=editor&action=rechazarReporte" method="post">
-                    <input type="hidden" name="ID" value="{{ID}}"> <!--Como en el array me traigo toda la tabla reporte este es su id -->
+                <!--<form action="index.php?page=editor&action=rechazarReporte" method="post">-->
+                <form action="/tp-pw2-MiniPreguntados/app/editor/rechazarReporte" method="post">
+                <input type="hidden" name="ID" value="{{ID}}"> <!--Como en el array me traigo toda la tabla reporte este es su id -->
                     <button  class="action-button delete-button" >Rechazar</button>
                 </form>
-                <form action="index.php?page=editor&action=aprobarReporte" method="post">
+               <!-- <form action="index.php?page=editor&action=aprobarReporte" method="post">-->
+                    <form action="/tp-pw2-MiniPreguntados/app/editor/aprobarReporte" method="post">
+
                     <input type="hidden" name="ID" value="{{ID}}">
                     <input type="hidden" name="Pregunta_id" value="{{Pregunta_id}}">
                     <button class="action-button add-button"  >Aprobar</button>
