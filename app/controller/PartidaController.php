@@ -32,7 +32,7 @@ class PartidaController
         $sesion=New ManejoSesiones();
         $user = $sesion->obtenerUsuario();
 
-        if (0){
+        if ($respuesta != null){
             $respuesVerificada= $this->preguntasPartidaModel->verificarRespuesta($respuesta, $user['id'],$id_partida,$tiempo_int);
             if ($respuesVerificada != null) {
                 $categoria = $this->crearPartidaModel->obtenerCategoriaAlAzar();

@@ -297,7 +297,7 @@ INSERT INTO Usuario (nombre,
                      latitudMapa,
                      longitudMapa,
                      rol)
-                    ('editor',
+VALUES                   ('editor',
                     'editor', 
                     '$2y$10$Yl8F0Hz6XESgaRqFiwzHX.fH2V.d5JU8VkL8/plaPlFSKFcDIcBE2', 
                     '1970-04-22', 
