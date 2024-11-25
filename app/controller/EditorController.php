@@ -26,12 +26,20 @@ class EditorController
         $pregutasSugeridas = $this->crearPreguntaModel->obtenerPreguntasSugeridas();
         $reportes = $this->crearPreguntaModel-> obtenerReportes();
 
+        $usuarios=$this->crearPreguntaModel->ObtenerTodosLosUsuarios();
+        foreach ($reportes as &$reporte) {
+            foreach ($usuarios as $usuario) {
+                if ($reporte['Usuario_id'] === $usuario['id']) {
+                    $reporte['nombre_usuario'] = $usuario['nombre'];
+                    break;
+                }
+            }
+        }
         // Valido que el usuario tenga la sesion iniciada, sino lo mando al login
         if($username=='Invitado')
             header("Location: /tp-pw2-MiniPreguntados/app/login");
 
         echo $this->presenter->render('editor', [
-            'nombre_usuario' => $username,
             'pais' => $pais,
             'ciudad' => $ciudad,
             'fotoIMG' => $fotoIMG,

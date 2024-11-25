@@ -99,6 +99,14 @@ class CrearPreguntaModel
                 break;
         }
 
+
+    }
+
+    public function ObtenerTodosLosUsuarios()
+    {
+        $sql = "SELECT * FROM usuario";
+        $result =$this->database->execute($sql,[]);
+        return $result;
     }
     // Función para insertar las respuestas
     private function insertarRespuesta($respuesta, $esCorrecta, $preguntaId)

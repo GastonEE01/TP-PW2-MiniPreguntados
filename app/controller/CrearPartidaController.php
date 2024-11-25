@@ -62,7 +62,6 @@ class CrearPartidaController
 
         echo $this->presenter->render('home', ['partidas'=>$partidas,
             'nombre_usuario'=>$user['nombre_usuario'],
-            'id_partida'=> $partida[$cantRegistros]['ID'],
             'puntajes'=>$mejoresPunutajesJugador,
 
         ]);
@@ -72,7 +71,18 @@ class CrearPartidaController
 
 
     public function jugarPartida(){
-    $id_partida=isset($_GET['id_partida'])?$_GET['id_partida']:null;
+  //  $id_partida=isset($_GET['ID'])?$_GET['id_partida']:null;
+
+        $url = $_SERVER['REQUEST_URI'];
+
+        // Dividir la URL en partes (separadas por '/')
+        $parts = explode('/', $url);
+
+        // Capturar el último elemento (que sería el ID)
+        $id_partida = end($parts);
+
+        // Validar que sea un número o manejar errores
+        $id_partida = is_numeric($id_partida) ? $id_partida : null;
 
     $categoria=$this->crearPartidaModel-> obtenerCategoriaAlAzar();
         echo $this->presenter->render("partida", [

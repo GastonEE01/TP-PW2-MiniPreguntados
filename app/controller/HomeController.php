@@ -41,9 +41,7 @@ class HomeController
         $id_usuario = $sesion->obtenerUsuarioID();
         $id = $usuario['id'] ?? 'Invitado';
         $username = $user['nombre_usuario'] ?? 'Invitado';
-        //print_r($sesion);
-        //print_r($username);
-        //print_r($id);
+
 
         // Valido que el usuario tenga la sesion iniciada, sino lo mando al login
         if ($username == 'Invitado')

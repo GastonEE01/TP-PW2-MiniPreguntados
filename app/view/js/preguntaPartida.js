@@ -20,7 +20,7 @@ function mostrarFondo(categoria) {
 
 let countdownElement = document.getElementById('countdown');
 let progressBar = document.getElementById('progressBar');
-let totalTime = 30; // Tiempo total en segundos
+let totalTime = 10; // Tiempo total en segundos
 let timeLeft = totalTime;
 let modal = document.getElementById('timeOverModal');
 let closeModal = document.getElementById('closeModal');
@@ -44,14 +44,14 @@ let countdownInterval = setInterval(() => {
         modal.style.display = "flex";
 
         closeModal.onclick = function() {
+            window.location.href = '/tp-pw2-MiniPreguntados/app/Partida/validarRespuesta';
             modal.style.display = "none"; // Cerrar el modal
-            window.location.href = '/tp-pw2-MiniPreguntados/app/home/listarPartidas';
         };
 
         window.onclick = function(event) {
             if (event.target == modal) {
+                window.location.href = '/tp-pw2-MiniPreguntados/app/Partida/validarRespuesta';
                 modal.style.display = "none"; // Cerrar el modal
-                window.location.href = '/tp-pw2-MiniPreguntados/app/home/listarPartidas';
             }
         };
     }

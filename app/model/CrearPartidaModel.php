@@ -84,5 +84,4 @@ class CrearPartidaModel
         $result =$this->database->execute($sql,[$fechaFinalizada,$idPartida]);
         return $result;
     }
-
 }

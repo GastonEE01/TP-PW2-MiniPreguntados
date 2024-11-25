@@ -81,7 +81,7 @@ CREATE TABLE Reporte (
     FOREIGN KEY (Pregunta_id) REFERENCES Pregunta(ID),
     FOREIGN KEY (Usuario_id) REFERENCES Usuario(id)
 );
-
+ALTER TABLE Reporte ADD COLUMN nombre_usuario VARCHAR(255);
 CREATE TABLE Sugerencia (
                             ID INT PRIMARY KEY AUTO_INCREMENT,
                             Pregunta TEXT NOT NULL,
