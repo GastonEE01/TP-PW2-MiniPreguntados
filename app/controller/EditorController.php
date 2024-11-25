@@ -36,7 +36,7 @@ class EditorController
             }
         }
         // Valido que el usuario tenga la sesion iniciada, sino lo mando al login
-        if($username=='Invitado')
+        if($username=='Invitado' || $username=="admin")
             header("Location: /tp-pw2-MiniPreguntados/app/login");
 
         echo $this->presenter->render('editor', [

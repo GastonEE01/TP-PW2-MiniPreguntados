@@ -16,10 +16,7 @@ class LoginController
         $sesion = new ManejoSesiones();
         // Limpio la cache por si el usuario va para atras ( <- ) y NO APRETO EL BOTON DE CERRAR SESION
         $sesion->limpiarCache();
-        echo $this->presenter->render('login', [
-            'nombre_usuario' => 'Invitado',
-            'id' => ''
-        ]);
+        echo $this->presenter->render('login', []);
     }
 
     /*

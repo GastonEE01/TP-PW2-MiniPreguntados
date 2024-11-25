@@ -19,7 +19,7 @@ class AdminController
         $id = $usuario['id'] ?? 'Invitado';
 
         // Valido que el usuario tenga la sesion iniciada, sino lo mando al login
-        if($username=='Invitado')
+        if($username=='Invitado' || $username=='editor')
             header("Location: /tp-pw2-MiniPreguntados/app/login");
 
         echo $this->presenter->render('admin', [
