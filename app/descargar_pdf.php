@@ -16,38 +16,10 @@ $html = '
 <html>
 <head>
     <title>Ejemplo PDF</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.5; }
-        h1 { color: #333; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        table, th, td { border: 1px solid #ddd; }
-        th, td { padding: 8px; text-align: left; }
-    </style>
+   
 </head>
 <body>
-    <h1>Reporte de Usuarios</h1>
-    <p>Este es un ejemplo de generación de PDF con PHP y DOMPDF.</p>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Juan Pérez</td>
-                <td>juan@example.com</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>María López</td>
-                <td>maria@example.com</td>
-            </tr>
-        </tbody>
-    </table>
+    <img src="http://localhost/tp-pw2-MiniPreguntados/app/chart.png" alt="Gráfico de Estadísticas">
 </body>
 </html>
 ';
@@ -56,7 +28,7 @@ $html = '
 $dompdf->loadHtml($html);
 
 // (Opcional) Configurar tamaño de papel y orientación
-$dompdf->setPaper('A4', 'portrait'); // 'portrait' o 'landscape'
+//$dompdf->setPaper('A4', 'portrait'); // 'portrait' o 'landscape'
 
 // Renderizar el PDF
 $dompdf->render();

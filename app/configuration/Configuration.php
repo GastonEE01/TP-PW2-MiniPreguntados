@@ -15,6 +15,7 @@ include_once("model/CrearPartidaModel.php");
 include_once("model/PreguntasPartidaModel.php");
 include_once("model/HomeModel.php");
 include_once("model/CrearPreguntaModel.php");
+include_once("model/AdminModel.php");
 
 include_once("controller/UsuarioController.php");
 include_once("controller/HomeController.php");
@@ -82,7 +83,7 @@ class Configuration
 
     public function getAdminController()
     {
-        return new AdminController($this->getPresenter());
+        return new AdminController($this->getPresenter(),new AdminModel($this->getDatabase()));
     }
 
     public function getEditorController()
