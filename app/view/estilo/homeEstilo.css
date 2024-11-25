@@ -37,8 +37,8 @@ header {
 }
 
 .logo {
-    width: 130px; /* Ajusta el ancho */
-    height: auto; /* Mantiene las proporciones */
+    width: 130px;
+    height: auto;
 }
 
 nav {

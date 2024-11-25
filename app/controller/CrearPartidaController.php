@@ -18,9 +18,12 @@ class CrearPartidaController
     {
         $sesion = new ManejoSesiones();
         $usuario = $sesion->obtenerUsuario();
-        $id_usuario = $sesion->obtenerUsuarioID();  // Obtener el ID de usuario
+        $id_usuario = $sesion->obtenerUsuarioID();
         $username = $usuario['nombre_usuario'] ?? 'Invitado';
         $id = $usuario['id'] ?? 'Invitado';
+
+        if($username=='Invitado')
+            header("Location: /tp-pw2-MiniPreguntados/app/login");
 
         echo $this->presenter->render('crearPartida',[
             'nombre_usuario' => $username,
